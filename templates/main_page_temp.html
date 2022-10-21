@@ -5,9 +5,20 @@
   <body>
     <h1>Hi {{title}}</h1>
     <p> {{body_text}} </p>
+
     {% for header in headers %}
     <p>{{header[0]}}: {{header[1]}}</p>
     {% endfor %}
+
     <p><b>RESET MY!!!</b></p>
+    <p>
+      <form action="" method="post">
+        <button type="submit" name="submit_button" value="post_method">post</button>
+      </form>
+      <form action="" method="get">
+        <button type="submit" name="submit_button" value="get_method">get</button>
+      </form>
+    </p>
+      
   </body>
 </html>
