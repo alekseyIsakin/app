@@ -25,12 +25,14 @@ def home():
 
 @app.route('/redirect', methods=['GET','POST'])
 def new_page():
-  if request.form.get('selected_list').isdigit() == False:
+  selected_element = request.form.get('selected_list')
+
+  if selected_element is None or selected_element.isdigit() == False:
     return redirect (url_for('home'))
   
   tl = get_dump_test_list()
 
-  test_id = int(request.form.get('selected_list'))
+  test_id = int(selected_element)
   test_name = tl[test_id]
 
 
