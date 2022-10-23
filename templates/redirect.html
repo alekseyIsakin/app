@@ -1,10 +1,19 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <link rel="stylesheet" href="static/css/styles.css">
   </head>
   <body>
-    <h1>Hi {{title}}</h1>
-    <p>[{{receive_data}}]</p>
-    <a href="/">Go back</a>
+    <header>
+      <div class="headerContainer">
+          <p>Test {{test_name}} [{{test_id}}]</p>
+      </div>
+    </header>
+
+    <div class="mainPart">
+      <div class="mainContainer">
+        <a href="/index">Go back</a>
+      </div>
+    </div>
   </body>
 </html>

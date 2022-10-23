@@ -1,25 +1,26 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <link rel="stylesheet" href="static/css/styles.css">
   </head>
   <body>
-    <h1>Hi {{title}}</h1>
-    <h2>test</h2>
-    <p> {{body_text}} </p>
+    <header>
+      <div class="headerContainer">
+          <p>{{ title }}</p>
+      </div>
+    </header>
+    <div class="mainPart">
+      <div class="mainContainer">
+        <form method="post">
+          <button type="submit">select</button>
 
-    {% for header in headers %}
-    <p>{{header[0]}}: {{header[1]}}</p>
-    {% endfor %}
-
-    <p><b>RESET MY!!!</b></p>
-    <p>
-      <form action="" method="post">
-        <button type="submit" name="submit_button" value="post_method">post</button>
-      </form>
-      <form action="" method="get">
-        <button type="submit" name="submit_button" value="get_method">get</button>
-      </form>
-    </p>
-      
+          <select name="selected_list" id="speed">
+            {% for pair_id in test_list %}
+            <option value={{pair_id}}>{{ test_list[pair_id] }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+    </div>  
   </body>
 </html>
