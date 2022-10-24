@@ -4,7 +4,7 @@ Medical Test
 ### Quick Start
 Windows _cmd_:
 
-1. install [Node.ls](https://nodejs.org/en/download/)
+1. install [Node.js](https://nodejs.org/en/download/)
 Then check
 ```
 PS E:\...> node --version
