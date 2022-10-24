@@ -1,20 +1,23 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Medical Test",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alekseyIsakin/app.git"
   },
-  "author": "IPO-19",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alekseyIsakin/app/issues"
   },
-  "homepage": "https://github.com/alekseyIsakin/app#readme"
+  "homepage": "https://github.com/alekseyIsakin/app#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2"
+  }
 }

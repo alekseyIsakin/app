@@ -3,29 +3,35 @@ Medical Test
 
 ### Quick Start
 Windows _cmd_:
+
 1. install [Node.ls](https://nodejs.org/en/download/)
 Then check
 ```
 PS E:\...> node --version
-v16.18.0
+v16.*.*
 PS E:\...> npm --version
-8.19.2
+8.*.*
 PS E:\repos\web>
 ```
+
 2. Clone the repo
 ```
 PS E:\...> git clone https://github.com/alekseyIsakin/app
-```
-3. Run Node.js applicationcd
-```
-PS E:\repos\web\app> npm run start
+PS E:\...> cd app
+PS E:\...\app> 
 ```
 
-After you receive this message
+3. Install Express
 ```
-> app@1.0.0 start
-> node server.js
+PS E:\...\app> npm install express
+PS E:\...\app> express --version
+4.*.*
 
-Listening for request
 ```
+
+4. Run Node.js applicationcd
+```
+PS E:\repos\web\app> node app.js
+```
+
 Go to _http://127.0.0.1:3000_ in your browser
