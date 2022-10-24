@@ -1,0 +1,717 @@
+{
+    "GUID": "00000000-0000-0000-0000-000000000001",
+    "Name": "Тест самоопределения тревоги Д. Шихана",
+    "Description": "Определите, насколько Вас беспокоили в течение последней недели указанные ниже симптомы. Отметьте номер Вашего ответа на бланке ответов.",
+    "AnswerTags": [
+        "def"
+    ],
+    "QuestionList": [
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Затруднение на вдохе, нехватка воздуха или учащенное дыхание\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Ощущение удушья или комка в горле\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Сердце скачет, колотится, готово выскочить из груди\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Загрудинная боль, неприятное чувство сдавления в груди\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Профузная потливость (пот градом)\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Слабость, приступы дурноты, головокружения\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "\"Ватные\", \"не свои\" ноги\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Ощущение неустойчивости или потери равновесия\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Тошнота или неприятные ощущения в животе\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Ощущение того, что все окружающее становится странным, нереальным, туманным или отстраненнымОщущение того, что все окружающее становится странным, нереальным, туманным или отстраненным\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Ощущение, что все плывет, \"нахожусь вне тела\"\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Покалывание или онемение в разных частях тела\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Приливы жара или озноба\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Дрожь (тремор)\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Страх смерти или того, что сейчас может произойти что-то ужасное\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Страх сойти с ума или потери самообладания\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Внезапные приступы тревоги, сопровождающиеся тремя или более из вышеперечисленных признаков, возникающие непосредственно перед и при попадании в ситуацию, которая, по Вашему опыту, может вызвать приступ\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Внезапные неожиданные приступы тревоги, сопровождающиеся тремя или более из выше перечисленных признаков, возникающие по незначительным поводам или без повода (т.е., когда Вы НЕ находитесь в ситуации, которая, по Вашему опыту, может вызвать приступ)\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Внезапные неожиданные приступы, сопровождающиеся только одним или двумя из вышеперечисленных признаков, возникающие по незначительным поводам или без повода (т.е., когда Вы НЕ находитесь в ситуации, которая, по Вашему опыту, может вызвать приступ)\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Периоды тревоги, нарастающей по мере того, как Вы готовитесь сделать что-то, что, по Вашему опыту, может вызвать тревогу, причем более сильную, чем ту, что в таких случаях испытывает большинство людей\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Избегание пугающих вас ситуаций\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Состояние зависимости от других людей\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Напряженность и неспособность расслабиться\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Тревога, \"нервозность\", беспокойство\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Приступы повышенной чувствительности к звуку, свету и прикосновению\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Приступы поноса\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Чрезмерное беспокойство о собственном здоровье\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Ощущение усталости, слабости и повышенной истощаемости\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Головные боли или боли в шее\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Трудности засыпания\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Просыпания среди ночи или беспокойный сон\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Неожиданные периоды депрессии, возникающие по незначительным поводам или без повода\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Перепады настроения и эмоций, которые в основном зависят от того, что происходит вокруг Вас\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Повторяющиеся и неотступные представления, мысли, импульсы или образы, которые Вам кажутся тягостными, противными, бессмысленными или отталкивающими\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        },
+        {
+            "MaxRate": 4,
+            "MinRate": 0,
+            "UnicValues": false,
+            "Type": "QuestionRateAnswer",
+            "Text": null,
+            "Questions": [
+                "Повторение одного и того же действия как ритуала, например, повторные перепроверки, перемывание и пересчет при отсутствии в этом действии необходимости\n"
+            ],
+            "Variants": [
+                "Нисколько - 0",
+                "Немного - 1",
+                "Умеренно - 2",
+                "Сильно - 3",
+                "Крайне сильно - 4"
+            ],
+            "VariantsTag": [
+                "def"
+            ]
+        }
+    ],
+    "Diagnoses": {
+        "def": {
+            "тяжелое тревожное расстройство": 80,
+            "клинически выраженная тревога": 30,
+            "отсутствие клинически выраженной тревоги": 0
+        }
+    }
+}
