@@ -1,8 +1,16 @@
 html
   head
     title=title
+    link( rel="stylesheet", href="css/style.css", type="text/css")
   body
-    head
+    div(class="headerContainer")
       h1=title
-    div
-      p=message
+    div(class="mainPart")
+      div(class="mainContainer")
+        p=message
+        if show_form
+          form(action="/", method="post")
+            input(type="text", name="num1", placeholder="First Number")
+            button(type="submit", name="submit")="select"
+        else
+          a(href="/")="Go back"
