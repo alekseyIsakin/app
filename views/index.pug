@@ -10,7 +10,9 @@ html
         p=message
         if show_form
           form(action="/", method="post")
-            input(type="text", name="num1", placeholder="First Number")
+            select(name="stest_selector")
+              each id_name in test_list 
+                option=id_name["name"]
             button(type="submit", name="submit")="select"
         else
           a(href="/")="Go back"

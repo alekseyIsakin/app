@@ -1,11 +1,13 @@
+"use strict";
+
+import { get_stupid_test } from './test';
+
 const express = require('express');
 const path = require('path');
 const app = express();
-const bodyParser = require('body-parser')
 
-app.use(bodyParser.urlencoded({
-  extended:true
-}));
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded());
 
 const port = 3000;
 
@@ -20,6 +22,7 @@ app.get('/', function (req, res) {
     title:'awwsd',
     message:'sad',
     show_form:true});
+    // console.log(`receive get [${req.query.asd}]`);
 });
 
 app.post('/', function (req, res) {
@@ -28,12 +31,12 @@ app.post('/', function (req, res) {
     message:`you choose something ${req.body.num1}`,
     show_form:false})
 
-  console.log()
+    // console.log(`receive post [${req.body.num1}]`);
+
 });
 
 
 
 
 app.listen(port, function () {
-  console.log(`Example app listening on port ${port}!`);
 });
