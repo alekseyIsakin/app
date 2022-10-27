@@ -11,16 +11,6 @@ const fs = require("fs");
 app.use(express.urlencoded());
 
 const port = 3000;
-// var test_list = [
-//   {
-//     uuid: "00000000-0000-0000-0000-000000000001",
-//     name: "Тест самоопределения тревоги Д. Шихана",
-//   },
-//   {
-//     uuid: "00000000-0000-0000-0000-000000000002",
-//     name: "Тест на репрезентативные системы",
-//   }]
-
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -31,11 +21,10 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.get('/', function (req, res) {
 
   res.render('index', {
-    title:'awwsd',
-    message:'sad',
+    title:'Тесты гипнотерапии',
+    message:'выберите тест',
     test_list: tests.test_list(),
     show_form:true});
-    // console.log(`receive get [${req.query.asd}]`);
 });
 
 app.post('/', function (req, res) {
@@ -48,9 +37,6 @@ app.post('/', function (req, res) {
     message:t.name,
     message_id:uuid,
     show_form:false})
-
-    // console.log(`receive post [${req.body.num1}]`);
-
 });
 
 
