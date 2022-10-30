@@ -1,0 +1,20 @@
+.button_holder{
+  background: yellow;
+}
+.test_holder{
+  background: green;
+  max-width: 300px;
+}
+.button{
+  float: left;
+}
+.question{
+  border: 3px black solid;
+}
+
+.selected_btn{
+  background: yellow;
+}
+.answered_btn{
+  background: green;
+}
