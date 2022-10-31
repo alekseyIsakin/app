@@ -802,6 +802,7 @@ for (let i = 0; i < test2.questionlist.length; i++) {
         let combo_box = document.createElement('select')
         
         combo_box.className = "drop-down"
+        combo_box.style.textAlign = "center"
 
         p.className = "default_text"
         p.textContent = test2.questionlist[i].Questions[j]

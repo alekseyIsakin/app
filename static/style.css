@@ -75,8 +75,8 @@ option {
   border-width: 4px;
   border-color: black;
   width: 350px;
-  height: 55px;
-  line-height: 55px;
+  height: 60px;
+  line-height: 10px;
   color: #ECECEC;
   box-shadow: 3px 3px 5px #555555;
   padding: 0;
