@@ -87,4 +87,6 @@ option {
   font-size: 25px;
   font-weight: 500;
   font-family: sans-serif;
+  user-select: none;
+
 }
