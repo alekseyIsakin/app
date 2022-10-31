@@ -1,21 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <title>script testing</title>
-      <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="button_holder">
-      <p>ssss</p>
-    </div>
-    
-    <div class="test_holder">
+<head>
+    <title>JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display:-moz-inline-stack">
+    <div>
+        <div class="box">
+            <table>
+                <tr>
+                    <td width="35%">
+                        <p class="header_text" style="margin-left: 12px; margin-top: 5px; margin-bottom: 0px;">
+                            Тест: Название теста
+                        </p>
+                    </td>
+                    <td width="70%">
 
-    </div>
-    <button id="next_button">next</button>
-    <div id="gradient_holder">
-      <div id="gradient" width=></div>
+                    </td>
+                    <td width="15%">
+                        <object type="image/svg+xml" data="exitBtn.svg" width="50" height="50" style="margin-top: 10px; margin-right: 10px;">
+                            Your browser does not support SVG
+                        </object>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="question_selector" align="center">
+            <b id="selected_question" class="default_text "> < - / - > </b>
+        </div>
+
+        <div id="question_holder">
+
+        </div>
+        
+        <table style="margin-top: 300px;" align="center">
+            <tr>
+                <td>
+                    <div align="center" class="button">
+                        <p align="center" class="default_text" id="click_prev">
+                            Назад
+                        </p>    
+                    </div>
+                </td>
+                <td width="50px">
+
+                </td>
+                <td>
+                    <div align="center" class="button">
+                        <p align="center" class="button_text" id="click_next">
+                            Продолжить
+                        </p>    
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </div>
     </div>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
