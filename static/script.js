@@ -724,7 +724,7 @@ var prev_btn = document.getElementById("click_prev")
 
 var gradient_holder = document.getElementById("gradient_holder");
 var gradient = document.getElementById("gradient");
-var selected_quest_str = document.getElementById("question_selector")
+var selected_quest_str = document.getElementById("selected_question")
 
 function setwidth(val) {
     let percent = 100 * ((Number(val) + 1) / test2.questionlist.length)
@@ -777,7 +777,7 @@ function select_question(question) {
 
     hide_all()
     document.getElementsByClassName('one_question')[question].hidden = false
-    selected_quest_str.textContent = `< ${question + 1} - ${test2.questionlist.length} >`
+    selected_quest_str.textContent = `<\xa0\xa0\xa0${question + 1} / ${test2.questionlist.length}\xa0\xa0\xa0>`
     localStorage['selected_quest'] = question
 }
 
@@ -804,7 +804,8 @@ for (let i = 0; i < test2.questionlist.length; i++) {
         combo_box.className = "drop-down"
         combo_box.style.textAlign = "center"
 
-        p.className = "default_text"
+        p.className = "question"
+        p.style.borderWidth = 0
         p.textContent = test2.questionlist[i].Questions[j]
 
         for (let v = 0; v < test2.questionlist[i].Variants.length; v++) {

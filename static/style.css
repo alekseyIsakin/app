@@ -59,7 +59,7 @@ option {
   height: 65px;
   border-width: 3px;
   border-color: black;
-  box-shadow: 3px 3px 5px #222222;
+  box-shadow: 3px 3px 5px #555555;
 }
 .question {
   color: #b8bcc2;
@@ -80,6 +80,7 @@ option {
   color: #ECECEC;
   box-shadow: 3px 3px 5px #555555;
   padding: 0;
+  cursor:pointer;
 }
 .button_text {
   color: #ECECEC;
