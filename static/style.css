@@ -18,3 +18,12 @@
 .answered_btn{
   background: green;
 }
+#gradient{
+  background: linear-gradient(to right, green 0px 0%, yellow  );
+  display: block;
+  height: 25px;
+}
+
+#gradient_holder{
+  width: 100%;
+}

@@ -720,7 +720,24 @@ const test2 = {
 
 var button_holder = document.getElementsByClassName('button_holder')[0];
 var test_holder = document.getElementsByClassName('test_holder')[0];
+var next_btn = document.getElementById("next_button")
+var gradient_holder = document.getElementById("gradient_holder");
+var gradient = document.getElementById("gradient");
+
+function setwidth(val) {
+    let percent = 100 * ((Number(val) + 1) / test2.questionlist.length)
+    
+    gradient.setAttribute('style', `background: 
+        linear-gradient(to right, green 0% ${percent - 4}%, yellow ${percent + 1}% 100%);`)
+}
+
+next_btn.addEventListener('click', () => {
+    select_question( Number(localStorage['selected_quest']) + 1)
+})
+
 localStorage.clear()
+localStorage['selected_quest'] = 0
+localStorage[test2.uuid] = JSON.stringify({})
 
 function get_question_id(question) {
     let arr = question.split(' ')
@@ -730,22 +747,18 @@ function get_question_id(question) {
 }
 
 function question_is_answered(question, remove = false) {
-    if (!localStorage.getItem[test2.uuid])
-        { localStorage[test2.uuid] = "" }
+    if (!localStorage[test2.uuid])
+        { localStorage[test2.uuid] = JSON.stringify({}) }
     
     let quest = get_question_id(question)
-    let test_holder = localStorage[test2.uuid]
+    let selected_quest = JSON.parse(localStorage[test2.uuid])
 
-    if (remove) {
-        if (test_holder.getItem(quest))
-            test_holder.removeItem(quest)
-        return
-    }
+    // if (remove) {
+    //     return
+    // }
 
-    if (test_holder)
-        { localStorage[test2.uuid] = "123321213" }
-    else
-        { localStorage[test2.uuid] = "sssssss" }
+    selected_quest[quest] = question.split(' ').slice(-1)[0]
+    localStorage[test2.uuid] = JSON.stringify(selected_quest)
 }
 
 function hide_all() {
@@ -758,29 +771,35 @@ function hide_all() {
 
 function button_click(event) {
     var question = event.rangeParent.parentNode.value
-    var btn = event.rangeParent.parentNode
+    select_question(question)
+}
+
+function select_question(question) {
+    var btn = document.getElementsByClassName('question_btn')[question]
     var arr = document.getElementsByClassName('selected_btn')
+    let selected_quests = JSON.parse(localStorage[test2.uuid])
 
     for (var ch = 0; ch < arr.length; ch++) {
         let question_id = arr[ch].value
 
-        if (localStorage[question_id] && localStorage[question_id]) {
-            arr[ch].className = 'answered_btn'
+        if (selected_quests[question_id]) {
+            arr[ch].className = 'question_btn answered_btn'
         }
         else {
-            arr[ch].className = ''
+            arr[ch].className = 'question_btn'
         }
     }
 
-    btn.className = 'selected_btn'
+    btn.className += ' selected_btn'
 
     hide_all()
-
     document.getElementsByClassName('question_block')[question].hidden = false
+    setwidth(question)
+    localStorage['selected_quest'] = question
 }
 
-function button_answer_click(event) {
-    var question = event.rangeParent.parentNode.value
+function combo_box_answer_click(event) {
+    var question = event.target.value
     question_is_answered(question)
 }
 
@@ -791,6 +810,8 @@ for (let i = 0; i < test2.questionlist.length; i++) {
     el.textContent = i
     el.setAttribute('value', i)
     el.addEventListener('click', button_click)
+
+    el.className = 'question_btn'
     button_holder.appendChild(el)
 
     el = document.createElement('div')
@@ -802,18 +823,22 @@ for (let i = 0; i < test2.questionlist.length; i++) {
     for (let j = 0; j < test2.questionlist[i].Questions.length; j++) {
         let d = document.createElement('div')
         let p = document.createElement('p')
+        let combo_box = document.createElement('select')
+
         p.textContent = test2.questionlist[i].Questions[j]
         d.appendChild(p)
+        d.appendChild(combo_box)
 
         for (let v = 0; v < test2.questionlist[i].Variants.length; v++) {
-            let b = document.createElement('button')
+
+            let b = document.createElement('option')
             b.textContent = test2.questionlist[i].Variants[v]
             b.value = `${i} ${j} ${v}`
-            b.addEventListener('click', button_answer_click)
-
-            d.appendChild(b)
+            
+            combo_box.appendChild(b)
         }
-
+        
+        combo_box.addEventListener('click', combo_box_answer_click)
         d.className = 'question'
 
         el.appendChild(d)
