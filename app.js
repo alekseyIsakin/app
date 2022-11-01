@@ -22,11 +22,9 @@ app.post("/test", jsonParser, function (request, response) {
   if(!request.body) return response.sendStatus(400);
 
   let filePath = path.join(__dirname, `static/tests/${request.body.testUUID}.json`)
-
-  let data = fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) =>{
-    if (!err)
-      response.json(JSON.parse(data));
-    else
+  
+  fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) =>{
+    if (err)
       console.log(err)
   })
 });
