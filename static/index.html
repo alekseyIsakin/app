@@ -4,6 +4,7 @@
     <title>JS</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg" href="svg/favicon.svg"/>
+    <script type="text/javascript" src="scripts/script.js"></script>
 </head>
 <body style="display:-moz-inline-stack">
     <div>
@@ -11,8 +12,8 @@
             <table>
                 <tr>
                     <td width="35%">
-                        <p class="header_text" style="margin-left: 12px; margin-top: 5px; margin-bottom: 0px;">
-                            Тест: Название теста
+                        <p  class="header_text" style="margin-left: 12px; margin-top: 5px; margin-bottom: 0px;">
+                            Тест: <span id="test_name">Название теста</span>
                         </p>
                     </td>
                     <td width="70%">
@@ -58,24 +59,6 @@
             </table>
         </div>
     </div>
-    <button id="test_btn">ssss</button>
-    <script>
-        document.addEventListener("DOMContentLoaded", (e) => {
-            e.preventDefault();
-            let user = JSON.stringify({testUUID: '00000000-0000-0000-0000-000000000002'});
-            let request = new XMLHttpRequest();
-            // посылаем запрос на адрес "/user"
-
-             request.open("POST", "/user", true);   
-             request.setRequestHeader("Content-Type", "application/json");
-             request.addEventListener("load", function () {
-                // получаем и парсим ответ сервера
-                 let receivedUser = JSON.parse(request.response);
-                 console.log(receivedUser.uuid, "-", receivedUser.name);   // смотрим ответ сервера
-             });
-             request.send(user);
-        })
-    </script>
-    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="scripts/on_load.js"></script>
 </body>
 </html>

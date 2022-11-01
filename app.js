@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 
-app.post("/user", jsonParser, function (request, response) {
+app.post("/test", jsonParser, function (request, response) {
   console.log(request.body);
   if(!request.body) return response.sendStatus(400);
 
