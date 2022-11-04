@@ -12,8 +12,13 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'static')));
 
+app.get('/test_builder', function (req, res) {
+  res.sendFile(path.join(__dirname, 'static/html/test_builder.html'))
+});
+
+
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'static/index.html'))
+  res.sendFile(path.join(__dirname, 'static/html/index.html'))
 });
 
 
