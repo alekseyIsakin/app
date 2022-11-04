@@ -3,10 +3,6 @@
   max-width: 300px;
 }
 
-.button {
-  float: left;
-}
-
 /* .bordered {
   border: red 3px solid;
 }
@@ -18,15 +14,15 @@
 /* ---------------------------------------------- */
 /* ---------------------------------------------- */
 
-#question_selector{
-  align-content: center;
+#question_selector {
+  align-self: center;
+  display: flex;
 }
 
 .box {
   height: auto;
   width: 100%;
-  background: #222222;
-  background: linear-gradient(to bottom, #222222 70% , #ffffff 100%);
+  background: linear-gradient(to bottom, #222222 80%, #ffffff 100%);
 }
 
 .header_text {
@@ -59,7 +55,8 @@ option {
 }
 
 .drop-down {
-  width: 500px;
+  max-width: 500px;
+  width: 40%;
   height: 65px;
   border-width: 3px;
   border-color: black;
@@ -80,7 +77,8 @@ option {
   border-radius: 4px;
   border-width: 4px;
   border-color: black;
-  width: 350px;
+  max-width: 350px;
+  width: 70%;
   height: 40px;
   color: #ECECEC;
   box-shadow: 3px 3px 5px #555555;
@@ -97,6 +95,21 @@ option {
 
 }
 
+.control_quest_btn {
+  display: flex;
+  flex-flow: row;
+}
+
+.control_quest_btn>div>div {
+  text-align: center;
+}
+
+.control_quest_btn>div {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 #main_container {
@@ -105,20 +118,28 @@ option {
   height: 100vh;
 }
 
-.header{
+.header {
   flex: 0 1 auto;
 }
-#empty_space{
+
+#empty_space {
+  flex: 1 1 auto;
+  min-height: 40px;
+}
+
+#question_selector {
+  flex: 0 1 auto;
+}
+
+#question_holder {
   flex: 1 1 auto;
 }
-#question_selector{
-  flex: 1 1 auto;
-}
-#question_holder{
-  flex: 1 1 auto;
-}
+
 .control_quest_btn {
+  position: static;
+  bottom: 1px;
   width: 100%;
+  padding-top: 4px;
   flex: 0 1 auto;
   background-color: #787878;
 }
