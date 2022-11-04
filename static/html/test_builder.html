@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Title of the document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style_test_builder.css">
+</head>
+
+<body>
+  <div id="main_container">
+    <div class="box header">
+      <span class="header_text">header</span>
+    </div>
+
+    <div class="work_container">
+      <div class="base_elemnt_holder">
+        <div class="dragable_elements_holder">
+          <p class="movable" draggable="true" style="margin: 0px; background-color: aqua;">p1</p>
+          <p class="movable" draggable="true" style="margin: 0px; background-color: blue;">p2</p>
+          <p class="movable" draggable="true" style="margin: 0px; background-color: rebeccapurple;">p3</p>
+        </div>
+        <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div>
+      </div>
+
+      <div class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
+        <span>header</span>
+      </div>
+      <div><span>header</span></div>
+    </div>
+
+    <div class="footer">
+      <span>footer</span>
+
+    </div>
+
+  </div>
+  <script>
+    const tasksListElement = document.querySelector(`.dragable_elements_holder`);
+    const dropReceivers = document.querySelector(`.drop_receiver`);
+
+    function start_moving(event) { event.target.classList.add(`selected`); }
+    function stop_moving(event) { event.target.classList.remove(`selected`); }
+
+    tasksListElement.addEventListener(`dragstart`, start_moving)
+    tasksListElement.addEventListener(`dragend`, stop_moving);
+
+    function dragover_handler(ev) {
+      ev.preventDefault();
+      ev.dataTransfer.dropEffect = "move";
+    }
+    function drop_put_handler(ev) {
+      ev.preventDefault();
+
+      if (dropReceivers.querySelector('.selected') != null) return
+
+      const activeElement = tasksListElement.querySelector('.selected')
+      activeElement.classList.remove('selected')
+
+      const newElemnt = activeElement.cloneNode(true)
+      newElemnt.classList.remove('selected')
+
+      newElemnt.addEventListener(`dragstart`, start_moving)
+      newElemnt.addEventListener(`dragend`, stop_moving);
+
+      ev.currentTarget.appendChild(newElemnt)
+    }
+    function drop_del_handler(ev) {
+      ev.preventDefault();
+      const activeElement = dropReceivers.querySelector('.selected')
+      activeElement.remove()
+    }
+  </script>
+</body>
+
+</html>
