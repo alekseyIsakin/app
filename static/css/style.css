@@ -118,20 +118,19 @@ option {
   height: 100vh;
 }
 
-.header {
-  flex: 0 1 auto;
-}
 
 #empty_space {
-  flex: 1 1 auto;
   min-height: 40px;
 }
 
+.header,
 #question_selector {
   flex: 0 1 auto;
 }
 
-#question_holder {
+#question_holder,
+#empty_space,
+.work_container {
   flex: 1 1 auto;
 }
 
