@@ -16,6 +16,15 @@
   flex: 1 1 auto;
 }
 
+.question_holder{
+  background-color: cadetblue;
+  border: 1px black solid;
+  min-height: 25px;
+  padding: 3px;
+  padding-left: 15px;
+  margin-top: 3px;
+}
+
 .drop_receiver {
   background-color: blueviolet;
 }
@@ -37,6 +46,8 @@
 
 .work_container>div {
   flex: 1 1 auto;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .movable {
