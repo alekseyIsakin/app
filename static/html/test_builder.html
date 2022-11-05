@@ -15,24 +15,26 @@
 
     <div class="work_container">
       <div class="base_elemnt_holder">
+
         <div class="dragable_elements_holder">
-          <p style="margin: 0px; background-color: yellowgreen;">elements</p>
-          <div id="one_question_holder_" class="movable question_holder" 
-            ondrop="drop_put_to_question(event)" ondragover="dragover_handler(event)" 
-            draggable="true"></div>
-          <p id="p1_" class="movable" draggable="true" style="margin: 0px; background-color: aqua;">p1</p>
-          <p id="p2_" class="movable" draggable="true" style="margin: 0px; background-color: blue;">p2</p>
-          <p id="p3_" class="movable" draggable="true" style="margin: 0px; background-color: rebeccapurple;">p3</p>
+          <p style="margin: 0px; background-color: azure;">elements</p>
+          <div id="one_question_holder_" class="movable question_holder" ondrop="drop_put_to_question(event)"
+            ondragover="dragover_handler(event)" draggable="true">
+            <p class="question-name" style="margin: 0px; font-family: 'Courier New', Courier, monospace;"></p>
+          </div>
+          <p id="p1_" class="movable" oncontextmenu="RMB_click(event); return false;" draggable="true"
+            style="margin: 0px; background-color: aqua;">p1</p>
+
         </div>
-        <div class="delete_drop" 
-          ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div>
+        <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div>
       </div>
 
-      <div class="drop_receiver" 
-        ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
-        <span>tests</span>
+      <div class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
+          <p style="margin: 0px; background-color: azure;">tests</p>
       </div>
-      <div><span>header</span></div>
+      <div class="element-settings">
+        <p style="margin: 0px; background-color: azure;">edit</p>
+      </div>
     </div>
 
     <div class="footer">
@@ -45,11 +47,18 @@
     const tasksListElement = document.querySelector(`.dragable_elements_holder`);
     const dropReceivers = document.querySelector(`.drop_receiver`);
     let cur_id = 0
+
     function start_moving(event) {
+      if (!event.target.classList || event.target.classList.contains('movable') == false)
+        return
       event.dataTransfer.setData("text/plain", event.target.id);
       event.target.classList.add(`selected`);
     }
-    function stop_moving(event) { event.target.classList.remove(`selected`); }
+    function stop_moving(event) {
+      if (!event.target.classList || event.target.classList.contains('movable') == false)
+        return
+      event.target.classList.remove(`selected`);
+    }
 
     tasksListElement.addEventListener(`dragstart`, start_moving)
     tasksListElement.addEventListener(`dragend`, stop_moving);
@@ -58,10 +67,13 @@
       ev.preventDefault();
       ev.dataTransfer.dropEffect = "move";
     }
-
+    function RMB_click(event) {
+      alert('click')
+    }
     function drop_put_to_question(ev) {
       ev.preventDefault();
 
+      if (ev.target.id != ev.currentTarget.id) return
       if (ev.target.id != ev.currentTarget.id) return
 
       let movable_id = ev.dataTransfer.getData('text')
@@ -73,21 +85,23 @@
 
       if (activeElement.parentNode == tasksListElement) {
         newElemnt = activeElement.cloneNode(true)
-        add_number_to_id(newElemnt)
+        setup_new_element(newElemnt)
       }
 
-      newElemnt.addEventListener(`dragstart`, start_moving)
-      newElemnt.addEventListener(`dragend`, stop_moving);
       newElemnt.classList.remove('selected')
+      try {
+        ev.currentTarget.appendChild(newElemnt)
+      }
+      catch (err) {
 
-      ev.currentTarget.appendChild(newElemnt)
+      }
     }
     function drop_put_handler(ev) {
       ev.preventDefault();
 
       if (ev.target != dropReceivers) return
 
-      let movable_id = ev.dataTransfer.getData('text')
+      const movable_id = ev.dataTransfer.getData('text')
 
       const activeElement = document.getElementById(movable_id)
       if (activeElement == null) return
@@ -96,23 +110,54 @@
 
       if (activeElement.parentNode == tasksListElement) {
         newElemnt = activeElement.cloneNode(true)
-        add_number_to_id(newElemnt)
+        setup_new_element(newElemnt)
       }
-
-      newElemnt.addEventListener(`dragstart`, start_moving)
-      newElemnt.addEventListener(`dragend`, stop_moving);
       newElemnt.classList.remove('selected')
-
       ev.currentTarget.appendChild(newElemnt)
     }
+
     function drop_del_handler(ev) {
       ev.preventDefault();
-      const activeElement = dropReceivers.querySelector('.selected')
+      const movable_id = ev.dataTransfer.getData('text')
+      const activeElement = dropReceivers.querySelector(`#${movable_id}`)
       activeElement.remove()
     }
+
     function add_number_to_id(element) {
       element.id += String(cur_id)
       cur_id += 1
+    }
+    function set_description(element) {
+      if (element.classList.contains('question_holder')) {
+        element.querySelector('.question-name').textContent = element.id
+      }
+    }
+
+    function setup_new_element(element) {
+      element.addEventListener('dragstart', start_moving)
+      element.addEventListener('dragend', stop_moving);
+      element.addEventListener('click', (ev) => {
+        // cur_target - элемент на который кликнули
+        const target = ev.target
+        const cur_target = ev.currentTarget
+
+        if (target != cur_target && target.classList.contains('movable') == cur_target.classList.contains('movable')) return
+        if (target == cur_target || target.parentNode == cur_target) {
+          const prev_selected = dropReceivers.querySelector('.selected_for_editing')
+
+          if (prev_selected && prev_selected != cur_target) { prev_selected.classList.remove('selected_for_editing') }
+
+          cur_target.classList.toggle('selected_for_editing')
+          update_selected_element_info(cur_target)
+        }
+
+      })
+      add_number_to_id(element)
+      set_description(element)
+    }
+
+    function update_selected_element_info(element){
+
     }
   </script>
 </body>

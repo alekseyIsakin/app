@@ -3,21 +3,32 @@
   flex-flow: column;
 }
 
-.work_container {
-  display: flex;
-  flex-flow: row;
-}
-
 .base_elemnt_holder {
   display: flex;
   flex-flow: column;
+  width: 33%;
 }
-.base_elemnt_holder > div:first-child{
+
+.work_container {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  min-width: 100px;
+}
+
+.element-settings{
+  background-color: blue;
+  width: 33%;
+  max-width: 400px;
+  min-width: 50px;
+}
+
+.base_elemnt_holder>div:first-child {
   flex: 1 1 auto;
 }
 
-.question_holder{
-  background-color: cadetblue;
+.question_holder {
+  background: linear-gradient(to right, #22ce00 0% 10px, yellowgreen 15px 100%);
   border: 1px black solid;
   min-height: 25px;
   padding: 3px;
@@ -28,7 +39,6 @@
 .drop_receiver {
   background-color: blueviolet;
 }
-
 
 .delete_drop {
   background-color: red;
@@ -59,6 +69,10 @@
   opacity: 0.6;
 }
 
+.selected_for_editing {
+  transform: scale(1.05);
+}
 .drop_place {
   background-color: brown;
 }
+
