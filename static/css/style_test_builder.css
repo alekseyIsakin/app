@@ -16,8 +16,8 @@
   min-width: 100px;
 }
 
-.element-settings{
-  background-color: blue;
+.element-settings {
+  background-color: blanchedalmond;
   width: 33%;
   max-width: 400px;
   min-width: 50px;
@@ -61,18 +61,28 @@
 }
 
 .movable {
-  cursor: grab;
+  cursor: pointer;
   background-color: bisque;
 }
 
-.selected {
-  opacity: 0.6;
+.selected{
+  opacity: .6;
+}
+.non_selected_for_editing{
+  background: darkblue;
+}
+.selected_for_editing {
+  width: auto;
 }
 
-.selected_for_editing {
-  transform: scale(1.05);
+.question_holder>.element-name {
+  visibility: collapse;
 }
+
+.selected_for_editing>.element-name {
+  visibility: visible;
+}
+
 .drop_place {
   background-color: brown;
 }
-

@@ -20,20 +20,21 @@
           <p style="margin: 0px; background-color: azure;">elements</p>
           <div id="one_question_holder_" class="movable question_holder" ondrop="drop_put_to_question(event)"
             ondragover="dragover_handler(event)" draggable="true">
-            <p class="question-name" style="margin: 0px; font-family: 'Courier New', Courier, monospace;"></p>
+            <p class="element-name" style="margin: 0px; font-family: 'Courier New', Courier, monospace;"></p>
           </div>
-          <p id="p1_" class="movable" oncontextmenu="RMB_click(event); return false;" draggable="true"
-            style="margin: 0px; background-color: aqua;">p1</p>
+          <p id="p1_" class="movable" draggable="true" style="margin: 0px; background-color: aqua;">p1</p>
+          <button id="button_" class="movable" draggable="true">base-button</button>
 
         </div>
         <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div>
       </div>
 
       <div class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
-          <p style="margin: 0px; background-color: azure;">tests</p>
+        <p style="margin: 0px; background-color: azure;">tests</p>
       </div>
       <div class="element-settings">
         <p style="margin: 0px; background-color: azure;">edit</p>
+        <p>element-id <span id="element-id">_</span></p>
       </div>
     </div>
 
@@ -46,6 +47,8 @@
   <script>
     const tasksListElement = document.querySelector(`.dragable_elements_holder`);
     const dropReceivers = document.querySelector(`.drop_receiver`);
+    const elementSettings = document.querySelector(`.element-settings`);
+
     let cur_id = 0
 
     function start_moving(event) {
@@ -53,10 +56,19 @@
         return
       event.dataTransfer.setData("text/plain", event.target.id);
       event.target.classList.add(`selected`);
+
+      unhighlite_selections()
     }
     function stop_moving(event) {
       if (!event.target.classList || event.target.classList.contains('movable') == false)
         return
+
+      const edited_element_id = elementSettings.querySelector('#element-id').textContent
+      if (edited_element_id != '') {
+        const edited_element = dropReceivers.querySelector(`#${edited_element_id}`)
+        if (edited_element) { highlite_selection(edited_element) }
+      }
+
       event.target.classList.remove(`selected`);
     }
 
@@ -129,35 +141,64 @@
     }
     function set_description(element) {
       if (element.classList.contains('question_holder')) {
-        element.querySelector('.question-name').textContent = element.id
+        element.querySelector('.element-name').textContent = element.id
       }
     }
 
     function setup_new_element(element) {
       element.addEventListener('dragstart', start_moving)
       element.addEventListener('dragend', stop_moving);
-      element.addEventListener('click', (ev) => {
-        // cur_target - элемент на который кликнули
-        const target = ev.target
-        const cur_target = ev.currentTarget
-
-        if (target != cur_target && target.classList.contains('movable') == cur_target.classList.contains('movable')) return
-        if (target == cur_target || target.parentNode == cur_target) {
-          const prev_selected = dropReceivers.querySelector('.selected_for_editing')
-
-          if (prev_selected && prev_selected != cur_target) { prev_selected.classList.remove('selected_for_editing') }
-
-          cur_target.classList.toggle('selected_for_editing')
-          update_selected_element_info(cur_target)
-        }
-
-      })
+      element.addEventListener('click', one_click)
       add_number_to_id(element)
       set_description(element)
     }
 
-    function update_selected_element_info(element){
+    function one_click(ev) {
+      // cur_target - элемент на который кликнули
+      const target = ev.target
+      const cur_target = ev.currentTarget
 
+      if (target != cur_target && target.classList.contains('movable') == cur_target.classList.contains('movable')) return
+      if (target == cur_target || target.parentNode == cur_target) {
+        const prev_selected = dropReceivers.querySelector('.selected_for_editing')
+
+        if (prev_selected && prev_selected != cur_target) { prev_selected.classList.remove('selected_for_editing') }
+
+        if (cur_target.classList.contains('selected_for_editing')) {
+          unhighlite_selections()
+          update_selected_element_info({ id: '' })
+        }
+        else {
+          highlite_selection(cur_target)
+          update_selected_element_info(cur_target)
+        }
+      }
+    }
+
+    function unhighlite_selections() {
+      const el = dropReceivers.querySelectorAll('.movable')
+      el.forEach(element => {
+        element.classList.remove('non_selected_for_editing')
+        element.classList.remove('selected_for_editing')
+      });
+    }
+    function highlite_selection(element) {
+      unhighlite_selections()
+      element.classList.add('selected_for_editing')
+      element.classList.remove('non_selected_for_editing')
+
+      const el = dropReceivers.querySelectorAll('.movable:not(.selected_for_editing *, .selected_for_editing)')
+      el.forEach(element => {
+        element.classList.add('non_selected_for_editing')
+      });
+    }
+
+    function update_selected_element_info(element) {
+      const node_element_id = elementSettings.querySelector('#element-id')
+
+      if (!node_element_id || !element) return
+
+      node_element_id.textContent = element.id
     }
   </script>
 </body>
