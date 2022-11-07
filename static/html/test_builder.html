@@ -22,8 +22,10 @@
             ondragover="dragover_handler(event)" draggable="true">
             <p class="element-name" style="margin: 0px; font-family: 'Courier New', Courier, monospace;"></p>
           </div>
-          <div id="btn_placeholder_" class="movable able-to-edit-content" draggable="true">button_holder
+          <div id="btn_placeholder_" class="movable able-to-edit-content btn_placeholder" draggable="true">button_holder
           </div>
+          <div id="text_placeholder_" class="movable able-to-edit-content text_placeholder" draggable="true">
+            label_holder</div>
           <!-- <button id="button_" class="movable" draggable="true">base-button</button> -->
 
         </div>
@@ -36,7 +38,8 @@
       <div class="element-settings">
         <p style="margin: 0px; background-color: azure;">edit</p>
         <p>element-id <span id="element-id">_</span></p>
-        <p>element-id <input id="element-text"></input></p>
+        <p hidden="true">element-id <input id="element-text"></input></p>
+        <button id="save-button">save</button>
       </div>
     </div>
 
@@ -51,7 +54,6 @@
     const dropReceivers = document.querySelector(`.drop_receiver`);
     const elementSettings = document.querySelector(`.element-settings`);
 
-    // elementSettings.querySelector('#element-text').addEventListener('input', type_element_content)
 
     let cur_id = 0
 
@@ -79,15 +81,15 @@
     tasksListElement.addEventListener(`dragstart`, start_moving)
     tasksListElement.addEventListener(`dragend`, stop_moving);
 
-    function dragover_handler (ev) {
+    function dragover_handler(ev) {
       ev.preventDefault();
       ev.dataTransfer.dropEffect = "move";
     }
-    function drop_put_to_question (ev) {
+    function drop_put_to_question(ev) {
       ev.preventDefault();
 
       if (ev.target.id != ev.currentTarget.id) return
-      if (ev.target.id != ev.currentTarget.id) return
+      if (ev.target.parentNode == tasksListElement) return
 
       let movable_id = ev.dataTransfer.getData('text')
 
@@ -109,7 +111,7 @@
 
       }
     }
-    function drop_put_handler (ev) {
+    function drop_put_handler(ev) {
       ev.preventDefault();
 
       if (ev.target != dropReceivers) return
@@ -129,7 +131,7 @@
       ev.currentTarget.appendChild(newElemnt)
     }
 
-    function drop_del_handler (ev) {
+    function drop_del_handler(ev) {
       ev.preventDefault();
       const movable_id = ev.dataTransfer.getData('text')
       const activeElement = dropReceivers.querySelector(`#${movable_id}`)
@@ -210,13 +212,11 @@
       node_element_id.textContent = element.id
     }
 
-
-
     const type_element_content = (ev) => {
       const node_element_id = elementSettings.querySelector('#element-id').textContent
       if (node_element_id == '') return
 
-      const element =  dropReceivers.querySelector(`#${node_element_id}`)
+      const element = dropReceivers.querySelector(`#${node_element_id}`)
 
       if (!node_element_id || typeof (element) == 'undefined') return
       const text_content = elementSettings.querySelector('#element-text')
@@ -224,6 +224,19 @@
       element.textContent = text_content.value
       console.count(text_content.value)
     }
+
+    const convert_to_js = () => {
+      let a = dropReceivers.querySelectorAll('.movable')
+      a.forEach((node) => {
+        if (node.parentNode == dropReceivers)
+          console.log(' ')
+        console.log(node.id)
+      })
+    }
+
+    elementSettings.querySelector('#element-text').addEventListener('input', type_element_content)
+    elementSettings.querySelector('#save-button').addEventListener('click', convert_to_js)
+
   </script>
 </body>
 

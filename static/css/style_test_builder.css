@@ -29,11 +29,31 @@
 
 .question_holder {
   background: linear-gradient(to right, #22ce00 0% 10px, yellowgreen 15px 100%);
-  border: 1px black solid;
   min-height: 25px;
+  max-width: 66vw;
   padding: 3px;
   padding-left: 15px;
-  margin-top: 3px;
+}
+
+
+.btn_placeholder {
+  background: purple;
+  min-height: 18px;
+  min-width: 15px;
+  display: inline-block;
+}
+
+.text_placeholder {
+  background: bisque;
+  min-height: 18px;
+  min-width: 15px;
+}
+
+.question_holder,
+.btn_placeholder,
+.text_placeholder {
+  border: 1px black solid;
+  margin: 3px;
 }
 
 .drop_receiver {
@@ -62,15 +82,16 @@
 
 .movable {
   cursor: pointer;
-  background-color: bisque;
 }
 
-.selected{
+.selected {
   opacity: .6;
 }
-.non_selected_for_editing{
+
+.non_selected_for_editing {
   background: darkblue;
 }
+
 .selected_for_editing {
   width: auto;
 }
