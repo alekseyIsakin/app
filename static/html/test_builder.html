@@ -22,8 +22,9 @@
             ondragover="dragover_handler(event)" draggable="true">
             <p class="element-name" style="margin: 0px; font-family: 'Courier New', Courier, monospace;"></p>
           </div>
-          <p id="p1_" class="movable" draggable="true" style="margin: 0px; background-color: aqua;">p1</p>
-          <button id="button_" class="movable" draggable="true">base-button</button>
+          <div id="btn_placeholder_" class="movable able-to-edit-content" draggable="true">button_holder
+          </div>
+          <!-- <button id="button_" class="movable" draggable="true">base-button</button> -->
 
         </div>
         <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div>
@@ -35,6 +36,7 @@
       <div class="element-settings">
         <p style="margin: 0px; background-color: azure;">edit</p>
         <p>element-id <span id="element-id">_</span></p>
+        <p>element-id <input id="element-text"></input></p>
       </div>
     </div>
 
@@ -49,9 +51,12 @@
     const dropReceivers = document.querySelector(`.drop_receiver`);
     const elementSettings = document.querySelector(`.element-settings`);
 
+    elementSettings.querySelector('#element-text')
+      .addEventListener('input', type_element_content)
+
     let cur_id = 0
 
-    function start_moving(event) {
+    const start_moving = (event) => {
       if (!event.target.classList || event.target.classList.contains('movable') == false)
         return
       event.dataTransfer.setData("text/plain", event.target.id);
@@ -59,7 +64,7 @@
 
       unhighlite_selections()
     }
-    function stop_moving(event) {
+    const stop_moving = (event) => {
       if (!event.target.classList || event.target.classList.contains('movable') == false)
         return
 
@@ -75,14 +80,11 @@
     tasksListElement.addEventListener(`dragstart`, start_moving)
     tasksListElement.addEventListener(`dragend`, stop_moving);
 
-    function dragover_handler(ev) {
+    const dragover_handler = (ev) => {
       ev.preventDefault();
       ev.dataTransfer.dropEffect = "move";
     }
-    function RMB_click(event) {
-      alert('click')
-    }
-    function drop_put_to_question(ev) {
+    const drop_put_to_question = (ev) => {
       ev.preventDefault();
 
       if (ev.target.id != ev.currentTarget.id) return
@@ -108,7 +110,7 @@
 
       }
     }
-    function drop_put_handler(ev) {
+    const drop_put_handler = (ev) => {
       ev.preventDefault();
 
       if (ev.target != dropReceivers) return
@@ -128,32 +130,32 @@
       ev.currentTarget.appendChild(newElemnt)
     }
 
-    function drop_del_handler(ev) {
+    const drop_del_handler = (ev) => {
       ev.preventDefault();
       const movable_id = ev.dataTransfer.getData('text')
       const activeElement = dropReceivers.querySelector(`#${movable_id}`)
       activeElement.remove()
     }
 
-    function add_number_to_id(element) {
+    const add_number_to_id = (element) => {
       element.id += String(cur_id)
       cur_id += 1
     }
-    function set_description(element) {
-      if (element.classList.contains('question_holder')) {
-        element.querySelector('.element-name').textContent = element.id
-      }
-    }
 
-    function setup_new_element(element) {
+    const setup_new_element = (element) => {
       element.addEventListener('dragstart', start_moving)
       element.addEventListener('dragend', stop_moving);
       element.addEventListener('click', one_click)
       add_number_to_id(element)
       set_description(element)
     }
+    const set_description = (element) => {
+      if (element.classList.contains('question_holder')) {
+        element.querySelector('.element-name').textContent = element.id
+      }
+    }
 
-    function one_click(ev) {
+    const one_click = (ev) => {
       // cur_target - элемент на который кликнули
       const target = ev.target
       const cur_target = ev.currentTarget
@@ -166,23 +168,23 @@
 
         if (cur_target.classList.contains('selected_for_editing')) {
           unhighlite_selections()
-          update_selected_element_info({ id: '' })
+          show_selected_element_info(dropReceivers)
         }
         else {
           highlite_selection(cur_target)
-          update_selected_element_info(cur_target)
+          show_selected_element_info(cur_target)
         }
       }
     }
 
-    function unhighlite_selections() {
+    const unhighlite_selections = () => {
       const el = dropReceivers.querySelectorAll('.movable')
       el.forEach(element => {
         element.classList.remove('non_selected_for_editing')
         element.classList.remove('selected_for_editing')
       });
     }
-    function highlite_selection(element) {
+    const highlite_selection = (element) => {
       unhighlite_selections()
       element.classList.add('selected_for_editing')
       element.classList.remove('non_selected_for_editing')
@@ -193,12 +195,35 @@
       });
     }
 
-    function update_selected_element_info(element) {
+    const show_selected_element_info = (element) => {
       const node_element_id = elementSettings.querySelector('#element-id')
 
-      if (!node_element_id || !element) return
+      if (!node_element_id || typeof (element) == 'undefined') return
+      const text_content = elementSettings.querySelector('#element-text')
 
+      if (element.classList.contains('able-to-edit-content')) {
+        text_content.parentNode.hidden = false
+        text_content.value = element.textContent
+      } else {
+        text_content.parentNode.hidden = true
+        text_content.value = ''
+      }
       node_element_id.textContent = element.id
+    }
+
+
+
+    const type_element_content = (ev) => {
+      const node_element_id = elementSettings.querySelector('#element-id').textContent
+      if (node_element_id == '') return
+
+      const element =  dropReceivers.querySelector(`#${node_element_id}`)
+
+      if (!node_element_id || typeof (element) == 'undefined') return
+      const text_content = elementSettings.querySelector('#element-text')
+
+      element.textContent = text_content.value
+      console.count(text_content.value)
     }
   </script>
 </body>
