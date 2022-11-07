@@ -54,6 +54,7 @@ function select_question(question) {
         { return }
 
     hide_all()
+    update_progress_line(question)
     document.getElementsByClassName('one_question')[question].hidden = false
     selected_quest_str.textContent = `<\xa0\xa0\xa0${question + 1} / ${test_data.questionlist.length}\xa0\xa0\xa0>`
     localStorage['selected_quest'] = question
@@ -64,9 +65,8 @@ function combo_box_answer_click(event) {
     question_is_answered(question)
 }
 
-
-
-
-
-
-
+function update_progress_line(question) {
+    var progr = document.getElementById('progress_line')
+    var abs = document.body.scrollWidth * question / parseFloat(test_data.questionlist.length)
+    progr.style.webkitMaskSize = abs * 2 + "px";
+}
