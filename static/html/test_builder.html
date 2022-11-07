@@ -51,8 +51,7 @@
     const dropReceivers = document.querySelector(`.drop_receiver`);
     const elementSettings = document.querySelector(`.element-settings`);
 
-    elementSettings.querySelector('#element-text')
-      .addEventListener('input', type_element_content)
+    // elementSettings.querySelector('#element-text').addEventListener('input', type_element_content)
 
     let cur_id = 0
 
@@ -80,11 +79,11 @@
     tasksListElement.addEventListener(`dragstart`, start_moving)
     tasksListElement.addEventListener(`dragend`, stop_moving);
 
-    const dragover_handler = (ev) => {
+    function dragover_handler (ev) {
       ev.preventDefault();
       ev.dataTransfer.dropEffect = "move";
     }
-    const drop_put_to_question = (ev) => {
+    function drop_put_to_question (ev) {
       ev.preventDefault();
 
       if (ev.target.id != ev.currentTarget.id) return
@@ -110,7 +109,7 @@
 
       }
     }
-    const drop_put_handler = (ev) => {
+    function drop_put_handler (ev) {
       ev.preventDefault();
 
       if (ev.target != dropReceivers) return
@@ -130,7 +129,7 @@
       ev.currentTarget.appendChild(newElemnt)
     }
 
-    const drop_del_handler = (ev) => {
+    function drop_del_handler (ev) {
       ev.preventDefault();
       const movable_id = ev.dataTransfer.getData('text')
       const activeElement = dropReceivers.querySelector(`#${movable_id}`)
