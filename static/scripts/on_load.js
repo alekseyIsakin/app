@@ -9,11 +9,7 @@ const gradient_holder = document.getElementById("gradient_holder");
 const gradient = document.getElementById("gradient");
 const selected_quest_str = document.getElementById("selected_question")
 const test_name_h = document.getElementById('test_name')
-
-// const test_for_loading = JSON.stringify({ testUUID: '00000000-0000-0000-0000-000000000001' })
-
-document.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
+document.querySelector('.header_text').addEventListener('click', () => {
   const ask_file = document.createElement('input')
   ask_file.setAttribute('type', 'file')
   ask_file.setAttribute('accept', '.json,application/json')
@@ -23,7 +19,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const f = ask_file.files[0]
     get_test_by_localhost(f)
   }
+})
+// const test_for_loading = JSON.stringify({ testUUID: '00000000-0000-0000-0000-000000000001' })
 
+document.addEventListener("DOMContentLoaded", (e) => {
+  e.preventDefault();
   // let request = new XMLHttpRequest();
   // request.open("POST", "/test", true);
   // request.setRequestHeader("Content-Type", "application/json");
@@ -45,16 +45,16 @@ const get_test_by_localhost = (text) => {
       DOM.childNodes.forEach((el) => { el.hidden = true })
       DOM.firstChild.hidden = false
       question_holder.appendChild(DOM)
-      
+
       localStorage.clear()
       localStorage['selected_quest'] = 0
       localStorage[json.uuid] = JSON.stringify({})
       selected_quest_str.className = "default_text"
       test_name_h.textContent = json.name
-      
+
       test_data = json
       attach_events()
-    
+
       select_question(0)
     }
   }
