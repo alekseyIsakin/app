@@ -1,4 +1,10 @@
 let cur_id = 0
+const TEST_VERSION ={ 
+  'LATEST': '2.0'
+}
+
+
+
 
 const create_empty_question_placeholder = () => {
   const div = document.createElement('div')
@@ -34,16 +40,27 @@ const create_empty_label_placeholder = (text_content = 'label_holder') => {
   div.draggable = true
   return div
 }
-
-const json_to_raw_html = {
-  'question_holder': create_empty_question_placeholder,
-  'btn_placeholder': create_empty_button_placeholder,
-  'text_placeholder': create_empty_label_placeholder
+const setup_new_element = (element) => {
+  element.addEventListener('dragstart', start_moving)
+  element.addEventListener('dragend', stop_moving);
+  element.addEventListener('click', one_click)
+  add_number_to_id(element)
+}
+const add_number_to_id = (element) => {
+  element.id += String(cur_id)
+  cur_id += 1
+}
+const clear_drop_receiver = () => {
+  dropReceivers.querySelectorAll(':not(.column_name)')
+    .forEach((el) => { el.remove() })
 }
 
 
+// ********************************************************* //
+// ********************************************************* //
+// ********************************************************* //
 
-const convert_raw_test_to_json = (content, fileName, contentType) => {
+const save_test_to_disk = (content, fileName, contentType) => {
   var a = document.createElement('a');
   var file = new Blob([content], { type: contentType });
   a.href = URL.createObjectURL(file);
@@ -51,7 +68,7 @@ const convert_raw_test_to_json = (content, fileName, contentType) => {
   a.click();
 }
 
-const convert_json_to_raw_test = (text_data) => {
+const convert_json2editor = (text_data) => {
   cur_id = 0
   const obj = JSON.parse(text_data)
 
@@ -63,17 +80,16 @@ const convert_json_to_raw_test = (text_data) => {
   let DOM = document.createDocumentFragment()
 
   arr.forEach(el => {
-    DOM.appendChild(proceed_with_json_children(el))
+    DOM.appendChild(json2editor_proceed_with_children(el))
   });
 
-  let for_delete = dropReceivers.querySelectorAll('.movable')
-  for_delete.forEach((el) => { el.remove() })
-  dropReceivers.appendChild(DOM)
+  clear_drop_receiver()
+  return DOM
 }
 
-const proceed_with_json_children = (json) => {
+const json2editor_proceed_with_children = (json) => {
   const local_DOM = document.createDocumentFragment()
-  const one_html_element = json_to_raw_html[json.type]()
+  const one_html_element = JSON_TO_RAW_HTML[json.type]()
   setup_new_element(one_html_element)
 
   if (Object.hasOwn(json, 'text-content')) {
@@ -83,7 +99,7 @@ const proceed_with_json_children = (json) => {
 
   if (Object.hasOwn(json, 'questionlist')) {
     json.questionlist.forEach(el => {
-      const ch = proceed_with_json_children(el)
+      const ch = json2editor_proceed_with_children(el)
       one_html_element.appendChild(ch)
     });
 
@@ -92,40 +108,32 @@ const proceed_with_json_children = (json) => {
   return local_DOM
 }
 
-const setup_new_element = (element) => {
-  element.addEventListener('dragstart', start_moving)
-  element.addEventListener('dragend', stop_moving);
-  element.addEventListener('click', one_click)
-  add_number_to_id(element)
-}
-const add_number_to_id = (element) => {
-  element.id += String(cur_id)
-  cur_id += 1
-}
 
 
+// ********************************************************* //
+// ********************************************************* //
+// ********************************************************* //
 
-const convert_to_js = () => {
+const convert_editor2json = () => {
   let a = document.querySelectorAll('.drop_receiver > .movable')
   test = {
     uuid: "",
     name: "",
+    version: TEST_VERSION.LATEST,
     description: "",
     answertags: [],
     questionlist: []
   }
 
-
   a.forEach((node) => {
-    let one_question = proceed_with_children(node)
+    let one_question = editor2json_proceed_with_children(node)
     test.questionlist.push(one_question)
   })
 
-  console.log(test)
-  convert_raw_test_to_json(JSON.stringify(test), 'json.json', 'text/plain');
+  return test
 }
 
-const proceed_with_children = (node) => {
+const editor2json_proceed_with_children = (node) => {
   let question = {}
   let sibling = node.firstElementChild
 
@@ -138,10 +146,99 @@ const proceed_with_children = (node) => {
   }
 
   while (sibling != null) {
-    sibling_question = proceed_with_children(sibling)
+    sibling_question = editor2json_proceed_with_children(sibling)
     question.questionlist.push(sibling_question)
     sibling = sibling.nextElementSibling
   }
 
   return question
+}
+
+
+
+// ********************************************************* //
+// ********************************************************* //
+// ********************************************************* //
+
+const preview_test = () => {
+  const DOM = document.createDocumentFragment()
+
+  DOM.appendChild(
+    convert_json2test(JSON.stringify(convert_editor2json()))
+  )
+
+  clear_drop_receiver()
+  dropReceivers.appendChild(DOM)
+}
+
+const convert_json2test = (obj) => {
+  cur_id = 0
+
+  if (Object.hasOwn(obj, 'questionlist') == false) {
+    alert('Incorrect file')
+    return
+  }
+
+  const arr = obj.questionlist
+  let DOM = document.createDocumentFragment()
+
+  arr.forEach(el => {
+    DOM.appendChild(json2test_proceed_with_children(el))
+  });
+
+  return DOM
+}
+
+const json2test_proceed_with_children = (json) => {
+  const local_DOM = document.createDocumentFragment()
+  const one_html_element = JSON_TO_TEST[json.type]()
+
+  if (Object.hasOwn(json, 'text-content')) {
+    one_html_element.textContent = json['text-content']
+  }
+  local_DOM.appendChild(one_html_element)
+
+  if (Object.hasOwn(json, 'questionlist')) {
+    json.questionlist.forEach(el => {
+      const ch = json2test_proceed_with_children(el)
+      one_html_element.appendChild(ch)
+    });
+
+  }
+
+  return local_DOM
+}
+
+const create_empty_question_holder = () => {
+  const div = document.createElement('div')
+  div.classList.add('one_question')
+  div.setAttribute ('align', "center")
+  return div
+}
+const create_empty_string = () => {
+  const p = document.createElement('p')
+  p.classList.add('question_text')
+  return p
+}
+const create_empty_button = () => {
+  const btn = document.createElement('button')
+  return btn
+}
+
+// ********************************************************* //
+// ********************************************************* //
+// ********************************************************* //
+
+
+
+const JSON_TO_RAW_HTML = {
+  'question_holder': create_empty_question_placeholder,
+  'btn_placeholder': create_empty_button_placeholder,
+  'text_placeholder': create_empty_label_placeholder
+}
+
+const JSON_TO_TEST = {
+  'question_holder': create_empty_question_holder,
+  'btn_placeholder': create_empty_button,
+  'text_placeholder': create_empty_string
 }

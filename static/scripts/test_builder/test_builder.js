@@ -3,9 +3,9 @@ const tasksListElement = document.querySelector(`.dragable_elements_holder`);
 const dropReceivers = document.querySelector(`.drop_receiver`);
 const elementSettings = document.querySelector(`.element-settings`);
 
-tasksListElement.appendChild( create_empty_question_placeholder())
-tasksListElement.appendChild( create_empty_button_placeholder())
-tasksListElement.appendChild( create_empty_label_placeholder())
+tasksListElement.appendChild(create_empty_question_placeholder())
+tasksListElement.appendChild(create_empty_button_placeholder())
+tasksListElement.appendChild(create_empty_label_placeholder())
 
 const start_moving = (event) => {
   if (!event.target.classList || event.target.classList.contains('movable') == false)
@@ -158,11 +158,25 @@ const type_element_content = (ev) => {
 
 
 elementSettings.querySelector('#element-text').addEventListener('input', type_element_content)
-elementSettings.querySelector('#save-button').addEventListener('click', convert_to_js)
-elementSettings.querySelector('#load-button').addEventListener('click', () => {
-  let text = elementSettings.querySelector('#load-input').value
-  convert_json_to_raw_test(text)
+elementSettings.querySelector('#save-button').addEventListener('click', () => {
+  const json = convert_editor2json()
+
+  save_test_to_disk(JSON.stringify(json), 'test.json', 'text/plain')
 })
+elementSettings.querySelector('#load-button').addEventListener('click', () => {
+  const text = elementSettings.querySelector('#load-input').files[0]
+
+  if (text) {
+    var reader = new FileReader();
+    reader.readAsText(text, "UTF-8");
+    reader.onload = function (evt) {
+      const DOM = convert_json2editor(evt.target.result)
+      dropReceivers.appendChild(DOM)
+    }
+  }
+
+})
+elementSettings.querySelector('#preview-button').addEventListener('click', preview_test)
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
 tasksListElement.addEventListener(`dragend`, stop_moving);

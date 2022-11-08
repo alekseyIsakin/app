@@ -23,7 +23,7 @@
       </div>
 
       <div class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
-        <p style="margin: 0px; background-color: azure;">tests</p>
+        <p class="column_name" style="margin: 0px; background-color: azure;">tests</p>
       </div>
 
       <div class="element-settings">
@@ -31,8 +31,11 @@
         <p>element-id <span id="element-id">_</span></p>
         <p hidden="true">element-id <input id="element-text"></input></p>
         <button id="save-button">save</button>
+        <br/>
         <button id="load-button">load</button>
-        <input id="load-input" />
+        <input id="load-input" type="file" accept=".json,application/json">
+        <br/>
+        <button id="preview-button">test_view</button>
       </div>
     </div>
 
