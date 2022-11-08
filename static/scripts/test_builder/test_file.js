@@ -212,7 +212,6 @@ const json2test_proceed_with_children = (json) => {
 const create_empty_question_holder = () => {
   const div = document.createElement('div')
   div.classList.add('one_question')
-  div.setAttribute ('align', "center")
   return div
 }
 const create_empty_string = () => {

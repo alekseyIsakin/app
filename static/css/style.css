@@ -170,8 +170,3 @@ option {
   flex: 0 1 auto;
   background-color: rgba(0,0,0,0);
 }
-
-.one_question{
-  border: red 5px solid;
-  margin: 3px;
-}

@@ -37,11 +37,7 @@ function question_is_answered(question, remove = false) {
 }
 
 function hide_all() {
-    var test_holder = document.getElementsByClassName('one_question');
-
-    for (let ch = 0; ch < test_holder.length; ch++) {
-        test_holder[ch].hidden = true
-    }
+    document.querySelectorAll('#question_holder > *').forEach((el) => {el.hidden = true}) 
 }
 
 function button_click(event) {
@@ -55,7 +51,7 @@ function select_question(question) {
 
     hide_all()
     update_progress_line(question)
-    document.getElementsByClassName('one_question')[question].hidden = false
+    document.querySelectorAll('#question_holder > *')[question].hidden = false
     selected_quest_str.textContent = `<\xa0\xa0\xa0${question + 1} / ${test_data.questionlist.length}\xa0\xa0\xa0>`
     localStorage['selected_quest'] = question
 }
@@ -67,6 +63,6 @@ function combo_box_answer_click(event) {
 
 function update_progress_line(question) {
     var progr = document.getElementById('progress_line')
-    var abs = document.body.scrollWidth * question / parseFloat(test_data.questionlist.length)
+    var abs = document.body.scrollWidth * (question + 1) / parseFloat(test_data.questionlist.length)
     progr.style.webkitMaskSize = abs * 2 + "px";
 }
