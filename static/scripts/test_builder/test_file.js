@@ -76,12 +76,17 @@ const proceed_with_json_children = (json) => {
   const one_html_element = json_to_raw_html[json.type]()
   setup_new_element(one_html_element)
 
+  if (Object.hasOwn(json, 'text-content')) {
+    one_html_element.textContent = json['text-content']
+  }
   local_DOM.appendChild(one_html_element)
+
   if (Object.hasOwn(json, 'questionlist')) {
     json.questionlist.forEach(el => {
       const ch = proceed_with_json_children(el)
       one_html_element.appendChild(ch)
     });
+
   }
 
   return local_DOM
