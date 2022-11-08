@@ -151,48 +151,9 @@ const type_element_content = (ev) => {
   const text_content = elementSettings.querySelector('#element-text')
 
   element.textContent = text_content.value
-  console.count(text_content.value)
 }
 
-const convert_to_js = () => {
-  let a = document.querySelectorAll('.drop_receiver > .movable')
-  test = {
-    uuid: "",
-    name: "",
-    description: "",
-    answertags: [],
-    questionlist: []
-  }
 
-
-  a.forEach((node) => {
-    let one_question = proceed_with_children(node)
-    test.questionlist.push(one_question)
-  })
-
-  console.log(test)
-  convert_raw_test_to_json(JSON.stringify(test), 'json.json', 'text/plain');
-}
-
-const proceed_with_children = (node) => {
-  let question = {}
-  let sibling = node.firstElementChild
-  let i = 0
-
-  if (node.classList.contains('question_holder') == false) {
-    question['text-content'] = node.textContent
-  }
-  question['type'] = node.classList[1]
-
-
-  while (sibling != null) {
-    question[i] = proceed_with_children(sibling)
-    sibling = sibling.nextElementSibling
-    i++
-  }
-
-  return question
-}
 
 
 
