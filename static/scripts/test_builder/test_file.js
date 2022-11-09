@@ -1,5 +1,5 @@
 let cur_id = 0
-const TEST_VERSION ={ 
+const TEST_VERSION = {
   'LATEST': '2.0'
 }
 
@@ -139,6 +139,12 @@ const editor2json_proceed_with_children = (node) => {
 
   question['type'] = node.classList[1]
 
+  if (node.getAttribute('value'))
+    question['value'] = node.getAttribute('value')
+  if (node.getAttribute('action'))
+    question['action'] = node.getAttribute('action')
+
+
   if (node.classList.contains('question_holder') == false) {
     question['text-content'] = node.textContent
   } else {
@@ -182,25 +188,35 @@ const convert_json2test = (obj) => {
   const arr = obj.questionlist
   let DOM = document.createDocumentFragment()
 
+  let el_id = 0
   arr.forEach(el => {
-    DOM.appendChild(json2test_proceed_with_children(el))
+    DOM.appendChild(json2test_proceed_with_children(el, String(el_id)))
+    el_id += 1
   });
 
   return DOM
 }
 
-const json2test_proceed_with_children = (json) => {
+const json2test_proceed_with_children = (json, str) => {
   const local_DOM = document.createDocumentFragment()
   const one_html_element = JSON_TO_TEST[json.type]()
+  let el_id = 0
 
+  if (Object.hasOwn(json, 'action')) {
+    one_html_element.setAttribute('action', json['action'])
+  }
   if (Object.hasOwn(json, 'text-content')) {
     one_html_element.textContent = json['text-content']
   }
   local_DOM.appendChild(one_html_element)
 
   if (Object.hasOwn(json, 'questionlist')) {
+
     json.questionlist.forEach(el => {
-      const ch = json2test_proceed_with_children(el)
+      const ch = json2test_proceed_with_children(el, str + ' ' + el_id)
+      el_id += 1
+
+      one_html_element.setAttribute('value', str)
       one_html_element.appendChild(ch)
     });
 
@@ -221,6 +237,7 @@ const create_empty_string = () => {
 }
 const create_empty_button = () => {
   const btn = document.createElement('button')
+  btn.classList.add('answer')
   return btn
 }
 

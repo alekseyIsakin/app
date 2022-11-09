@@ -130,13 +130,18 @@ const show_selected_element_info = (element) => {
 
   if (!node_element_id || typeof (element) == 'undefined') return
   const text_content = elementSettings.querySelector('#element-text')
+  const value_content = elementSettings.querySelector('#element-value')
 
   if (element.classList.contains('able-to-edit-content')) {
     text_content.parentNode.hidden = false
+    value_content.parentNode.hidden = false
     text_content.value = element.textContent
+    value_content.value = element.getAttribute('action')
   } else {
     text_content.parentNode.hidden = true
+    value_content.parentNode.hidden = true
     text_content.value = ''
+    value_content.value = ''
   }
   node_element_id.textContent = element.id
 }
@@ -153,11 +158,26 @@ const type_element_content = (ev) => {
   element.textContent = text_content.value
 }
 
+const type_element_value = (ev) => {
+  const node_element_id = elementSettings.querySelector('#element-id').textContent
+  if (node_element_id == '') return
 
+  const element = dropReceivers.querySelector(`#${node_element_id}`)
+
+  if (!node_element_id || typeof (element) == 'undefined') return
+  const text_content = elementSettings.querySelector('#element-value')
+
+  if (text_content == '')
+    element.removeAttribute('action')
+  else
+    element.setAttribute('action', text_content.value)
+}
 
 
 
 elementSettings.querySelector('#element-text').addEventListener('input', type_element_content)
+elementSettings.querySelector('#element-value').addEventListener('input', type_element_value)
+
 elementSettings.querySelector('#save-button').addEventListener('click', () => {
   const json = convert_editor2json()
 

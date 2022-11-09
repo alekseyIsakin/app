@@ -9,7 +9,9 @@ const gradient_holder = document.getElementById("gradient_holder");
 const gradient = document.getElementById("gradient");
 const selected_quest_str = document.getElementById("selected_question")
 const test_name_h = document.getElementById('test_name')
+
 document.querySelector('.header_text').addEventListener('click', () => {
+
   const ask_file = document.createElement('input')
   ask_file.setAttribute('type', 'file')
   ask_file.setAttribute('accept', '.json,application/json')
@@ -36,9 +38,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 const get_test_by_localhost = (text) => {
   if (text) {
+
     var reader = new FileReader();
     reader.readAsText(text, "UTF-8");
     reader.onload = function (evt) {
+      document.querySelectorAll('#question_holder > *').forEach((el) => el.remove())
       const json = JSON.parse(evt.target.result)
       const DOM = convert_json2test(json)
 
@@ -56,6 +60,16 @@ const get_test_by_localhost = (text) => {
       attach_events()
 
       select_question(0)
+      document.querySelectorAll('.one_question').forEach((el) => { 
+        localStorage[el.getAttribute('value')] = '0'
+       })
+      document.querySelectorAll('.answer').forEach((el) => {
+        el.addEventListener('click', (ev) => {
+          const v = ev.target.parentNode.getAttribute('value')
+          localStorage[v] = ev.target.getAttribute('action')
+        })
+      })
+
     }
   }
 }
