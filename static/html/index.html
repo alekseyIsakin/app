@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg" href="svg/favicon.svg"/>
+    <script type="text/javascript" src="scripts/script.js"></script>
+</head>
+<body>
+    <div id="main_container">
+        
+        <div class="header box bordered_dot">
+            <div style="float: left; max-width: 70%;">
+                <p  class="header_text" style="margin-left: 12px; margin-top: 5px; margin-bottom: 0px;">
+                    Тест: <span id="test_name">Название теста загружается</span>
+                </p>
+            </div>
+            <div style="float: right; max-width: 30%;">
+                <object type="image/svg+xml" data="svg/exitBtn.svg" width="50" height="50" style="margin-top: 10px; margin-right: 10px;">
+                    Your browser does not support SVG
+                </object>
+            </div>
+        </div>
+
+        <div id="question_selector" class="bordered" >
+                <b id="selected_question">< - / - ></b>
+        </div>
+
+        
+        <div id="question_holder" class="bordered">
+            
+        </div>
+        <div id="empty_space"></div>
+        <div class="control_quest_btn bordered">
+            <div >
+                <div class="button" id="click_prev">
+                    <span class="button_text" > Назад </span>    
+                </div>
+            </div>
+            <div>
+                <div class="button" id="click_next">
+                    <span class="button_text" > Продолжить </span>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="line" id="progress_line">
+        
+    </div>
+    <script type="text/javascript" src="scripts/on_load.js"></script>
+</body>
+</html>
