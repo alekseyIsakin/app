@@ -15,11 +15,12 @@ const test_for_loading = JSON.stringify({testUUID: '00000000-0000-0000-0000-0000
 document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   let request = new XMLHttpRequest();
-    request.open("POST", "/test", true);   
+    request.open("POST", "/postgrestest", true);   
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener("load", function () {
       test_data = JSON.parse(request.response);
-      test_receive(test_data);
+      // test_receive(test_data);
+      console.log(test_data)
     });
     request.send(test_for_loading);
 })
