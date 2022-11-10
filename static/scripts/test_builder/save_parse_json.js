@@ -55,7 +55,7 @@ const add_number_to_id = (element) => {
   cur_id += 1
 }
 const clear_drop_receiver = () => {
-  dropReceivers().querySelectorAll(':not(.column_name)')
+  dropReceivers.querySelectorAll(':not(.column_name)')
     .forEach((el) => { el.remove() })
 }
 
@@ -187,7 +187,7 @@ const preview_test = () => {
       DOM.appendChild(div)
       preview.enable = 1
       unhighlite_selections()
-      show_selected_element_info(dropReceivers())
+      show_selected_element_info(dropReceivers)
     }
   }else{
     DOM.appendChild(convert_json2editor(saved_editor_state))
@@ -195,7 +195,7 @@ const preview_test = () => {
   }
   
   clear_drop_receiver()
-  dropReceivers().appendChild(DOM)
+  dropReceivers.appendChild(DOM)
 }
 
 const convert_json2test = (obj) => {
