@@ -1,6 +1,13 @@
 "use strict"
 
 var test_data = {}
+
+
+
+// ********************************************************** //
+// ***************** html elements ************************** //
+// ********************************************************** //
+
 const question_holder = document.getElementById("question_holder")
 const next_btn = document.getElementById("click_next")
 const prev_btn = document.getElementById("click_prev")
@@ -21,19 +28,6 @@ document.querySelector('.header_text').addEventListener('click', () => {
     const f = ask_file.files[0]
     get_test_by_localhost(f)
   }
-})
-// const test_for_loading = JSON.stringify({ testUUID: '00000000-0000-0000-0000-000000000001' })
-
-document.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
-  // let request = new XMLHttpRequest();
-  // request.open("POST", "/test", true);
-  // request.setRequestHeader("Content-Type", "application/json");
-  // request.addEventListener("load", function () {
-  //   test_data = JSON.parse(request.response);
-  //   test_receive(test_data);
-  // });
-  // request.send(test_for_loading);
 })
 
 const get_test_by_localhost = (text) => {
@@ -60,9 +54,11 @@ const get_test_by_localhost = (text) => {
       attach_events()
 
       select_question(0)
-      document.querySelectorAll('.one_question').forEach((el) => { 
-        localStorage[el.getAttribute('value')] = '0'
-       })
+      document.querySelectorAll('.one_question')
+        .forEach((el) => {
+          if (el.getAttribute('value'))
+            localStorage[el.getAttribute('value')] = '0'
+        })
       document.querySelectorAll('.answer').forEach((el) => {
         el.addEventListener('click', (ev) => {
           const v = ev.target.parentNode.getAttribute('value')
@@ -74,6 +70,7 @@ const get_test_by_localhost = (text) => {
   }
 }
 
+/**  @deprecated */
 function test_receive(test) {
   for (let i = 0; i < test.questionlist.length; i++) {
     let question_div = document.createElement('div')

@@ -1,10 +1,14 @@
-let cur_id = 0
-const TEST_VERSION = {
-  'LATEST': '2.0'
+"use strict"
+
+
+
+const create_question_holder_from_main_page = () => {
+  const div = document.createElement('div')
+  div.id = "question_holder"
+  div.classList.add("bordered")
+  div.align = "center"
+  return div
 }
-
-
-
 
 const create_empty_question_placeholder = () => {
   const div = document.createElement('div')
@@ -51,13 +55,13 @@ const add_number_to_id = (element) => {
   cur_id += 1
 }
 const clear_drop_receiver = () => {
-  dropReceivers.querySelectorAll(':not(.column_name)')
+  dropReceivers().querySelectorAll(':not(.column_name)')
     .forEach((el) => { el.remove() })
 }
 
 
 // ********************************************************* //
-// ********************************************************* //
+// ****************** json2editor ************************** //
 // ********************************************************* //
 
 const save_test_to_disk = (content, fileName, contentType) => {
@@ -68,9 +72,8 @@ const save_test_to_disk = (content, fileName, contentType) => {
   a.click();
 }
 
-const convert_json2editor = (text_data) => {
+const convert_json2editor = (obj) => {
   cur_id = 0
-  const obj = JSON.parse(text_data)
 
   if (Object.hasOwn(obj, 'questionlist') == false) {
     alert('Incorrect file')
@@ -92,9 +95,11 @@ const json2editor_proceed_with_children = (json) => {
   const one_html_element = JSON_TO_RAW_HTML[json.type]()
   setup_new_element(one_html_element)
 
-  if (Object.hasOwn(json, 'text-content')) {
+  if (Object.hasOwn(json, 'text-content'))
     one_html_element.textContent = json['text-content']
-  }
+  if (Object.hasOwn(json, 'action'))
+    one_html_element.setAttribute('action', json['action'])
+
   local_DOM.appendChild(one_html_element)
 
   if (Object.hasOwn(json, 'questionlist')) {
@@ -111,12 +116,12 @@ const json2editor_proceed_with_children = (json) => {
 
 
 // ********************************************************* //
-// ********************************************************* //
+// ******************* editor2json ************************* //
 // ********************************************************* //
 
 const convert_editor2json = () => {
-  let a = document.querySelectorAll('.drop_receiver > .movable')
-  test = {
+  const a = document.querySelectorAll('.drop_receiver > .movable')
+  const test = {
     uuid: "",
     name: "",
     version: TEST_VERSION.LATEST,
@@ -152,7 +157,7 @@ const editor2json_proceed_with_children = (node) => {
   }
 
   while (sibling != null) {
-    sibling_question = editor2json_proceed_with_children(sibling)
+    const sibling_question = editor2json_proceed_with_children(sibling)
     question.questionlist.push(sibling_question)
     sibling = sibling.nextElementSibling
   }
@@ -165,16 +170,32 @@ const editor2json_proceed_with_children = (node) => {
 // ********************************************************* //
 // ********************************************************* //
 // ********************************************************* //
+const preview = {enable: 0}
+let saved_editor_state = {}
 
 const preview_test = () => {
   const DOM = document.createDocumentFragment()
 
-  DOM.appendChild(
-    convert_json2test(JSON.stringify(convert_editor2json()))
-  )
-
+  if (preview.enable == 0){
+    const json = convert_editor2json()
+    saved_editor_state = json
+    const d = convert_json2test(json)
+    if (d){
+      const div = create_question_holder_from_main_page()
+      div.appendChild(d)
+  
+      DOM.appendChild(div)
+      preview.enable = 1
+      unhighlite_selections()
+      show_selected_element_info(dropReceivers())
+    }
+  }else{
+    DOM.appendChild(convert_json2editor(saved_editor_state))
+    preview.enable = 0
+  }
+  
   clear_drop_receiver()
-  dropReceivers.appendChild(DOM)
+  dropReceivers().appendChild(DOM)
 }
 
 const convert_json2test = (obj) => {
@@ -182,7 +203,7 @@ const convert_json2test = (obj) => {
 
   if (Object.hasOwn(obj, 'questionlist') == false) {
     alert('Incorrect file')
-    return
+    return document.createDocumentFragment()
   }
 
   const arr = obj.questionlist
@@ -216,10 +237,11 @@ const json2test_proceed_with_children = (json, str) => {
       const ch = json2test_proceed_with_children(el, str + ' ' + el_id)
       el_id += 1
 
-      one_html_element.setAttribute('value', str)
       one_html_element.appendChild(ch)
     });
 
+    if (json.questionlist.find((el) => el.action))
+      one_html_element.setAttribute('value', str)
   }
 
   return local_DOM
@@ -246,6 +268,11 @@ const create_empty_button = () => {
 // ********************************************************* //
 
 
+
+let cur_id = 0
+const TEST_VERSION = {
+  'LATEST': '2.0'
+}
 
 const JSON_TO_RAW_HTML = {
   'question_holder': create_empty_question_placeholder,
