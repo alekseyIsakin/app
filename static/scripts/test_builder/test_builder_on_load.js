@@ -2,25 +2,26 @@
 
 
 
-const tasksListElement = document.querySelector(`.dragable_elements_holder`);
-const dropReceivers = document.querySelector(`.drop_receiver`);
-const elementSettings = document.querySelector(`.element-settings`);
+const tasksListElement = document.querySelector(`.${SUPPORT_ENTITY.BASE_ELEMNT_HOLDER}`);
+const dropReceivers = document.querySelector(`.${SUPPORT_ENTITY.DROP_RECEIVER}`);
+const elementSettings = document.querySelector(`.${SUPPORT_ENTITY.ELEMENT_SETTINGS}`);
 
 
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
 
-elementSettings.querySelector('#element-text').addEventListener('input', type_element_content)
-elementSettings.querySelector('#element-value').addEventListener('input', type_element_value)
+elementSettings.querySelector(`#${SUPPORT_ENTITY.CONTENT_INPUT}`).addEventListener('input', type_element_content)
+elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`).addEventListener('input', type_element_value)
 
-elementSettings.querySelector('#save-button').addEventListener('click', () => {
+elementSettings.querySelector(`#${SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
 
   save_test_to_disk(JSON.stringify(json), 'test.json', 'text/plain')
 })
-elementSettings.querySelector('#load-button').addEventListener('click', () => {
-  const text = elementSettings.querySelector('#load-input').files[0]
+
+elementSettings.querySelector(`#${SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('click', () => {
+  const text = elementSettings.querySelector(`#${SUPPORT_ENTITY.FILE_INPUT}`).files[0]
 
   if (text) {
     var reader = new FileReader();
@@ -33,7 +34,7 @@ elementSettings.querySelector('#load-button').addEventListener('click', () => {
   }
 
 })
-elementSettings.querySelector('#preview-button').addEventListener('click', preview_test)
+elementSettings.querySelector(`#${SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
 tasksListElement.addEventListener(`dragend`, stop_moving);

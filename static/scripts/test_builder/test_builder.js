@@ -3,24 +3,24 @@
 
 
 const start_moving = (event) => {
-  if (!event.target.classList || event.target.classList.contains('movable') == false)
+  if (!event.target.classList || event.target.classList.contains(PH_BEHAVIOR.MOVABLE) == false)
     return
   event.dataTransfer.setData("text/plain", event.target.id);
-  event.target.classList.add(`selected`);
+  event.target.classList.add(PH_STAUS.SELECTED);
 
   unhighlite_selections()
 }
 const stop_moving = (event) => {
-  if (!event.target.classList || event.target.classList.contains('movable') == false)
+  if (!event.target.classList || event.target.classList.contains(PH_BEHAVIOR.MOVABLE) == false)
     return
 
-  const edited_element_id = elementSettings.querySelector('#element-id').textContent
+  const edited_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
   if (edited_element_id != '') {
     const edited_element = dropReceivers.querySelector(`#${edited_element_id}`)
     if (edited_element) { highlite_selection(edited_element) }
   }
 
-  event.target.classList.remove(`selected`);
+  event.target.classList.remove(PH_STAUS.SELECTED);
 }
 
 function dragover_handler(ev) {
@@ -45,7 +45,7 @@ function drop_put_to_question(ev) {
     setup_new_element(newElemnt)
   }
 
-  newElemnt.classList.remove('selected')
+  newElemnt.classList.remove(PH_STAUS.SELECTED)
   try {
     ev.currentTarget.appendChild(newElemnt)
   }
@@ -69,7 +69,7 @@ function drop_put_handler(ev) {
     newElemnt = activeElement.cloneNode(true)
     setup_new_element(newElemnt)
   }
-  newElemnt.classList.remove('selected')
+  newElemnt.classList.remove(PH_STAUS.SELECTED)
   ev.currentTarget.appendChild(newElemnt)
 }
 
@@ -85,13 +85,13 @@ const one_click = (ev) => {
   const target = ev.target
   const cur_target = ev.currentTarget
 
-  if (target != cur_target && target.classList.contains('movable') == cur_target.classList.contains('movable')) return
+  if (target != cur_target && target.classList.contains(PH_BEHAVIOR.MOVABLE) == cur_target.classList.contains(PH_BEHAVIOR.MOVABLE)) return
   if (target == cur_target || target.parentNode == cur_target) {
-    const prev_selected = dropReceivers.querySelector('.selected_for_editing')
+    const prev_selected = dropReceivers.querySelector(`.${PH_STAUS.EDITING}`)
 
-    if (prev_selected && prev_selected != cur_target) { prev_selected.classList.remove('selected_for_editing') }
+    if (prev_selected && prev_selected != cur_target) { prev_selected.classList.remove(PH_STAUS.EDITING) }
 
-    if (cur_target.classList.contains('selected_for_editing')) {
+    if (cur_target.classList.contains(PH_STAUS.EDITING)) {
       unhighlite_selections()
       show_selected_element_info(dropReceivers)
     }
@@ -103,35 +103,35 @@ const one_click = (ev) => {
 }
 
 const unhighlite_selections = () => {
-  const el = dropReceivers.querySelectorAll('.movable')
+  const el = dropReceivers.querySelectorAll(`.${PH_BEHAVIOR.MOVABLE}`)
   el.forEach(element => {
-    element.classList.remove('non_selected_for_editing')
-    element.classList.remove('selected_for_editing')
+    element.classList.remove(PH_STAUS.NOT_EDITING)
+    element.classList.remove(PH_STAUS.EDITING)
   });
 }
 const highlite_selection = (element) => {
   unhighlite_selections()
-  element.classList.add('selected_for_editing')
-  element.classList.remove('non_selected_for_editing')
+  element.classList.add(PH_STAUS.EDITING)
+  element.classList.remove(PH_STAUS.NOT_EDITING)
 
-  const el = dropReceivers.querySelectorAll('.movable:not(.selected_for_editing *, .selected_for_editing)')
+  const el = dropReceivers.querySelectorAll(`.${PH_BEHAVIOR.MOVABLE}:not(.${PH_STAUS.EDITING} *, .${PH_STAUS.EDITING})`)
   el.forEach(element => {
-    element.classList.add('non_selected_for_editing')
+    element.classList.add(PH_STAUS.NOT_EDITING)
   });
 }
 
 const show_selected_element_info = (element) => {
-  const node_element_id = elementSettings.querySelector('#element-id')
+  const node_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = elementSettings.querySelector('#element-text')
-  const value_content = elementSettings.querySelector('#element-value')
+  const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.CONTENT_INPUT}`)
+  const value_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`)
 
-  if (element.classList.contains('able-to-edit-content')) {
+  if (element.classList.contains(PH_BEHAVIOR.EDIT_CONTENT)) {
     text_content.parentNode.hidden = false
     value_content.parentNode.hidden = false
     text_content.value = element.textContent
-    value_content.value = element.getAttribute('action')
+    value_content.value = element.getAttribute(TEST_ATTR.ACTION)
   } else {
     text_content.parentNode.hidden = true
     value_content.parentNode.hidden = true
@@ -142,28 +142,28 @@ const show_selected_element_info = (element) => {
 }
 
 const type_element_content = (ev) => {
-  const node_element_id = elementSettings.querySelector('#element-id').textContent
+  const node_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
   if (node_element_id == '') return
 
   const element = dropReceivers.querySelector(`#${node_element_id}`)
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = elementSettings.querySelector('#element-text')
+  const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.CONTENT_INPUT}`)
 
   element.textContent = text_content.value
 }
 
 const type_element_value = (ev) => {
-  const node_element_id = elementSettings.querySelector('#element-id').textContent
+  const node_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
   if (node_element_id == '') return
 
   const element = dropReceivers.querySelector(`#${node_element_id}`)
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = elementSettings.querySelector('#element-value')
+  const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`)
 
   if (text_content == '')
-    element.removeAttribute('action')
+    element.removeAttribute(TEST_ATTR.ACTION)
   else
-    element.setAttribute('action', text_content.value)
+    element.setAttribute(TEST_ATTR.ACTION, text_content.value)
 }

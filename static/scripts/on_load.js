@@ -54,17 +54,20 @@ const get_test_by_localhost = (text) => {
       attach_events()
 
       select_question(0)
+
       document.querySelectorAll('.one_question')
         .forEach((el) => {
           if (el.getAttribute('value'))
             localStorage[el.getAttribute('value')] = '0'
         })
-      document.querySelectorAll('.answer').forEach((el) => {
-        el.addEventListener('click', (ev) => {
-          const v = ev.target.parentNode.getAttribute('value')
-          localStorage[v] = ev.target.getAttribute('action')
+
+      document.querySelectorAll('.answer')
+        .forEach((el) => {
+          el.addEventListener('click', (ev) => {
+            const v = ev.target.parentNode.getAttribute('value')
+            localStorage[v] = ev.target.getAttribute('action')
+          })
         })
-      })
 
     }
   }

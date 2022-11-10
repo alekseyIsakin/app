@@ -46,13 +46,13 @@ function button_click(event) {
 }
 
 function select_question(question) {
-    if (question < 0 || question >= test_data.questionlist.length)
+    if (question < 0 || question >= test_data[JSON_ATTR.QUESTION_LIST].length)
         { return }
 
     hide_all()
     update_progress_line(question)
     document.querySelectorAll('#question_holder > *')[question].hidden = false
-    selected_quest_str.textContent = `<\xa0\xa0\xa0${question + 1} / ${test_data.questionlist.length}\xa0\xa0\xa0>`
+    selected_quest_str.textContent = `<\xa0\xa0\xa0${question + 1} / ${test_data[JSON_ATTR.QUESTION_LIST].length}\xa0\xa0\xa0>`
     localStorage['selected_quest'] = question
 }
 
@@ -63,6 +63,6 @@ function combo_box_answer_click(event) {
 
 function update_progress_line(question) {
     var progr = document.getElementById('progress_line')
-    var abs = document.body.scrollWidth * (question + 1) / parseFloat(test_data.questionlist.length)
+    var abs = document.body.scrollWidth * (question + 1) / parseFloat(test_data[JSON_ATTR.QUESTION_LIST].length)
     progr.style.webkitMaskSize = abs * 2 + "px";
 }
