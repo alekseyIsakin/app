@@ -66,15 +66,18 @@ app.post("/postgrestest", jsonParser, function (request, response) {
   console.log(request.body);
   if (!request.body) return response.sendStatus(400);
 
-  const query = 'SELECT * FROM msdtest_questions;';
-  client.query(query).then(res => {
-    response.json(res.rows);
-    const rows = res.rows;
-    rows.map(row => {
-      console.log(`Read: ${JSON.stringify(row)}`);
-    });
-    
+  var info_response = {}
+
+  const query_questions = 'SELECT * FROM msdtest_questions;';
+  client.query(query_questions).then(res => {
+    info_response["questions"] = res.rows;
+    const query_answers = 'SELECT * FROM msdtest_answers;';
+    client.query(query_answers).then(res => {
+      info_response["answers"] = res.rows;
+      response.json(info_response)
+    })
   })
+  
     .catch(err => {
       console.log(err);
     });

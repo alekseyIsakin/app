@@ -10,22 +10,65 @@ const gradient = document.getElementById("gradient");
 const selected_quest_str = document.getElementById("selected_question")
 const test_name_h = document.getElementById('test_name')
 
-const test_for_loading = JSON.stringify({testUUID: '00000000-0000-0000-0000-000000000001'})
+const test_for_loading = JSON.stringify({ testUUID: '00000000-0000-0000-0000-000000000001' })
 
 document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   let request = new XMLHttpRequest();
-    request.open("POST", "/postgrestest", true);   
-    request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener("load", function () {
-      test_data = JSON.parse(request.response);
-      // test_receive(test_data);
-      console.log(test_data)
-    });
-    request.send(test_for_loading);
+  request.open("POST", "/postgrestest", true);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.addEventListener("load", function () {
+    test_data = JSON.parse(request.response);
+    // test_receive(test_data);
+    console.log(test_data)
+    test_perform(test_data)
+  });
+  request.send(test_for_loading);
 })
 
-function test_receive(test){
+function test_perform(info) {
+  for (let i = 0; i < info.questions.length; i++) {
+    let question_div = document.createElement('div')
+    let text_question = document.createElement('p')
+
+    text_question.textContent = info.questions[i].question_text
+    question_div.className = "one_question"
+    question_div.setAttribute("align", "center")
+    let combo_box = document.createElement('select')
+
+    text_question.className = "question"
+    text_question.style.borderWidth = 0
+
+    question_div.appendChild(text_question)
+
+    combo_box.className = "drop-down"
+    combo_box.style.textAlign = "center"
+
+    for (let v = 0; v < info.answers.length; v++) {
+      if (info.answers[v].from_question_id == info.questions[i].question_id){
+          let b = document.createElement('option')
+          b.textContent = info.answers[v].answer_text
+          b.value = info.answers[v].num_alternative
+          combo_box.appendChild(b)
+      }
+    }
+
+    question_div.hidden = true
+    question_div.appendChild(combo_box)
+    question_holder.appendChild(question_div)
+  }
+
+  localStorage.clear()
+  localStorage['selected_quest'] = 0
+  //localStorage[info.uuid] = JSON.stringify({})
+  selected_quest_str.className = "default_text"
+  //test_name_h.textContent = test.name
+  attach_events()
+
+  select_question(0)
+}
+
+function test_receive(test) {
   for (let i = 0; i < test.questionlist.length; i++) {
     let question_div = document.createElement('div')
     let text_question = document.createElement('p')
@@ -37,29 +80,29 @@ function test_receive(test){
     question_div.appendChild(text_question)
 
     for (let j = 0; j < test.questionlist[i].Questions.length; j++) {
-        let question_variant = document.createElement('div')
-        let p = document.createElement('p')
-        let combo_box = document.createElement('select')
-        
-        combo_box.className = "drop-down"
-        combo_box.style.textAlign = "center"
+      let question_variant = document.createElement('div')
+      let p = document.createElement('p')
+      let combo_box = document.createElement('select')
 
-        p.className = "question"
-        p.style.borderWidth = 0
-        p.textContent = test.questionlist[i].Questions[j]
+      combo_box.className = "drop-down"
+      combo_box.style.textAlign = "center"
 
-        for (let v = 0; v < test.questionlist[i].Variants.length; v++) {
+      p.className = "question"
+      p.style.borderWidth = 0
+      p.textContent = test.questionlist[i].Questions[j]
 
-            let b = document.createElement('option')
-            b.textContent = test.questionlist[i].Variants[v]
-            b.value = `${i} ${j} ${v}`
-            
-            combo_box.appendChild(b)
-        }
+      for (let v = 0; v < test.questionlist[i].Variants.length; v++) {
 
-        question_variant.appendChild(p)
-        question_variant.appendChild(combo_box)
-        question_div.appendChild(question_variant)
+        let b = document.createElement('option')
+        b.textContent = test.questionlist[i].Variants[v]
+        b.value = `${i} ${j} ${v}`
+
+        combo_box.appendChild(b)
+      }
+
+      question_variant.appendChild(p)
+      question_variant.appendChild(combo_box)
+      question_div.appendChild(question_variant)
     }
 
 
