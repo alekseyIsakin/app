@@ -8,17 +8,30 @@ var test_data = {}
 // ***************** html elements ************************** //
 // ********************************************************** //
 
-const question_holder = document.getElementById("question_holder")
-const next_btn = document.getElementById("click_next")
-const prev_btn = document.getElementById("click_prev")
+const question_holder = document.getElementById(TR_SUPPORT_ENTITY.QUESTION_HOLDER)
+const next_btn = document.getElementById(TR_SUPPORT_ENTITY.BTN_NEXT)
+const prev_btn = document.getElementById(TR_SUPPORT_ENTITY.BTN_PREV)
 
-const gradient_holder = document.getElementById("gradient_holder");
-const gradient = document.getElementById("gradient");
-const selected_quest_str = document.getElementById("selected_question")
-const test_name_h = document.getElementById('test_name')
+const current_quest_lbl = document.getElementById(TR_SUPPORT_ENTITY.CURRENT_QUESTION_LBL)
+const count_quest_lbl = document.getElementById(TR_SUPPORT_ENTITY.COUNT_QUESTIONS_LBL)
 
-document.querySelector('.header_text').addEventListener('click', () => {
+const gradient = document.getElementById(TR_SUPPORT_ENTITY.GRADIENT);
+const test_name_h = document.getElementById(TR_SUPPORT_ENTITY.TEST_NAME_HEADER)
 
+const get_all_tests = () => document.querySelectorAll(`#${TR_SUPPORT_ENTITY.QUESTION_HOLDER} > *`)
+
+next_btn.addEventListener('click', () => {
+  select_question(
+      Number(localStorage[LOCALSTORAGE.CUR_QUEST]) + 1
+  )
+})
+prev_btn.addEventListener('click', () => {
+  select_question(
+      Number(localStorage[LOCALSTORAGE.CUR_QUEST]) - 1
+  )
+})
+
+document.querySelector(`.${TR_SUPPORT_ENTITY.HEADER_TEXT}`).addEventListener('click', () => {
   const ask_file = document.createElement('input')
   ask_file.setAttribute('type', 'file')
   ask_file.setAttribute('accept', '.json,application/json')
@@ -36,7 +49,7 @@ const get_test_by_localhost = (text) => {
     var reader = new FileReader();
     reader.readAsText(text, "UTF-8");
     reader.onload = function (evt) {
-      document.querySelectorAll('#question_holder > *').forEach((el) => el.remove())
+      get_all_tests().forEach((el) => el.remove())
       const json = JSON.parse(evt.target.result)
       const DOM = convert_json2test(json)
 
@@ -45,27 +58,25 @@ const get_test_by_localhost = (text) => {
       question_holder.appendChild(DOM)
 
       localStorage.clear()
-      localStorage['selected_quest'] = 0
-      localStorage[json.uuid] = JSON.stringify({})
-      selected_quest_str.className = "default_text"
+      localStorage[LOCALSTORAGE.CUR_QUEST] = 0
       test_name_h.textContent = json.name
 
       test_data = json
-      attach_events()
 
       select_question(0)
+      set_cnt_lbl_question(test_data[JSON_ATTR.QUESTION_LIST].length)
 
-      document.querySelectorAll('.one_question')
+      document.querySelectorAll(`.${TR_CLASS.QUESTION}`)
         .forEach((el) => {
-          if (el.getAttribute('value'))
-            localStorage[el.getAttribute('value')] = '0'
+          if (el.getAttribute(`${TR_ATTR.VALUE}`))
+            localStorage[el.getAttribute(`${TR_ATTR.VALUE}`)] = '0'
         })
 
-      document.querySelectorAll('.answer')
+      document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
         .forEach((el) => {
           el.addEventListener('click', (ev) => {
-            const v = ev.target.parentNode.getAttribute('value')
-            localStorage[v] = ev.target.getAttribute('action')
+            const v = ev.target.parentNode.getAttribute(`${TR_ATTR.VALUE}`)
+            localStorage[v] = ev.target.getAttribute(`${TR_ATTR.ACTION}`)
           })
         })
 
@@ -73,7 +84,10 @@ const get_test_by_localhost = (text) => {
   }
 }
 
-/**  @deprecated */
+
+
+
+/**  @deprecated used for test version 1.0 */
 function test_receive(test) {
   for (let i = 0; i < test.questionlist.length; i++) {
     let question_div = document.createElement('div')
@@ -119,9 +133,9 @@ function test_receive(test) {
   localStorage.clear()
   localStorage['selected_quest'] = 0
   localStorage[test.uuid] = JSON.stringify({})
-  selected_quest_str.className = "default_text"
+  current_quest_lbl.className = "default_text"
   test_name_h.textContent = test.name
-  attach_events()
+  // attach_events()
 
   select_question(0)
 }

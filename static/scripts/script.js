@@ -1,68 +1,47 @@
 "use strict"
 
-
-function setwidth(val) {
-    let percent = 100 * ((Number(val) + 1) / test_data.questionlist.length)
-    
-    gradient.setAttribute('style', `background: 
-        linear-gradient(to right, green 0% ${percent - 4}%, yellow ${percent + 1}% 100%);`)
+const set_cur_lbl_question = (cur_q) => {
+    current_quest_lbl.textContent = `${cur_q}`
 }
 
-function attach_events(){
-
-    next_btn.addEventListener('click', () => {
-        select_question( Number(localStorage['selected_quest']) + 1)
-    })
-    prev_btn.addEventListener('click', () => {
-        select_question( Number(localStorage['selected_quest']) - 1)
-    })
-}
-    
-function get_question_id(question) {
-    let arr = question.split(' ')
-    if (arr.length == 0)
-        return ''
-    return `${arr[0]}`
+const set_cnt_lbl_question = (cnt_q) => {
+    count_quest_lbl.textContent = `${cnt_q}`
 }
 
-function question_is_answered(question, remove = false) {
-    if (!localStorage[test_data.uuid])
-        { localStorage[test_data.uuid] = JSON.stringify({}) }
-    
-    let quest = get_question_id(question)
-    let selected_quest = JSON.parse(localStorage[test_data.uuid])
-
-    selected_quest[quest] = question.split(' ').slice(-1)[0]
-    localStorage[test_data.uuid] = JSON.stringify(selected_quest)
-}
 
 function hide_all() {
-    document.querySelectorAll('#question_holder > *').forEach((el) => {el.hidden = true}) 
-}
-
-function button_click(event) {
-    var question = event.rangeParent.parentNode.value
-    select_question(question)
+    get_all_tests().forEach((el) => { el.hidden = true })
 }
 
 function select_question(question) {
-    if (question < 0 || question >= test_data[JSON_ATTR.QUESTION_LIST].length)
-        { return }
+    if (question < 0 || question >= test_data[JSON_ATTR.QUESTION_LIST].length) { return }
 
     hide_all()
     update_progress_line(question)
-    document.querySelectorAll('#question_holder > *')[question].hidden = false
-    selected_quest_str.textContent = `<\xa0\xa0\xa0${question + 1} / ${test_data[JSON_ATTR.QUESTION_LIST].length}\xa0\xa0\xa0>`
-    localStorage['selected_quest'] = question
-}
 
-function combo_box_answer_click(event) {
-    var question = event.target.value
-    question_is_answered(question)
+    document.querySelectorAll('#question_holder > *')[question].hidden = false
+    localStorage['selected_quest'] = question
+    set_cur_lbl_question(question + 1)
 }
 
 function update_progress_line(question) {
     var progr = document.getElementById('progress_line')
     var abs = document.body.scrollWidth * (question + 1) / parseFloat(test_data[JSON_ATTR.QUESTION_LIST].length)
     progr.style.webkitMaskSize = abs * 2 + "px";
+}
+
+
+
+/**  @deprecated  */
+function attach_events() {
+    next_btn.addEventListener('click', () => {
+        select_question(
+            Number(localStorage[LOCALSTORAGE.CUR_QUEST]) + 1
+        )
+    })
+    prev_btn.addEventListener('click', () => {
+        select_question(
+            Number(localStorage[LOCALSTORAGE.CUR_QUEST]) - 1
+        )
+    })
 }

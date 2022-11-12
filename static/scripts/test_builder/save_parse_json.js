@@ -4,25 +4,25 @@
 
 const create_question_holder_from_main_page = () => {
   const div = document.createElement('div')
-  div.id = TEST_CLASS.QUESTION_HOLDER
-  div.classList.add(TEST_CLASS.QUESTION_HOLDER)
+  div.id = TR_CLASS.QUESTION_HOLDER
+  div.classList.add(TR_CLASS.QUESTION_HOLDER)
   div.align = "center"
   return div
 }
 
 const create_empty_question_holder = () => {
   const div = document.createElement('div')
-  div.classList.add(TEST_CLASS.QUESTION)
+  div.classList.add(TR_CLASS.QUESTION)
   return div
 }
 const create_empty_string = () => {
   const p = document.createElement('p')
-  p.classList.add(TEST_CLASS.LBL)
+  p.classList.add(TR_CLASS.LBL)
   return p
 }
 const create_empty_button = () => {
   const btn = document.createElement('button')
-  btn.classList.add(TEST_CLASS.ANSWER)
+  btn.classList.add(TR_CLASS.ANSWER)
   return btn
 }
 
@@ -86,7 +86,7 @@ const add_number_to_id = (element) => {
   cur_id += 1
 }
 const clear_drop_receiver = () => {
-  dropReceivers.querySelectorAll(`:not(.${SUPPORT_ENTITY.COLUMN_NAME})`)
+  dropReceivers.querySelectorAll(`:not(.${TB_SUPPORT_ENTITY.COLUMN_NAME})`)
     .forEach((el) => { el.remove() })
 }
 
@@ -129,7 +129,7 @@ const json2editor_proceed_with_children = (json) => {
   if (Object.hasOwn(json, JSON_ATTR.TEXT_CONTENT))
     one_html_element.textContent = json[JSON_ATTR.TEXT_CONTENT]
   if (Object.hasOwn(json, JSON_ATTR.ACTION))
-    one_html_element.setAttribute(TEST_ATTR.ACTION, json[JSON_ATTR.ACTION])
+    one_html_element.setAttribute(TR_ATTR.ACTION, json[JSON_ATTR.ACTION])
 
   local_DOM.appendChild(one_html_element)
 
@@ -151,7 +151,7 @@ const json2editor_proceed_with_children = (json) => {
 // ********************************************************* //
 
 const convert_editor2json = () => {
-  const a = document.querySelectorAll(`.${SUPPORT_ENTITY.DROP_RECEIVER} > .${PH_BEHAVIOR.MOVABLE}`)
+  const a = document.querySelectorAll(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER} > .${PH_BEHAVIOR.MOVABLE}`)
   const test = {
     uuid: "",
     name: "",
@@ -257,7 +257,7 @@ const json2test_proceed_with_children = (json, str) => {
   let el_id = 0
 
   if (Object.hasOwn(json, JSON_ATTR.ACTION)) {
-    one_html_element.setAttribute(TEST_ATTR.ACTION, json[JSON_ATTR.ACTION])
+    one_html_element.setAttribute(TR_ATTR.ACTION, json[JSON_ATTR.ACTION])
   }
   if (Object.hasOwn(json, JSON_ATTR.TEXT_CONTENT)) {
     one_html_element.textContent = json[JSON_ATTR.TEXT_CONTENT]
@@ -274,7 +274,7 @@ const json2test_proceed_with_children = (json, str) => {
     });
 
     if (json[JSON_ATTR.QUESTION_LIST].find((el) => el.action))
-      one_html_element.setAttribute(TEST_ATTR.VALUE, str)
+      one_html_element.setAttribute(TR_ATTR.VALUE, str)
   }
 
   return local_DOM

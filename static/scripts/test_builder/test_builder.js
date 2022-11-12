@@ -131,7 +131,7 @@ const show_selected_element_info = (element) => {
     text_content.parentNode.hidden = false
     value_content.parentNode.hidden = false
     text_content.value = element.textContent
-    value_content.value = element.getAttribute(TEST_ATTR.ACTION)
+    value_content.value = element.getAttribute(TR_ATTR.ACTION)
   } else {
     text_content.parentNode.hidden = true
     value_content.parentNode.hidden = true
@@ -163,7 +163,7 @@ const type_element_value = (ev) => {
   const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`)
 
   if (text_content == '')
-    element.removeAttribute(TEST_ATTR.ACTION)
+    element.removeAttribute(TR_ATTR.ACTION)
   else
-    element.setAttribute(TEST_ATTR.ACTION, text_content.value)
+    element.setAttribute(TR_ATTR.ACTION, text_content.value)
 }
