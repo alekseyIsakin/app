@@ -28,7 +28,8 @@ const PH_STAUS = {
 const PH_BEHAVIOR = {
   MOVABLE: 'movable',
   EDITABLE: 'able-to-edit',
-  ANSWER: 'answer'
+  ANSWER: 'answer',
+  CUSTOM_ATTR: 'custom-attrs'
 }
 
 const PH_CLASS = {

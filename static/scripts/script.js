@@ -12,9 +12,21 @@ const set_cnt_lbl_question = (cnt_q) => {
 function hide_all() {
     get_all_tests().forEach((el) => { el.hidden = true })
 }
+const validate_answers = () => {
+    questions_to_check.forEach(el => {
+        console.log( localStorage[el])
+    })
+}
 
 function select_question(question) {
-    if (question < 0 || question >= test_data[JSON_ATTR.QUESTION_LIST].length) { return }
+
+    if (question < 0)
+        return
+    if (question >= get_cnt_questions()){
+        validate_answers()
+        return
+    }
+
 
     hide_all()
     update_progress_line(question)
@@ -26,7 +38,7 @@ function select_question(question) {
 
 function update_progress_line(question) {
     var progr = document.getElementById('progress_line')
-    var abs = document.body.scrollWidth * (question + 1) / parseFloat(test_data[JSON_ATTR.QUESTION_LIST].length)
+    var abs = document.body.scrollWidth * (question + 1) / parseFloat(get_cnt_questions())
     progr.style.webkitMaskSize = abs * 2 + "px";
 }
 

@@ -1,7 +1,7 @@
 "use strict"
 
 var test_data = {}
-
+const questions_to_check = []
 
 
 // ********************************************************** //
@@ -19,6 +19,7 @@ const gradient = document.getElementById(TR_SUPPORT_ENTITY.GRADIENT);
 const test_name_h = document.getElementById(TR_SUPPORT_ENTITY.TEST_NAME_HEADER)
 
 const get_all_tests = () => document.querySelectorAll(`#${TR_SUPPORT_ENTITY.QUESTION_HOLDER} > *`)
+const get_cnt_questions = () => test_data[JSON_ATTR.QUESTION_LIST].filter(el => el[JSON_ATTR.TYPE] != PH_CLASS.TEST_INFO).length
 
 next_btn.addEventListener('click', () => {
   select_question(
@@ -63,13 +64,13 @@ const get_test_by_localhost = (text) => {
 
       test_data = json
 
-      select_question(0)
-      set_cnt_lbl_question(test_data[JSON_ATTR.QUESTION_LIST].length)
-
       document.querySelectorAll(`.${TR_CLASS.QUESTION}`)
         .forEach((el) => {
-          if (el.getAttribute(`${TR_ATTR.VALUE}`))
-            localStorage[el.getAttribute(`${TR_ATTR.VALUE}`)] = '0'
+          const attr = el.getAttribute(`${TR_ATTR.VALUE}`)
+
+          if (attr)
+            localStorage[attr] = '0'
+            questions_to_check.push(attr)
         })
 
       document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
@@ -79,6 +80,9 @@ const get_test_by_localhost = (text) => {
             localStorage[v] = ev.target.getAttribute(`${TR_ATTR.ACTION}`)
           })
         })
+
+      set_cnt_lbl_question(get_cnt_questions())
+      select_question(0)
     }
   }
 }

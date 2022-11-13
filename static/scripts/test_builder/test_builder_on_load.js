@@ -14,9 +14,6 @@ tasksListElement.appendChild(create_empty_label_placeholder())
 tasksListElement.appendChild(create_empty_test_info_placeholder())
 
 
-// elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`).addEventListener('input', change_element_content)
-// elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`).addEventListener('input', change_element_value)
-
 elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
 
