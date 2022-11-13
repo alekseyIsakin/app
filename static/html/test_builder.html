@@ -14,20 +14,19 @@
     </div>
 
     <div class="work_container">
-      <div class="base_elemnt_holder">
+      <div class="base_elemnt_holder" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)">
         <div class="dragable_elements_holder">
-          <p style="margin: 0px; background-color: azure;">elements</p>
-
+          <p class="column_name">elements</p>
         </div>
-        <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div>
+        <!-- <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div> -->
       </div>
 
       <div class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
-        <p class="column_name" style="margin: 0px; background-color: azure;">tests</p>
+        <p class="column_name" >tests</p>
       </div>
 
       <div class="element_settings">
-        <p style="margin: 0px; background-color: azure;">edit</p>
+        <p class="column_name">edit</p>
         <p>element-id <span id="element-id">_</span></p>
         <p hidden="true">element-content <input id="element-text"></input></p>
         <p hidden="true">element-value <input id="element-value"></input></p>
@@ -38,6 +37,9 @@
         <input id="load-input" type="file" accept=".json,application/json">
         <br />
         <button id="preview-button">test_view</button>
+        <div id="user_settings">
+
+        </div>
       </div>
     </div>
 

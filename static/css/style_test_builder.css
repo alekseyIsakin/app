@@ -3,17 +3,21 @@
   flex-flow: column;
 }
 
+.work_container {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  min-width: 100px;
+}
+
 .base_elemnt_holder {
   display: flex;
   flex-flow: column;
   width: 33%;
 }
 
-.work_container {
-  display: flex;
-  flex-flow: row;
-  width: 100%;
-  min-width: 100px;
+.drop_receiver {
+  background-color: blueviolet;
 }
 
 .element_settings {
@@ -27,7 +31,30 @@
   flex: 1 1 auto;
 }
 
+.column_name {
+  margin: 0px;
+  background-color: azure;
+}
+
+/* ************* */
 /* Place holders */
+/* ************* */
+
+.lbl-ph,
+.btn-ph {
+  min-height: 18px;
+  min-width: 15px;
+}
+
+.testinfo-ph,
+.question-ph,
+.btn-ph,
+.lbl-ph {
+  border: 1px black solid;
+  margin: 3px;
+  padding: 1px;
+  user-select: none;
+}
 
 .question-ph {
   background: linear-gradient(to right, #22ce00 0% 10px, yellowgreen 15px 100%);
@@ -37,30 +64,23 @@
   padding-left: 15px;
 }
 
-
 .btn-ph {
   background: purple;
-  min-height: 18px;
-  min-width: 15px;
   display: inline-block;
 }
 
 .lbl-ph {
   background: bisque;
-  min-height: 18px;
-  min-width: 15px;
 }
 
-.question-ph,
-.btn-ph,
-.lbl-ph {
-  border: 1px black solid;
-  margin: 3px;
+.testinfo-ph {
+  background: yellow;
 }
 
-.drop_receiver {
-  background-color: blueviolet;
-}
+/* ************* */
+/* ************* */
+/* ************* */
+
 
 .delete_drop {
   background-color: red;
@@ -82,9 +102,13 @@
   margin-right: 3px;
 }
 
+
+
 .movable {
   cursor: pointer;
 }
+
+/* statuses */
 
 .selected {
   opacity: .6;
@@ -92,20 +116,4 @@
 
 .non_selected_for_editing {
   background: darkblue;
-}
-
-.selected_for_editing {
-  width: auto;
-}
-
-.question-ph>.element-name {
-  visibility: collapse;
-}
-
-.selected_for_editing>.element-name {
-  visibility: visible;
-}
-
-.drop_place {
-  background-color: brown;
 }

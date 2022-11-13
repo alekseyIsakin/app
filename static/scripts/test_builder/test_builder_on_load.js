@@ -3,16 +3,18 @@
 
 
 const tasksListElement = document.querySelector(`.${TB_SUPPORT_ENTITY.BASE_ELEMNT_HOLDER}`);
-const dropReceivers = document.querySelector(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER}`);
+const dropReceiver = document.querySelector(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER}`);
 const elementSettings = document.querySelector(`.${TB_SUPPORT_ENTITY.ELEMENT_SETTINGS}`);
 
 
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
+tasksListElement.appendChild(create_empty_test_info_placeholder())
 
-elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`).addEventListener('input', type_element_content)
-elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`).addEventListener('input', type_element_value)
+
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`).addEventListener('input', change_element_content)
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`).addEventListener('input', change_element_value)
 
 elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
@@ -29,7 +31,7 @@ elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListen
     reader.onload = function (evt) {
       const obj = try_parse(evt.target.result)
       const DOM = convert_json2editor(obj)
-      dropReceivers.appendChild(DOM)
+      dropReceiver.appendChild(DOM)
     }
   }
 

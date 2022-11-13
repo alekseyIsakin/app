@@ -49,11 +49,15 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
 
   div.id = PH_ID.BTN
   div.classList.add(PH_BEHAVIOR.MOVABLE)
-  div.classList.add(PH_BEHAVIOR.EDIT_CONTENT)
+  div.classList.add(PH_BEHAVIOR.EDITABLE)
   div.classList.add(PH_CLASS.BTN)
   div.setAttribute(
     JSON_ATTR.TYPE,
     PH_CLASS.BTN
+  )
+  div.setAttribute(
+    PH_ATTR.ATTR_LIST,
+    [PH_ATTR.ACTION, PH_ATTR.EDITABLE ]
   )
   div.textContent = text_content
 
@@ -62,9 +66,10 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
 }
 const create_empty_label_placeholder = (text_content = PH_CLASS.LBL) => {
   const div = document.createElement('div')
+
   div.id = PH_ID.LBL
   div.classList.add(PH_BEHAVIOR.MOVABLE)
-  div.classList.add(PH_BEHAVIOR.EDIT_CONTENT)
+  div.classList.add(PH_BEHAVIOR.EDITABLE)
   div.classList.add(PH_CLASS.LBL)
   div.setAttribute(
     JSON_ATTR.TYPE,
@@ -75,7 +80,25 @@ const create_empty_label_placeholder = (text_content = PH_CLASS.LBL) => {
   div.draggable = true
   return div
 }
-const setup_new_element = (element) => {
+const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) => {
+  const div = document.createElement('div')
+
+  div.id = PH_ID.TEST_INFO
+  div.classList.add(PH_BEHAVIOR.MOVABLE)
+  div.classList.add(PH_CLASS.TEST_INFO)
+  div.classList.add(PH_BEHAVIOR.MAY_CONTAINS_ATTR)
+  div.setAttribute(
+    JSON_ATTR.TYPE,
+    PH_CLASS.TEST_INFO
+  )
+
+  div.textContent = text_content
+  div.draggable = true
+
+  return div
+}
+
+const setup_new_ph_element = (element) => {
   element.addEventListener('dragstart', start_moving)
   element.addEventListener('dragend', stop_moving);
   element.addEventListener('click', one_click)
@@ -86,7 +109,7 @@ const add_number_to_id = (element) => {
   cur_id += 1
 }
 const clear_drop_receiver = () => {
-  dropReceivers.querySelectorAll(`:not(.${TB_SUPPORT_ENTITY.COLUMN_NAME})`)
+  dropReceiver.querySelectorAll(`:not(.${TB_SUPPORT_ENTITY.COLUMN_NAME})`)
     .forEach((el) => { el.remove() })
 }
 
@@ -124,7 +147,7 @@ const convert_json2editor = (obj) => {
 const json2editor_proceed_with_children = (json) => {
   const local_DOM = document.createDocumentFragment()
   const one_html_element = JSON_TO_RAW_HTML[json.type]()
-  setup_new_element(one_html_element)
+  setup_new_ph_element(one_html_element)
 
   if (Object.hasOwn(json, JSON_ATTR.TEXT_CONTENT))
     one_html_element.textContent = json[JSON_ATTR.TEXT_CONTENT]
@@ -175,7 +198,7 @@ const editor2json_proceed_with_children = (node) => {
 
   question[JSON_ATTR.TYPE] = node.getAttribute(JSON_ATTR.TYPE)
 
-  if (node.getAttribute(JSON_ATTR.VALUE)){  
+  if (node.getAttribute(JSON_ATTR.VALUE)) {
     question[JSON_ATTR.VALUE] = node.getAttribute(JSON_ATTR.VALUE)
   }
   if (node.getAttribute(JSON_ATTR.ACTION))
@@ -203,32 +226,32 @@ const editor2json_proceed_with_children = (node) => {
 // ****************** json2test **************************** //
 // ********************************************************* //
 
-const preview = {enable: 0}
+const preview = { enable: 0 }
 let saved_editor_state = {}
 
 const preview_test = () => {
   const DOM = document.createDocumentFragment()
 
-  if (preview.enable == 0){
+  if (preview.enable == 0) {
     const json = convert_editor2json()
     saved_editor_state = json
     const d = convert_json2test(json)
-    if (d){
+    if (d) {
       const div = create_question_holder_from_main_page()
       div.appendChild(d)
-  
+
       DOM.appendChild(div)
       preview.enable = 1
       unhighlite_selections()
-      show_selected_element_info(dropReceivers)
+      show_selected_element_info(dropReceiver)
     }
-  }else{
+  } else {
     DOM.appendChild(convert_json2editor(saved_editor_state))
     preview.enable = 0
   }
-  
+
   clear_drop_receiver()
-  dropReceivers.appendChild(DOM)
+  dropReceiver.appendChild(DOM)
 }
 
 const convert_json2test = (obj) => {
@@ -288,12 +311,13 @@ const json2test_proceed_with_children = (json, str) => {
 
 let cur_id = 0
 
-const JSON_TO_RAW_HTML = { }
-JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_question_placeholder,
-JSON_TO_RAW_HTML[PH_CLASS.BTN] = create_empty_button_placeholder,
-JSON_TO_RAW_HTML[PH_CLASS.LBL] = create_empty_label_placeholder
+const JSON_TO_RAW_HTML = {}
+JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_question_placeholder;
+JSON_TO_RAW_HTML[PH_CLASS.BTN] = create_empty_button_placeholder;
+JSON_TO_RAW_HTML[PH_CLASS.LBL] = create_empty_label_placeholder;
+JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_test_info_placeholder;
 
-const JSON_TO_TEST = { }
-JSON_TO_TEST[PH_CLASS.QUESTION]  = create_empty_question_holder,
-JSON_TO_TEST[PH_CLASS.BTN]  = create_empty_button,
-JSON_TO_TEST[PH_CLASS.LBL]  = create_empty_string
+const JSON_TO_TEST = {}
+JSON_TO_TEST[PH_CLASS.QUESTION] = create_empty_question_holder;
+JSON_TO_TEST[PH_CLASS.BTN] = create_empty_button;
+JSON_TO_TEST[PH_CLASS.LBL] = create_empty_string;

@@ -3,14 +3,29 @@ const TEST_VERSION = {
   LATEST: '2.1'
 }
 
+
+
+// ****************** 
+// ** Testbuilder ***
+// ****************** 
+
+const JSON_ATTR = {
+  QUESTION_LIST: 'question_list',
+  VALUE: 'value',
+  ACTION: 'action',
+  TEXT_CONTENT: 'text_content',
+  TYPE: 'type',
+  ANSWER_TAGS: 'answertags'
+}
+
 const PH_STAUS = {
   SELECTED: 'selected',
   EDITING: 'selected_for_editing',
   NOT_EDITING: 'non_selected_for_editing',
 }
-  const PH_BEHAVIOR = {
+const PH_BEHAVIOR = {
   MOVABLE: 'movable',
-  EDIT_CONTENT: 'able-to-edit',
+  EDITABLE: 'able-to-edit',
   ANSWER: 'answer'
 }
 
@@ -18,13 +33,22 @@ const PH_CLASS = {
   BTN: 'btn-ph',
   LBL: 'lbl-ph',
   QUESTION: 'question-ph',
-  TEST_INFO: 'info'
+  TEST_INFO: 'testinfo-ph'
 }
 
 const PH_ID = {
   BTN: 'btn-ph-',
   LBL: 'lbl-ph-',
-  QUESTION: 'question-ph-'
+  QUESTION: 'question-ph-',
+  TEST_INFO: 'testinfo-ph-'
+}
+
+const PH_ATTR = {
+  ATTR_LIST: 'attr',
+  TYPE: JSON_ATTR.TYPE,
+  VALUE: JSON_ATTR.VALUE,
+  ACTION: JSON_ATTR.ACTION,
+  EDITABLE: 'editable'
 }
 
 const TB_SUPPORT_ENTITY = {
@@ -42,6 +66,7 @@ const TB_SUPPORT_ENTITY = {
   LOAD_INPUT: 'load-button',
   FILE_INPUT: 'load-input',
   PREVIEW_TEST: 'preview-button',
+  USER_SETTINGS: 'user_settings'
 }
 
 const TEST_BUILDER = {
@@ -52,21 +77,16 @@ const TEST_BUILDER = {
 }
 
 
-const JSON_ATTR = {
-  QUESTION_LIST: 'question_list',
-  VALUE: 'value',
-  ACTION: 'action',
-  TEXT_CONTENT: 'text_content',
-  TYPE: 'type',
-  ANSWER_TAGS: 'answertags'
-}
 
+// ****************** 
+// ** Test runtime **
+// ****************** 
 
 const TR_SUPPORT_ENTITY = {
   QUESTION_HOLDER: 'question_holder',
 
-  BTN_NEXT:"click_next",
-  BTN_PREV:"click_prev",
+  BTN_NEXT: "click_next",
+  BTN_PREV: "click_prev",
 
   GRADIENT: 'gradient',
 
