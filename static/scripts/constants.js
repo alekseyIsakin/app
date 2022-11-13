@@ -17,7 +17,8 @@ const PH_STAUS = {
 const PH_CLASS = {
   BTN: 'btn-ph',
   LBL: 'lbl-ph',
-  QUESTION: 'question-ph'
+  QUESTION: 'question-ph',
+  TEST_INFO: 'info'
 }
 
 const PH_ID = {
@@ -44,7 +45,7 @@ const TB_SUPPORT_ENTITY = {
 }
 
 const TEST_BUILDER = {
-  SUPPORT_ENTITY: TB_SUPPORT_ENTITY,
+  TB_SUPPORT_ENTITY: TB_SUPPORT_ENTITY,
   PH_BEHAVIOR: PH_BEHAVIOR,
   PH_CLASS: PH_CLASS,
   PH_ID: PH_ID

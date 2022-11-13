@@ -1,6 +1,15 @@
 "use strict";
 
 
+const get_selected_node_id = () => {
+  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+}
+const get_input_value_holder = () => {
+  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`)
+}
+const get_input_content_holder = () => {
+  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`)
+}
 
 const start_moving = (event) => {
   if (!event.target.classList || event.target.classList.contains(PH_BEHAVIOR.MOVABLE) == false)
@@ -14,7 +23,7 @@ const stop_moving = (event) => {
   if (!event.target.classList || event.target.classList.contains(PH_BEHAVIOR.MOVABLE) == false)
     return
 
-  const edited_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+  const edited_element_id = get_selected_node_id()
   if (edited_element_id != '') {
     const edited_element = dropReceivers.querySelector(`#${edited_element_id}`)
     if (edited_element) { highlite_selection(edited_element) }
@@ -27,6 +36,7 @@ function dragover_handler(ev) {
   ev.preventDefault();
   ev.dataTransfer.dropEffect = "move";
 }
+
 function drop_put_to_question(ev) {
   ev.preventDefault();
 
@@ -50,7 +60,7 @@ function drop_put_to_question(ev) {
     ev.currentTarget.appendChild(newElemnt)
   }
   catch (err) {
-    //
+    console.log(err)
   }
 }
 function drop_put_handler(ev) {
@@ -121,11 +131,11 @@ const highlite_selection = (element) => {
 }
 
 const show_selected_element_info = (element) => {
-  const node_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
+  const node_element_id = get_selected_node_id()
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.CONTENT_INPUT}`)
-  const value_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`)
+  const text_content = get_input_content_holder()
+  const value_content = get_input_value_holder()
 
   if (element.classList.contains(PH_BEHAVIOR.EDIT_CONTENT)) {
     text_content.parentNode.hidden = false
@@ -142,25 +152,25 @@ const show_selected_element_info = (element) => {
 }
 
 const type_element_content = (ev) => {
-  const node_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+  const node_element_id = get_selected_node_id()
   if (node_element_id == '') return
 
   const element = dropReceivers.querySelector(`#${node_element_id}`)
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.CONTENT_INPUT}`)
+  const text_content = get_input_content_holder()
 
   element.textContent = text_content.value
 }
 
 const type_element_value = (ev) => {
-  const node_element_id = elementSettings.querySelector(`#${SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+  const node_element_id = get_selected_node_id()
   if (node_element_id == '') return
 
   const element = dropReceivers.querySelector(`#${node_element_id}`)
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`)
+  const text_content = get_input_value_holder()
 
   if (text_content == '')
     element.removeAttribute(TR_ATTR.ACTION)

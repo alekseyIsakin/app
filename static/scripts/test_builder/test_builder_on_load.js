@@ -2,26 +2,26 @@
 
 
 
-const tasksListElement = document.querySelector(`.${SUPPORT_ENTITY.BASE_ELEMNT_HOLDER}`);
-const dropReceivers = document.querySelector(`.${SUPPORT_ENTITY.DROP_RECEIVER}`);
-const elementSettings = document.querySelector(`.${SUPPORT_ENTITY.ELEMENT_SETTINGS}`);
+const tasksListElement = document.querySelector(`.${TB_SUPPORT_ENTITY.BASE_ELEMNT_HOLDER}`);
+const dropReceivers = document.querySelector(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER}`);
+const elementSettings = document.querySelector(`.${TB_SUPPORT_ENTITY.ELEMENT_SETTINGS}`);
 
 
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
 
-elementSettings.querySelector(`#${SUPPORT_ENTITY.CONTENT_INPUT}`).addEventListener('input', type_element_content)
-elementSettings.querySelector(`#${SUPPORT_ENTITY.VALUE_INPUT}`).addEventListener('input', type_element_value)
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`).addEventListener('input', type_element_content)
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`).addEventListener('input', type_element_value)
 
-elementSettings.querySelector(`#${SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
 
   save_test_to_disk(JSON.stringify(json), 'test.json', 'text/plain')
 })
 
-elementSettings.querySelector(`#${SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('click', () => {
-  const text = elementSettings.querySelector(`#${SUPPORT_ENTITY.FILE_INPUT}`).files[0]
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('click', () => {
+  const text = elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.FILE_INPUT}`).files[0]
 
   if (text) {
     var reader = new FileReader();
@@ -34,7 +34,7 @@ elementSettings.querySelector(`#${SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener(
   }
 
 })
-elementSettings.querySelector(`#${SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
 tasksListElement.addEventListener(`dragend`, stop_moving);

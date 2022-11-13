@@ -22,12 +22,12 @@ const get_all_tests = () => document.querySelectorAll(`#${TR_SUPPORT_ENTITY.QUES
 
 next_btn.addEventListener('click', () => {
   select_question(
-      Number(localStorage[LOCALSTORAGE.CUR_QUEST]) + 1
+    Number(localStorage[LOCALSTORAGE.CUR_QUEST]) + 1
   )
 })
 prev_btn.addEventListener('click', () => {
   select_question(
-      Number(localStorage[LOCALSTORAGE.CUR_QUEST]) - 1
+    Number(localStorage[LOCALSTORAGE.CUR_QUEST]) - 1
   )
 })
 
@@ -79,7 +79,6 @@ const get_test_by_localhost = (text) => {
             localStorage[v] = ev.target.getAttribute(`${TR_ATTR.ACTION}`)
           })
         })
-
     }
   }
 }
