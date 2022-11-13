@@ -6,11 +6,44 @@ const get_selected_node_id = (return_holder = false) => {
     return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
   return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
 }
-const get_input_value_holder = () => {
-  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`)
+const create_attr_editor = (label, attr, element) => {
+  const input = document.createElement('input')
+  const p = document.createElement('p')
+
+  input.value = element.getAttribute(attr)
+  input.addEventListener('input', (ev) => {
+    element.setAttribute(attr, input.value)
+  })
+
+  p.textContent = label
+  p.appendChild(input)
+  input.id = TB_SUPPORT_ENTITY.USER_INPUT + attr
+  userSettingsHolder.appendChild(p)
 }
-const get_input_content_holder = () => {
-  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`)
+const get_input_value_holder = (element) => {
+  const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`)
+  if (check_input != null)
+    return check_input
+
+  return create_attr_editor('action: ', PH_ATTR.ACTION, element)
+}
+const get_input_content_holder = (element) => {
+  const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`)
+  if (check_input != null)
+    return check_input
+
+  const input = document.createElement('input')
+  const p = document.createElement('p')
+
+  input.addEventListener('input', change_element_content)
+  input.id = TB_SUPPORT_ENTITY.CONTENT_INPUT
+  input.value = element.textContent
+  
+  p.textContent = 'content: '
+  p.appendChild(input)
+  userSettingsHolder.appendChild(p)
+
+  return input
 }
 
 const start_moving = (event) => {
@@ -136,39 +169,49 @@ const highlite_selection = (element) => {
   });
 }
 
-const fff = {}
-fff[PH_ATTR.EDITABLE] = (element) => {
-  get_input_content_holder().parentNode.hidden = false
-  get_input_content_holder().value = element.textContent
+
+
+const remove_all_settings = () => {
+  if (userSettingsHolder.childNodes.length > 0) {
+    const settings = userSettingsHolder.querySelectorAll('*')
+    settings.forEach((el) => el.remove())
+  }
 }
-const hide_all_settings = () =>{
-  
+
+const ATTR_ACTION = {}
+ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_input_content_holder(element)
+ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
+
+const CUSTOM_ATTR = {}
+
+/** @param element html object that should contain attribut PH_ATTR.ATTR_LIST */
+const create_new_attr = (element, attr) => {
+  create_attr_editor(`${attr}: `, attr, element)
 }
+const remove_attr = (element, attr) => {
+  if (element.getAttribute(attr))
+    element.removeAttribute(attr)
+}
+
+
 const show_selected_element_info = (element) => {
+  remove_all_settings()
+
   const node_element_id = get_selected_node_id(true)
-
-  const text_content = get_input_content_holder()
-  const value_content = get_input_value_holder()
-
-  // TODO move it to external function
   const attr_list_str = element.getAttribute(PH_ATTR.ATTR_LIST)
 
   if (attr_list_str != null) {
-    const arr_list = attr_list_str.split(',')
-    value_content.parentNode.hidden = false
-    value_content.value = element.getAttribute(TR_ATTR.ACTION)
+    attr_list_str.split(',').forEach((attr) => {
+      if (ATTR_ACTION.hasOwnProperty(attr)) {
+        ATTR_ACTION[attr](element)
+      }
+      else
+        create_new_attr(element, attr)
+    })
   }
   else {
-    value_content.parentNode.hidden = true
-    value_content.value = ''
   }
 
-  if (element.classList.contains(PH_BEHAVIOR.EDITABLE)) {
-    fff[PH_ATTR.EDITABLE](element)
-  } else {
-    text_content.parentNode.hidden = true
-    text_content.value = ''
-  }
   node_element_id.textContent = element.id
 }
 

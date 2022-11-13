@@ -49,7 +49,6 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
 
   div.id = PH_ID.BTN
   div.classList.add(PH_BEHAVIOR.MOVABLE)
-  div.classList.add(PH_BEHAVIOR.EDITABLE)
   div.classList.add(PH_CLASS.BTN)
   div.setAttribute(
     JSON_ATTR.TYPE,
@@ -57,7 +56,7 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
   )
   div.setAttribute(
     PH_ATTR.ATTR_LIST,
-    [PH_ATTR.ACTION, PH_ATTR.EDITABLE ]
+    [PH_ATTR.ACTION, PH_ATTR.EDITABLE]
   )
   div.textContent = text_content
 
@@ -69,11 +68,14 @@ const create_empty_label_placeholder = (text_content = PH_CLASS.LBL) => {
 
   div.id = PH_ID.LBL
   div.classList.add(PH_BEHAVIOR.MOVABLE)
-  div.classList.add(PH_BEHAVIOR.EDITABLE)
   div.classList.add(PH_CLASS.LBL)
   div.setAttribute(
     JSON_ATTR.TYPE,
     PH_CLASS.LBL
+  )
+  div.setAttribute(
+    PH_ATTR.ATTR_LIST,
+    [PH_ATTR.EDITABLE]
   )
   div.textContent = text_content
 
@@ -91,7 +93,10 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
     JSON_ATTR.TYPE,
     PH_CLASS.TEST_INFO
   )
-
+  div.setAttribute(
+    PH_ATTR.ATTR_LIST,
+    ['Author', 'Name']
+  )
   div.textContent = text_content
   div.draggable = true
 
@@ -151,8 +156,11 @@ const json2editor_proceed_with_children = (json) => {
 
   if (Object.hasOwn(json, JSON_ATTR.TEXT_CONTENT))
     one_html_element.textContent = json[JSON_ATTR.TEXT_CONTENT]
-  if (Object.hasOwn(json, JSON_ATTR.ACTION))
-    one_html_element.setAttribute(TR_ATTR.ACTION, json[JSON_ATTR.ACTION])
+  if (Object.hasOwn(json, JSON_ATTR.ATTR_LIST)) {
+    json[JSON_ATTR.ATTR_LIST].forEach(attr => {
+      one_html_element.setAttribute(attr, json[attr])
+    })
+  }
 
   local_DOM.appendChild(one_html_element)
 
@@ -198,12 +206,18 @@ const editor2json_proceed_with_children = (node) => {
 
   question[JSON_ATTR.TYPE] = node.getAttribute(JSON_ATTR.TYPE)
 
-  if (node.getAttribute(JSON_ATTR.VALUE)) {
-    question[JSON_ATTR.VALUE] = node.getAttribute(JSON_ATTR.VALUE)
+  const attr_list_str = node.getAttribute(PH_ATTR.ATTR_LIST)
+  if (attr_list_str != null) {
+    question[JSON_ATTR.ATTR_LIST] = []
+    const attr_list = attr_list_str
+      .split(',')
+      .filter((attr) => attr != PH_ATTR.EDITABLE)
+    attr_list
+      .forEach((attr) => {
+        question[JSON_ATTR.ATTR_LIST].push(attr)
+        question[attr] = node.getAttribute(attr)
+      })
   }
-  if (node.getAttribute(JSON_ATTR.ACTION))
-    question[JSON_ATTR.ACTION] = node.getAttribute(JSON_ATTR.ACTION)
-
 
   if (node.classList.contains(PH_CLASS.QUESTION) == false) {
     question[JSON_ATTR.TEXT_CONTENT] = node.textContent
@@ -236,6 +250,7 @@ const preview_test = () => {
     const json = convert_editor2json()
     saved_editor_state = json
     const d = convert_json2test(json)
+
     if (d) {
       const div = create_question_holder_from_main_page()
       div.appendChild(d)
@@ -254,15 +269,15 @@ const preview_test = () => {
   dropReceiver.appendChild(DOM)
 }
 
-const convert_json2test = (obj) => {
+const convert_json2test = (json) => {
   cur_id = 0
 
-  if (Object.hasOwn(obj, JSON_ATTR.QUESTION_LIST) == false) {
+  if (Object.hasOwn(json, JSON_ATTR.QUESTION_LIST) == false) {
     alert('Incorrect file')
     return document.createDocumentFragment()
   }
 
-  const arr = obj[[JSON_ATTR.QUESTION_LIST]]
+  const arr = json[[JSON_ATTR.QUESTION_LIST]]
   let DOM = document.createDocumentFragment()
 
   let el_id = 0
@@ -270,13 +285,14 @@ const convert_json2test = (obj) => {
     DOM.appendChild(json2test_proceed_with_children(el, String(el_id)))
     el_id += 1
   });
-
   return DOM
 }
 
 const json2test_proceed_with_children = (json, str) => {
-  const local_DOM = document.createDocumentFragment()
   const one_html_element = JSON_TO_TEST[json.type]()
+  if (one_html_element == null) return document.createDocumentFragment()
+  
+  const local_DOM = document.createDocumentFragment()
   let el_id = 0
 
   if (Object.hasOwn(json, JSON_ATTR.ACTION)) {
@@ -315,9 +331,10 @@ const JSON_TO_RAW_HTML = {}
 JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_question_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.BTN] = create_empty_button_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.LBL] = create_empty_label_placeholder;
-JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_test_info_placeholder;
+JSON_TO_RAW_HTML[PH_CLASS.TEST_INFO] = create_empty_test_info_placeholder;
 
 const JSON_TO_TEST = {}
 JSON_TO_TEST[PH_CLASS.QUESTION] = create_empty_question_holder;
 JSON_TO_TEST[PH_CLASS.BTN] = create_empty_button;
 JSON_TO_TEST[PH_CLASS.LBL] = create_empty_string;
+JSON_TO_TEST[PH_CLASS.TEST_INFO] = () => { return null };

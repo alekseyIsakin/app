@@ -1,6 +1,6 @@
 
 const TEST_VERSION = {
-  LATEST: '2.1'
+  LATEST: '3.0'
 }
 
 
@@ -11,11 +11,13 @@ const TEST_VERSION = {
 
 const JSON_ATTR = {
   QUESTION_LIST: 'question_list',
+  ATTR_LIST: 'attr_list',
   VALUE: 'value',
   ACTION: 'action',
   TEXT_CONTENT: 'text_content',
   TYPE: 'type',
-  ANSWER_TAGS: 'answertags'
+  ANSWER_TAGS: 'answertags',
+  DOM: 'dom'
 }
 
 const PH_STAUS = {
@@ -60,13 +62,13 @@ const TB_SUPPORT_ENTITY = {
 
   COLUMN_NAME: 'column_name',
 
-  CONTENT_INPUT: 'element-text',
-  VALUE_INPUT: 'element-value',
   SAVE_INPUT: 'save-button',
   LOAD_INPUT: 'load-button',
   FILE_INPUT: 'load-input',
   PREVIEW_TEST: 'preview-button',
-  USER_SETTINGS: 'user_settings'
+  USER_SETTINGS: 'user_settings_holder',
+
+  USER_INPUT: 'input-',
 }
 
 const TEST_BUILDER = {
