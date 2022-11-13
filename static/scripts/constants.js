@@ -29,7 +29,7 @@ const PH_BEHAVIOR = {
   MOVABLE: 'movable',
   EDITABLE: 'able-to-edit',
   ANSWER: 'answer',
-  CUSTOM_ATTR: 'custom-attrs'
+  ANSWERS_TAG: 'answer-tags'
 }
 
 const PH_CLASS = {
@@ -117,6 +117,7 @@ const TR_ATTR = {
 }
 
 const LOCALSTORAGE = {
-  CUR_QUEST: TR_STATUS.SELECTED_QUEST
+  CUR_QUEST: TR_STATUS.SELECTED_QUEST,
+  ANSWERS_TAG: PH_BEHAVIOR.ANSWERS_TAG
 }
 

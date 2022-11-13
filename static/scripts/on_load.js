@@ -3,7 +3,6 @@
 var test_data = {}
 const questions_to_check = []
 
-
 // ********************************************************** //
 // ***************** html elements ************************** //
 // ********************************************************** //
@@ -63,6 +62,23 @@ const get_test_by_localhost = (text) => {
       test_name_h.textContent = json.name
 
       test_data = json
+      const test_info = json[JSON_ATTR.QUESTION_LIST].find(el => el.type == PH_CLASS.TEST_INFO)
+
+      if (test_info) {
+        const attrs = test_info[LOCALSTORAGE.ANSWERS_TAG]
+        if (attrs != '') {
+          let answer_tags = ''
+          attrs
+            .replaceAll(' ', '')
+            .split(',')
+            .forEach((tag) => {
+              localStorage[tag] = 0
+              answer_tags = answer_tags.concat(tag,',')
+            })
+
+            localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0,-1)
+        }
+      }
 
       document.querySelectorAll(`.${TR_CLASS.QUESTION}`)
         .forEach((el) => {
@@ -70,7 +86,7 @@ const get_test_by_localhost = (text) => {
 
           if (attr)
             localStorage[attr] = '0'
-            questions_to_check.push(attr)
+          questions_to_check.push(attr)
         })
 
       document.querySelectorAll(`.${TR_CLASS.ANSWER}`)

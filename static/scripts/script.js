@@ -12,9 +12,26 @@ const set_cnt_lbl_question = (cnt_q) => {
 function hide_all() {
     get_all_tests().forEach((el) => { el.hidden = true })
 }
+
+const get_tag_from_expr = (expr) => {
+    return expr.replace(/\d+|\s+|[*+-/]*/g,'');
+}
+const calc_answer = (str) => {
+    let cur_tag = get_tag_from_expr(str)
+    
+    if (localStorage.hasOwnProperty(cur_tag) == false){
+        alert('error, unknown answer tag')
+        return
+    }
+
+    str = str.replace(cur_tag, localStorage[cur_tag])
+    localStorage[cur_tag] = evaluateString(str)
+}
 const validate_answers = () => {
     questions_to_check.forEach(el => {
-        console.log( localStorage[el])
+        localStorage[el].split(',').forEach((expression)=>{
+            calc_answer(expression)
+        })
     })
 }
 
@@ -24,6 +41,9 @@ function select_question(question) {
         return
     if (question >= get_cnt_questions()){
         validate_answers()
+        let answ = ''
+        localStorage[LOCALSTORAGE.ANSWERS_TAG].split(',').forEach(tag => answ += `${tag}: ${localStorage[tag]}\n`)
+        alert(answ)
         return
     }
 
