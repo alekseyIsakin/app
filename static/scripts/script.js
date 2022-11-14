@@ -15,6 +15,7 @@ function hide_all() {
 
 const get_tag_from_expr = (expr) => {
     return expr.split('=')[0]
+        .replace(/\s+/g, '')
 }
 const clear_expression = (expr) => {
     return expr

@@ -6,6 +6,17 @@ const TEST_VERSION = {
 
 
 // ****************** 
+// ***** Rules ******
+// ****************** 
+
+RULES = {
+  ONLY_ONE: 'only_one',
+  MULTIPLE_ONE: 'only_one',
+  RATE_ONE: 'only_one',
+}
+
+
+// ****************** 
 // ** Testbuilder ***
 // ****************** 
 

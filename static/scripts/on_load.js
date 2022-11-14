@@ -4,7 +4,7 @@ let _test_data = {}
 const questions_to_check = []
 
 const get_test_info = () => _test_data[JSON_ATTR.QUESTION_LIST].find(el => el.type == PH_CLASS.TEST_INFO)
-const get_tag_list = () => get_test_info()[PH_BEHAVIOR.ANSWERS_TAG].split(',') 
+const get_tag_list = () => get_test_info()[PH_BEHAVIOR.ANSWERS_TAG].split(',')
 
 // ********************************************************** //
 // ***************** html elements ************************** //
@@ -107,12 +107,25 @@ const get_test_by_localhost = (text) => {
   }
 }
 
-const btn_click = (btn) => {
-  const rules = btn.parentNode.querySelectorAll(`.${TR_CLASS.RULES}`)
-  const v = btn.parentNode.getAttribute(`${TR_ATTR.VALUE}`)
+const answer_possible_click = {}
+answer_possible_click[RULES.ONLY_ONE] = (btn, parent_value) => {
+  localStorage[parent_value] = btn.getAttribute(`${TR_ATTR.ACTION}`)
   
-  localStorage[v] = btn.getAttribute(`${TR_ATTR.ACTION}`)
-  btn.classList.toggle('btn_answer_clicked')
+  btn.parentNode.childNodes
+    .forEach((el) => {
+      el.classList.remove('btn_answer_clicked')
+    })
+
+  btn.classList.add('btn_answer_clicked')
+}
+
+const btn_click = (btn) => {
+  const v = btn.parentNode.getAttribute(`${TR_ATTR.VALUE}`)
+  const rules = btn.parentNode.querySelectorAll(`[${TR_ATTR.VALUE}="${v}"] > ${TR_CLASS.RULES}`)
+
+  rules.forEach(() => { })
+  answer_possible_click[RULES.ONLY_ONE](btn, v)
+  
 }
 
 
