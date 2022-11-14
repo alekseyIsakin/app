@@ -14,22 +14,30 @@ function hide_all() {
 }
 
 const get_tag_from_expr = (expr) => {
-    return expr.replace(/\d+|\s+|[*+-/]*/g,'');
+    return expr.split('=')[0]
+}
+const clear_expression = (expr) => {
+    return expr
+        .split('=')[1]
+        .replace(/\s+/g, '')
 }
 const calc_answer = (str) => {
     let cur_tag = get_tag_from_expr(str)
-    
-    if (localStorage.hasOwnProperty(cur_tag) == false){
+    let expr = clear_expression(str)
+
+    if (localStorage.hasOwnProperty(cur_tag) == false) {
         alert('error, unknown answer tag')
         return
     }
 
-    str = str.replace(cur_tag, localStorage[cur_tag])
-    localStorage[cur_tag] = evaluateString(str)
+    get_tag_list().forEach((tag) => expr = expr.replace(tag, localStorage[tag]))
+
+
+    localStorage[cur_tag] = evaluateString(expr)
 }
 const validate_answers = () => {
     questions_to_check.forEach(el => {
-        localStorage[el].split(',').forEach((expression)=>{
+        localStorage[el].split(',').forEach((expression) => {
             calc_answer(expression)
         })
     })
@@ -39,7 +47,7 @@ function select_question(question) {
 
     if (question < 0)
         return
-    if (question >= get_cnt_questions()){
+    if (question >= get_cnt_questions()) {
         validate_answers()
         let answ = ''
         localStorage[LOCALSTORAGE.ANSWERS_TAG].split(',').forEach(tag => answ += `${tag}: ${localStorage[tag]}\n`)

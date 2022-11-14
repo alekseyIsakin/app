@@ -3,6 +3,8 @@
 
 
 function evaluateString(string) {
+    if (string[0] == '-')
+        string = '0' + string
     var not = get_notation(string)
     var res = evaluate(not)
 

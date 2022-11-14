@@ -10,14 +10,18 @@ const TEST_VERSION = {
 // ****************** 
 
 const JSON_ATTR = {
+  TYPE: 'type',
+
   QUESTION_LIST: 'question_list',
   ATTR_LIST: 'attr_list',
+  
   VALUE: 'value',
   ACTION: 'action',
   TEXT_CONTENT: 'text_content',
-  TYPE: 'type',
   ANSWER_TAGS: 'answertags',
-  DOM: 'dom'
+  DOM: 'dom',
+
+  TEST_NAME:'Name'
 }
 
 const PH_STAUS = {
@@ -48,10 +52,12 @@ const PH_ID = {
 
 const PH_ATTR = {
   ATTR_LIST: 'attr',
+  EDITABLE: 'editable',
   TYPE: JSON_ATTR.TYPE,
   VALUE: JSON_ATTR.VALUE,
   ACTION: JSON_ATTR.ACTION,
-  EDITABLE: 'editable'
+
+  TEST_NAME: JSON_ATTR.TEST_NAME
 }
 
 const TB_SUPPORT_ENTITY = {

@@ -1,7 +1,10 @@
 "use strict"
 
-var test_data = {}
+let _test_data = {}
 const questions_to_check = []
+
+const get_test_info = () => _test_data[JSON_ATTR.QUESTION_LIST].find(el => el.type == PH_CLASS.TEST_INFO)
+const get_tag_list = () => get_test_info()[PH_BEHAVIOR.ANSWERS_TAG].split(',') 
 
 // ********************************************************** //
 // ***************** html elements ************************** //
@@ -18,7 +21,7 @@ const gradient = document.getElementById(TR_SUPPORT_ENTITY.GRADIENT);
 const test_name_h = document.getElementById(TR_SUPPORT_ENTITY.TEST_NAME_HEADER)
 
 const get_all_tests = () => document.querySelectorAll(`#${TR_SUPPORT_ENTITY.QUESTION_HOLDER} > *`)
-const get_cnt_questions = () => test_data[JSON_ATTR.QUESTION_LIST].filter(el => el[JSON_ATTR.TYPE] != PH_CLASS.TEST_INFO).length
+const get_cnt_questions = () => _test_data[JSON_ATTR.QUESTION_LIST].filter(el => el[JSON_ATTR.TYPE] != PH_CLASS.TEST_INFO).length
 
 next_btn.addEventListener('click', () => {
   select_question(
@@ -59,34 +62,37 @@ const get_test_by_localhost = (text) => {
 
       localStorage.clear()
       localStorage[LOCALSTORAGE.CUR_QUEST] = 0
-      test_name_h.textContent = json.name
 
-      test_data = json
-      const test_info = json[JSON_ATTR.QUESTION_LIST].find(el => el.type == PH_CLASS.TEST_INFO)
+      _test_data = json
 
-      if (test_info) {
-        const attrs = test_info[LOCALSTORAGE.ANSWERS_TAG]
+      if (get_test_info()) {
+        test_name_h.textContent = get_test_info()[PH_ATTR.TEST_NAME]
+
+        const attrs = get_test_info()[LOCALSTORAGE.ANSWERS_TAG]
         if (attrs != '') {
           let answer_tags = ''
+
           attrs
             .replaceAll(' ', '')
             .split(',')
             .forEach((tag) => {
               localStorage[tag] = 0
-              answer_tags = answer_tags.concat(tag,',')
+              answer_tags = answer_tags.concat(tag, ',')
             })
 
-            localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0,-1)
+          localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0, -1)
         }
       }
 
+      questions_to_check.length = 0
       document.querySelectorAll(`.${TR_CLASS.QUESTION}`)
         .forEach((el) => {
           const attr = el.getAttribute(`${TR_ATTR.VALUE}`)
 
-          if (attr)
+          if (attr) {
             localStorage[attr] = '0'
-          questions_to_check.push(attr)
+            questions_to_check.push(attr)
+          }
         })
 
       document.querySelectorAll(`.${TR_CLASS.ANSWER}`)

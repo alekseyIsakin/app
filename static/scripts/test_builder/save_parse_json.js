@@ -95,7 +95,7 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
   )
   div.setAttribute(
     PH_ATTR.ATTR_LIST,
-    ['Author', 'Name', PH_BEHAVIOR.ANSWERS_TAG]
+    ['Author', PH_ATTR.TEST_NAME, PH_BEHAVIOR.ANSWERS_TAG]
   )
   div.textContent = text_content
   div.draggable = true

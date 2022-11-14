@@ -38,7 +38,7 @@ const get_input_content_holder = (element) => {
   input.addEventListener('input', change_element_content)
   input.id = TB_SUPPORT_ENTITY.CONTENT_INPUT
   input.value = element.textContent
-  
+
   p.textContent = 'content: '
   p.appendChild(input)
   userSettingsHolder.appendChild(p)
@@ -182,15 +182,9 @@ const ATTR_ACTION = {}
 ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_input_content_holder(element)
 ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
 
-const CUSTOM_ATTR = {}
-
 /** @param element html object that should contain attribut PH_ATTR.ATTR_LIST */
 const create_new_attr = (element, attr) => {
   create_attr_editor(`${attr}: `, attr, element)
-}
-const remove_attr = (element, attr) => {
-  if (element.getAttribute(attr))
-    element.removeAttribute(attr)
 }
 
 
