@@ -40,14 +40,16 @@ const PH_CLASS = {
   BTN: 'btn-ph',
   LBL: 'lbl-ph',
   QUESTION: 'question-ph',
-  TEST_INFO: 'testinfo-ph'
+  TEST_INFO: 'testinfo-ph',
+  RULES: 'rule-ph'
 }
 
 const PH_ID = {
   BTN: 'btn-ph-',
   LBL: 'lbl-ph-',
   QUESTION: 'question-ph-',
-  TEST_INFO: 'testinfo-ph-'
+  TEST_INFO: 'testinfo-ph-',
+  RULES: 'rule-ph-'
 }
 
 const PH_ATTR = {
@@ -115,6 +117,7 @@ const TR_CLASS = {
   QUESTION: 'one_question',
   LBL: 'question_text',
   ANSWER: 'answer',
+  RULES: 'rule'
 }
 
 const TR_ATTR = {

@@ -1,21 +1,29 @@
 "use strict"
 
-
-
 function evaluateString(string) {
-    if (string[0] == '-')
-        string = '0' + string
-    var not = get_notation(string)
-    var res = evaluate(not)
+    var token = fix_str(string);
+    var not = get_notation(token);
+    var res = evaluate(not);
 
     return res
 }
 
+function fix_str(string) {
+    for (let ind = 0; ind < string.length; ind++) {
+        if ((ind - 1 < 0 || "+=-*/%(".includes(string[ind - 1]))
+            && string[ind] == '-') {
+            string = string.slice(0, ind) + "(0" + string.slice(ind, ind + 2) + ")" + string.slice(ind + 2);
+        }
+    }
+
+    return string
+}
+
 function get_notation(token) {
-    var prec = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '(': 0, ')': 0 }
-    var assoc = { '+': false, '-': false, '*': false, '/': false, '%': false, '(': true, ')': true }
-    var oper_stack = []
-    var output_queue = []
+    var prec = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '(': 0, ')': 0 };
+    var assoc = { '+': false, '-': false, '*': false, '/': false, '%': false, '(': true, ')': true };
+    var oper_stack = [];
+    var output_queue = [];
 
     for (let ind = 0; ind < token.length; ind++) {
         if ("0123456789,".includes(token[ind])) {
@@ -51,7 +59,7 @@ function get_notation(token) {
             }
         }
         else {
-            console.log("What")
+            console.log("Error performing an operation");
             return
         }
     }
@@ -60,13 +68,13 @@ function get_notation(token) {
         output_queue.push(oper_stack.pop());
     }
 
-    return output_queue
+    return output_queue;
 }
 
 function fInD(dict, key) {
     for (var keys in dict) {
         if (key == keys) {
-            return dict[keys]
+            return dict[keys];
         }
     }
 }
@@ -81,24 +89,24 @@ function evaluate(notation_queue) {
             stack.push(operate(notation_queue[ind], number1, number2));
         }
         else {
-            stack.push(notation_queue[ind])
+            stack.push(notation_queue[ind]);
         }
     }
 
-    return stack.pop()
+    return stack.pop();
 }
 
 function operate(operation, number1, number2) {
     switch (operation) {
         case '+':
-            return parseFloat(number1) + parseFloat(number2)
+            return parseFloat(number1) + parseFloat(number2);
         case '-':
-            return parseFloat(number2) - parseFloat(number1)
+            return parseFloat(number2) - parseFloat(number1);
         case '*':
-            return parseFloat(number1) * parseFloat(number2)
+            return parseFloat(number1) * parseFloat(number2);
         case '/':
-            return parseFloat(number2) / parseFloat(number2)
+            return parseFloat(number2) / parseFloat(number1);
         case '%':
-            return parseFloat(number2) % parseFloat(number1)
+            return parseFloat(number2) % parseFloat(number1);
     }
 }

@@ -181,3 +181,7 @@ option {
   text-align: center;
   width: inherit;
 }
+
+.btn_answer_clicked{
+  background-color: #ee7752;
+}

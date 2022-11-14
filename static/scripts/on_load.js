@@ -97,10 +97,8 @@ const get_test_by_localhost = (text) => {
 
       document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
         .forEach((el) => {
-          el.addEventListener('click', (ev) => {
-            const v = ev.target.parentNode.getAttribute(`${TR_ATTR.VALUE}`)
-            localStorage[v] = ev.target.getAttribute(`${TR_ATTR.ACTION}`)
-          })
+          el.addEventListener('click', (ev) => btn_click(ev.target)
+          )
         })
 
       set_cnt_lbl_question(get_cnt_questions())
@@ -109,7 +107,13 @@ const get_test_by_localhost = (text) => {
   }
 }
 
-
+const btn_click = (btn) => {
+  const rules = btn.parentNode.querySelectorAll(`.${TR_CLASS.RULES}`)
+  const v = btn.parentNode.getAttribute(`${TR_ATTR.VALUE}`)
+  
+  localStorage[v] = btn.getAttribute(`${TR_ATTR.ACTION}`)
+  btn.classList.toggle('btn_answer_clicked')
+}
 
 
 /**  @deprecated used for test version 1.0 */
