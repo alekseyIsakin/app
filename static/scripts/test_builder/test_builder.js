@@ -20,7 +20,15 @@ const autoname_questions = (node, depth = -1) => {
       )
       index++
     })
+
+  node.innerHTML = ''
+
   console.log(questions_ids)
+  questions_ids.forEach(el => {
+    const p = document.createElement('p')
+    p.textContent = el
+    node.appendChild(p)
+  })
 }
 const autoname_question_children = (question, index, depth) => {
   question.id = `${PH_ID.QUESTION}${index}-s`
@@ -28,14 +36,14 @@ const autoname_question_children = (question, index, depth) => {
   questions_ids.push(question.id)
 
   let sub_index = 0
-  if (depth != -1 && String(index).split('-').length >= depth) return
+
+  if (depth != -1 && String(index).split('-').length >= depth) return questions_ids
 
   question
     .parentNode
     .querySelectorAll(`#${question.id} > .${PH_CLASS.QUESTION}`)
     .forEach(el => {
       let ch_ids = autoname_question_children(el, `${index}-${sub_index}`, depth)
-      console.log('123: ', ch_ids)
       questions_ids = questions_ids.concat(ch_ids)
       sub_index++
     })
