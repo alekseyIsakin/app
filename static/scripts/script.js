@@ -27,7 +27,7 @@ const calc_answer = (str) => {
     let expr = clear_expression(str)
 
     if (localStorage.hasOwnProperty(cur_tag) == false) {
-        alert('error, unknown answer tag')
+        alert('error, unknown answer tag: ' + cur_tag)
         return
     }
 
