@@ -22,18 +22,8 @@ app.get('/', function (req, res) {
 });
 
 
-app.post("/test", jsonParser, function (request, response) {
-  console.log(request.body);
-  if(!request.body) return response.sendStatus(400);
-
-  let filePath = path.join(__dirname, `static/tests/${request.body.testUUID}.json`)
-
-  fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) =>{
-    if (!err)
-      response.json(JSON.parse(data));
-    else
-      console.log(err)
-  })
+app.get("/main", function (req, res) {
+  res.sendFile(path.join(__dirname, 'static/html/main_page.html'))
 });
 
 
