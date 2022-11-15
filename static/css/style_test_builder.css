@@ -18,6 +18,7 @@
 
 .drop_receiver {
   background-color: blueviolet;
+  max-width: 66vw;
 }
 
 .element_settings {
@@ -35,6 +36,8 @@
   margin: 0px;
   background-color: azure;
 }
+
+
 
 /* ************* */
 /* Place holders */
@@ -80,13 +83,21 @@
 
 .sieve-ph {
   background: cornsilk;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 /* ************* */
-/* ************* */
+/* ** sieve **** */
 /* ************* */
 
+.sieve-quest-column {}
 
+
+/* ************* */
+/* ************* */
+/* ************* */
 
 .delete_drop {
   background-color: red;

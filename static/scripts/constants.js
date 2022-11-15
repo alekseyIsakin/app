@@ -66,6 +66,14 @@ const PH_ID = {
   SIEVE: 'sieve-ph-'
 }
 
+const SEPARATOR = ','
+
+const TEST_INFO={
+  NAME:"test_name",
+  AUTHOR:"author",
+  ANSWERS_TAG:"answers_tag",
+}
+
 const PH_ATTR = {
   ATTR_LIST: 'attr',
   EDITABLE: 'editable',

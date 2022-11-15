@@ -38,7 +38,7 @@ const calc_answer = (str) => {
 }
 const validate_answers = () => {
     questions_to_check.forEach(el => {
-        localStorage[el].split(',').forEach((expression) => {
+        localStorage[el].split(SEPARATOR).forEach((expression) => {
             calc_answer(expression)
         })
     })
@@ -51,7 +51,7 @@ function select_question(question) {
     if (question >= get_cnt_questions()) {
         validate_answers()
         let answ = ''
-        localStorage[LOCALSTORAGE.ANSWERS_TAG].split(',').forEach(tag => answ += `${tag}: ${localStorage[tag]}\n`)
+        localStorage[LOCALSTORAGE.ANSWERS_TAG].split(SEPARATOR).forEach(tag => answ += `${tag}: ${localStorage[tag]}\n`)
         alert(answ)
         return
     }

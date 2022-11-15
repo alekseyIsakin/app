@@ -49,6 +49,7 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
 
   div.id = PH_ID.BTN
   div.classList.add(PH_BEHAVIOR.MOVABLE)
+  div.classList.add(PH_BEHAVIOR.ANSWER)
   div.classList.add(PH_CLASS.BTN)
   div.setAttribute(
     JSON_ATTR.TYPE,
@@ -95,7 +96,7 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
   )
   div.setAttribute(
     PH_ATTR.ATTR_LIST,
-    ['Author', PH_ATTR.TEST_NAME, PH_BEHAVIOR.ANSWERS_TAG]
+    [TEST_INFO.NAME, TEST_INFO.AUTHOR, TEST_INFO.ANSWERS_TAG]
   )
   div.textContent = text_content
   div.draggable = true
@@ -231,7 +232,7 @@ const editor2json_proceed_with_children = (node) => {
   if (attr_list_str != null) {
     question[JSON_ATTR.ATTR_LIST] = []
     const attr_list = attr_list_str
-      .split(',')
+      .split(SEPARATOR)
       .filter((attr) => attr != PH_ATTR.EDITABLE)
     attr_list
       .forEach((attr) => {

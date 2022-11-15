@@ -1,5 +1,11 @@
 "use strict";
 
+
+
+/* *************** */
+/* **** sieve **** */
+/* *************** */
+
 const autoname_questions = (node, depth = -1) => {
   let index = 0
   let questions_ids = []
@@ -23,13 +29,9 @@ const autoname_questions = (node, depth = -1) => {
 
   node.innerHTML = ''
 
-  console.log(questions_ids)
-  questions_ids.forEach(el => {
-    const p = document.createElement('p')
-    p.textContent = el
-    node.appendChild(p)
-  })
+  return questions_ids
 }
+
 const autoname_question_children = (question, index, depth) => {
   question.id = `${PH_ID.QUESTION}${index}-s`
   let questions_ids = []
@@ -50,12 +52,21 @@ const autoname_question_children = (question, index, depth) => {
   return questions_ids
 }
 
-const get_selected_node_id = (return_holder = false) => {
-  if (return_holder)
-    return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
-  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+const get_answers_from_question = (question_id) => {
+  const quest = dropReceiver.querySelector(`#${question_id}`)
+  const answers = []
+  quest == null ?
+    [] :
+    quest
+      .parentNode
+      .querySelectorAll(`#${question_id} > .${PH_BEHAVIOR.ANSWER}`)
+      .forEach(el => answers.push(el.id))
+
+  console.log(answers)
+  return answers
 }
-const create_setting_btn = (label, attr, element, callback = null) => {
+
+const create_sieve_btn = (label, attr, element, callback = null) => {
   const div = document.createElement('div')
   const btn = document.createElement('button')
   const input = document.createElement('input')
@@ -72,6 +83,77 @@ const create_setting_btn = (label, attr, element, callback = null) => {
 
   userSettingsHolder.appendChild(div)
 }
+
+const update_sieve = (element, depth = -1) => {
+  const questions = autoname_questions(element, depth)
+  const test_info = get_answer_tags()
+
+  if (test_info == null) return1
+
+  questions.forEach(el => {
+    const p = document.createElement('p')
+    const drop_down = create_drop_down(get_answers_from_question(el))
+
+    drop_down.insertBefore(
+      create_empty_option('--Select--'),
+      drop_down.firstChild
+    )
+    
+    p.appendChild(drop_down)
+    // test_info.getAttribute(TEST_INFO.ANSWERS_TAG)
+    element.appendChild(p)
+  })
+}
+
+/* ********************** */
+/* ********************** */
+/* ********************** */
+
+const get_test_info = () => {
+  let test_info = dropReceiver.querySelector('.' + PH_CLASS.TEST_INFO)
+  return test_info ? test_info : null
+}
+
+const get_answer_tags = () => {
+  const test_info = get_test_info()
+
+  if (test_info == null) return []
+  return test_info.getAttribute(TEST_INFO.ANSWERS_TAG).split(SEPARATOR)
+}
+
+const get_selected_node_id = (return_holder = false) => {
+  if (return_holder)
+    return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
+  return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+}
+
+const create_empty_option = (label = '') => {
+  const p = document.createElement('option')
+  p.text = label
+  p.selected = true
+  p.disabled = true
+  return p
+}
+
+/** @param variants is array of string */
+const create_drop_down = (variants) => {
+  const dropdown = document.createElement('select')
+
+  variants.forEach(el => {
+    const p = document.createElement('option')
+    p.value = el
+    p.text = get_text_content(el)
+    dropdown.appendChild(p)
+  })
+  return dropdown
+}
+
+const get_text_content = (node_id) => {
+  const text_node = dropReceiver.querySelector(`#${node_id}`)
+
+  return text_node == null ? null : text_node.textContent
+}
+
 const create_attr_editor = (label, attr, element) => {
   const input = document.createElement('input')
   const p = document.createElement('p')
@@ -86,14 +168,7 @@ const create_attr_editor = (label, attr, element) => {
   input.id = TB_SUPPORT_ENTITY.USER_INPUT + attr
   userSettingsHolder.appendChild(p)
 }
-const get_input_value_holder = (element) => {
-  const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`)
-  if (check_input != null)
-    return check_input
-
-  return create_attr_editor('action: ', PH_ATTR.ACTION, element)
-}
-const get_input_content_holder = (element) => {
+const get_content_editor = (element) => {
   const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`)
   if (check_input != null)
     return check_input
@@ -101,7 +176,7 @@ const get_input_content_holder = (element) => {
   const input = document.createElement('input')
   const p = document.createElement('p')
 
-  input.addEventListener('input', change_element_content)
+  input.addEventListener('input', change_content)
   input.id = TB_SUPPORT_ENTITY.CONTENT_INPUT
   input.value = element.textContent
 
@@ -111,6 +186,24 @@ const get_input_content_holder = (element) => {
 
   return input
 }
+
+const change_content = (ev) => {
+  const node_element_id = get_selected_node_id()
+  if (node_element_id == '') return
+
+  const element = dropReceiver.querySelector(`#${node_element_id}`)
+
+  if (!node_element_id || typeof (element) == 'undefined') return
+  const text_content = get_content_editor()
+
+  element.textContent = text_content.value
+}
+
+
+
+/* ********************** */
+/* ******* moving ******* */
+/* ********************** */
 
 const start_moving = (event) => {
   if (!event.target.classList || event.target.classList.contains(PH_BEHAVIOR.MOVABLE) == false)
@@ -195,6 +288,12 @@ function drop_del_handler(ev) {
     activeElement.remove()
 }
 
+
+
+/* ************************ */
+/* **** select element **** */
+/* ************************ */
+
 const one_click = (ev) => {
   // cur_target - элемент на который кликнули
   const target = ev.target
@@ -236,6 +335,24 @@ const highlite_selection = (element) => {
 }
 
 
+const show_selected_element_info = (element) => {
+  remove_all_settings()
+
+  const node_element_id = get_selected_node_id(true)
+  const attr_list_str = element.getAttribute(PH_ATTR.ATTR_LIST)
+
+  if (attr_list_str != null) {
+    attr_list_str.split(SEPARATOR).forEach((attr) => {
+      if (ATTR_ACTION.hasOwnProperty(attr)) {
+        ATTR_ACTION[attr](element)
+      }
+      else
+        create_new_attr(element, attr)
+    })
+  }
+
+  node_element_id.textContent = element.id
+}
 
 const remove_all_settings = () => {
   if (userSettingsHolder.childNodes.length > 0) {
@@ -244,62 +361,12 @@ const remove_all_settings = () => {
   }
 }
 
-const ATTR_ACTION = {}
-ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_input_content_holder(element)
-ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
-ATTR_ACTION[PH_ATTR.NEED_UPDATE] = (element) => create_setting_btn('update', '', element, autoname_questions)
-
 /** @param element html object that should contain attribut PH_ATTR.ATTR_LIST */
 const create_new_attr = (element, attr) => {
   create_attr_editor(`${attr}: `, attr, element)
 }
 
 
-const show_selected_element_info = (element) => {
-  remove_all_settings()
-
-  const node_element_id = get_selected_node_id(true)
-  const attr_list_str = element.getAttribute(PH_ATTR.ATTR_LIST)
-
-  if (attr_list_str != null) {
-    attr_list_str.split(',').forEach((attr) => {
-      if (ATTR_ACTION.hasOwnProperty(attr)) {
-        ATTR_ACTION[attr](element)
-      }
-      else
-        create_new_attr(element, attr)
-    })
-  }
-  else {
-  }
-
-  node_element_id.textContent = element.id
-}
 
 
-const change_element_content = (ev) => {
-  const node_element_id = get_selected_node_id()
-  if (node_element_id == '') return
 
-  const element = dropReceiver.querySelector(`#${node_element_id}`)
-
-  if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = get_input_content_holder()
-
-  element.textContent = text_content.value
-}
-
-const change_element_value = (ev) => {
-  const node_element_id = get_selected_node_id()
-  if (node_element_id == '') return
-
-  const element = dropReceiver.querySelector(`#${node_element_id}`)
-
-  if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = get_input_value_holder()
-
-  if (text_content == '')
-    element.removeAttribute(TR_ATTR.ACTION)
-  else
-    element.setAttribute(TR_ATTR.ACTION, text_content.value)
-}

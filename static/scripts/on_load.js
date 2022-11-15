@@ -4,7 +4,7 @@ let _test_data = {}
 const questions_to_check = []
 
 const get_test_info = () => _test_data[JSON_ATTR.QUESTION_LIST].find(el => el.type == PH_CLASS.TEST_INFO)
-const get_tag_list = () => get_test_info()[PH_BEHAVIOR.ANSWERS_TAG].split(',')
+const get_tag_list = () => get_test_info()[PH_BEHAVIOR.ANSWERS_TAG].split(SEPARATOR)
 
 // ********************************************************** //
 // ***************** html elements ************************** //
@@ -74,10 +74,10 @@ const get_test_by_localhost = (text) => {
 
           attrs
             .replaceAll(' ', '')
-            .split(',')
+            .split(SEPARATOR)
             .forEach((tag) => {
               localStorage[tag] = 0
-              answer_tags = answer_tags.concat(tag, ',')
+              answer_tags = answer_tags.concat(tag, SEPARATOR)
             })
 
           localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0, -1)

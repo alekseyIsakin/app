@@ -14,6 +14,10 @@ tasksListElement.appendChild(create_empty_label_placeholder())
 tasksListElement.appendChild(create_empty_test_info_placeholder())
 tasksListElement.appendChild(create_empty_sieve_placeholder())
 
+const ATTR_ACTION = {}
+ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_content_editor(element)
+ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
+ATTR_ACTION[PH_ATTR.NEED_UPDATE] = (element) => create_sieve_btn('update', '', element, update_sieve)
 
 elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
