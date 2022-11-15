@@ -103,11 +103,12 @@ function drop_put_handler(ev) {
   ev.preventDefault();
 
   if (ev.target != dropReceiver) return
-
   const movable_id = ev.dataTransfer.getData('text')
+  console.log(movable_id)
 
   const activeElement = document.getElementById(movable_id)
   if (activeElement == null) return
+
   if (activeElement.classList.contains(PH_CLASS.TEST_INFO) && dropReceiver.querySelector(`.${PH_CLASS.TEST_INFO}`)) return
 
   let newElemnt = activeElement

@@ -21,12 +21,43 @@
   display: flex;
 }
 
-.box {
+.box-top {
   height: auto;
+  padding-left: 1vw;
+  padding-right: 1vw;
   padding-bottom: 4vh;
+  padding-top: 1vh;
   width: 100%;
-  background: linear-gradient(to bottom, #222222 80%, #ffffff 100%);
+  background: linear-gradient(to bottom, #222222 80%, rgba(0,0,0,0) 100%);
+  position: fixed;
+  top: 0;
 }
+
+.box-left {
+  background: #2F3334;
+  height: 100%;
+  width: 300px;
+  min-width: 200px;
+  max-width: 300px;
+  padding-top: 8vh;
+  margin-right: 3px;
+  vertical-align: top;
+  box-shadow: 3px 0px 3px #2F3334;
+}
+
+.box-right {
+  background: #2F3334;
+  height: 100%;
+  width: 300px;
+  min-width: 200px;
+  max-width: 300px;
+  padding-top: 8vh; 
+  margin-left: 3px;
+  vertical-align: top;
+  box-shadow: -3px 0px 1px #2F3334;
+
+}
+
 
 .line {
   height: 25px;
