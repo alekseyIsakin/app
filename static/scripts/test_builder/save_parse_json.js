@@ -102,6 +102,26 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
 
   return div
 }
+const create_empty_sieve_placeholder = (text_content = PH_CLASS.SIEVE) => {
+  const div = document.createElement('div')
+
+  div.id = PH_ID.SIEVE
+  div.classList.add(PH_BEHAVIOR.MOVABLE)
+  div.classList.add(PH_CLASS.SIEVE)
+  div.classList.add(PH_BEHAVIOR.MAY_CONTAINS_ATTR)
+  div.setAttribute(
+    JSON_ATTR.TYPE,
+    PH_CLASS.SIEVE
+  )
+  div.setAttribute(
+    PH_ATTR.ATTR_LIST,
+    [PH_BEHAVIOR.NEED_UPDATE]
+  )
+  div.textContent = text_content
+  div.draggable = true
+
+  return div
+}
 
 const setup_new_ph_element = (element) => {
   element.addEventListener('dragstart', start_moving)
@@ -109,14 +129,15 @@ const setup_new_ph_element = (element) => {
   element.addEventListener('click', one_click)
   add_number_to_id(element)
 }
-const add_number_to_id = (element) => {
-  element.id += String(cur_id)
-  cur_id += 1
+const add_number_to_id = (element, num = NaN) => {
+  element.id += String(_cur_id)
+  _cur_id += 1
 }
 const clear_drop_receiver = () => {
   dropReceiver.querySelectorAll(`:not(.${TB_SUPPORT_ENTITY.COLUMN_NAME})`)
     .forEach((el) => { el.remove() })
 }
+
 
 
 // ********************************************************* //
@@ -132,7 +153,7 @@ const save_test_to_disk = (content, fileName, contentType) => {
 }
 
 const convert_json2editor = (obj) => {
-  cur_id = 0
+  _cur_id = 0
 
   if (Object.hasOwn(obj, JSON_ATTR.QUESTION_LIST) == false) {
     alert('Incorrect file')
@@ -270,7 +291,7 @@ const preview_test = () => {
 }
 
 const convert_json2test = (json) => {
-  cur_id = 0
+  _cur_id = 0
 
   if (Object.hasOwn(json, JSON_ATTR.QUESTION_LIST) == false) {
     alert('Incorrect file')
@@ -291,7 +312,7 @@ const convert_json2test = (json) => {
 const json2test_proceed_with_children = (json, str) => {
   const one_html_element = JSON_TO_TEST[json.type]()
   if (one_html_element == null) return document.createDocumentFragment()
-  
+
   const local_DOM = document.createDocumentFragment()
   let el_id = 0
 
@@ -325,16 +346,18 @@ const json2test_proceed_with_children = (json, str) => {
 
 
 
-let cur_id = 0
+let _cur_id = 0
 
 const JSON_TO_RAW_HTML = {}
 JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_question_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.BTN] = create_empty_button_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.LBL] = create_empty_label_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.TEST_INFO] = create_empty_test_info_placeholder;
+JSON_TO_RAW_HTML[PH_CLASS.SIEVE] = create_empty_sieve_placeholder
 
 const JSON_TO_TEST = {}
 JSON_TO_TEST[PH_CLASS.QUESTION] = create_empty_question_holder;
 JSON_TO_TEST[PH_CLASS.BTN] = create_empty_button;
 JSON_TO_TEST[PH_CLASS.LBL] = create_empty_string;
 JSON_TO_TEST[PH_CLASS.TEST_INFO] = () => { return null };
+JSON_TO_TEST[PH_CLASS.SIEVE] = () => { return null };

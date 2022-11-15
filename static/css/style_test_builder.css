@@ -46,6 +46,7 @@
   min-width: 15px;
 }
 
+.sieve-ph,
 .testinfo-ph,
 .question-ph,
 .btn-ph,
@@ -77,9 +78,14 @@
   background: yellow;
 }
 
+.sieve-ph {
+  background: cornsilk;
+}
+
 /* ************* */
 /* ************* */
 /* ************* */
+
 
 
 .delete_drop {

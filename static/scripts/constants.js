@@ -25,14 +25,14 @@ const JSON_ATTR = {
 
   QUESTION_LIST: 'question_list',
   ATTR_LIST: 'attr_list',
-  
+
   VALUE: 'value',
   ACTION: 'action',
   TEXT_CONTENT: 'text_content',
   ANSWER_TAGS: 'answertags',
   DOM: 'dom',
 
-  TEST_NAME:'Name'
+  TEST_NAME: 'Name'
 }
 
 const PH_STAUS = {
@@ -44,7 +44,8 @@ const PH_BEHAVIOR = {
   MOVABLE: 'movable',
   EDITABLE: 'able-to-edit',
   ANSWER: 'answer',
-  ANSWERS_TAG: 'answer-tags'
+  ANSWERS_TAG: 'answer-tags',
+  NEED_UPDATE: 'updatable',
 }
 
 const PH_CLASS = {
@@ -52,7 +53,8 @@ const PH_CLASS = {
   LBL: 'lbl-ph',
   QUESTION: 'question-ph',
   TEST_INFO: 'testinfo-ph',
-  RULES: 'rule-ph'
+  RULES: 'rule-ph',
+  SIEVE: 'sieve-ph'
 }
 
 const PH_ID = {
@@ -60,7 +62,8 @@ const PH_ID = {
   LBL: 'lbl-ph-',
   QUESTION: 'question-ph-',
   TEST_INFO: 'testinfo-ph-',
-  RULES: 'rule-ph-'
+  RULES: 'rule-ph-',
+  SIEVE: 'sieve-ph-'
 }
 
 const PH_ATTR = {
@@ -69,8 +72,9 @@ const PH_ATTR = {
   TYPE: JSON_ATTR.TYPE,
   VALUE: JSON_ATTR.VALUE,
   ACTION: JSON_ATTR.ACTION,
+  NEED_UPDATE: PH_BEHAVIOR.NEED_UPDATE,
 
-  TEST_NAME: JSON_ATTR.TEST_NAME
+  TEST_NAME: JSON_ATTR.TEST_NAME,
 }
 
 const TB_SUPPORT_ENTITY = {

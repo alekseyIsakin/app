@@ -1,10 +1,68 @@
 "use strict";
 
+const autoname_questions = (node, depth = -1) => {
+  let index = 0
+  let questions_ids = []
+
+  dropReceiver
+    .querySelectorAll(`.${PH_CLASS.QUESTION}`)
+    .forEach(el => {
+      el.id = PH_ID.QUESTION
+      add_number_to_id(el)
+    })
+
+  node
+    .parentNode
+    .querySelectorAll(`#${node.parentNode.id} > .${PH_CLASS.QUESTION}`)
+    .forEach(el => {
+      questions_ids = questions_ids.concat(
+        autoname_question_children(el, index, depth)
+      )
+      index++
+    })
+  console.log(questions_ids)
+}
+const autoname_question_children = (question, index, depth) => {
+  question.id = `${PH_ID.QUESTION}${index}-s`
+  let questions_ids = []
+  questions_ids.push(question.id)
+
+  let sub_index = 0
+  if (depth != -1 && String(index).split('-').length >= depth) return
+
+  question
+    .parentNode
+    .querySelectorAll(`#${question.id} > .${PH_CLASS.QUESTION}`)
+    .forEach(el => {
+      let ch_ids = autoname_question_children(el, `${index}-${sub_index}`, depth)
+      console.log('123: ', ch_ids)
+      questions_ids = questions_ids.concat(ch_ids)
+      sub_index++
+    })
+  return questions_ids
+}
 
 const get_selected_node_id = (return_holder = false) => {
   if (return_holder)
     return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
   return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`).textContent
+}
+const create_setting_btn = (label, attr, element, callback = null) => {
+  const div = document.createElement('div')
+  const btn = document.createElement('button')
+  const input = document.createElement('input')
+
+  btn.textContent = label
+  btn.addEventListener('click', (ev) => { callback(element, input.value) })
+
+  input.value = -1
+  input.type = "number"
+  input.min = -1
+
+  div.appendChild(btn)
+  div.appendChild(input)
+
+  userSettingsHolder.appendChild(div)
 }
 const create_attr_editor = (label, attr, element) => {
   const input = document.createElement('input')
@@ -181,6 +239,7 @@ const remove_all_settings = () => {
 const ATTR_ACTION = {}
 ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_input_content_holder(element)
 ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
+ATTR_ACTION[PH_ATTR.NEED_UPDATE] = (element) => create_setting_btn('update', '', element, autoname_questions)
 
 /** @param element html object that should contain attribut PH_ATTR.ATTR_LIST */
 const create_new_attr = (element, attr) => {

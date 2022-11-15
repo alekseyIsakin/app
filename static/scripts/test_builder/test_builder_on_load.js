@@ -12,6 +12,7 @@ tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
 tasksListElement.appendChild(create_empty_test_info_placeholder())
+tasksListElement.appendChild(create_empty_sieve_placeholder())
 
 
 elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
