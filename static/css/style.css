@@ -266,8 +266,26 @@ option {
   width: inherit;
 }
 
+.btn_answer {
+  background-color: #222222;
+  border-radius: 4px;
+  border-width: 4px;
+  border-color: black;
+  max-width: 15em;
+  width: 70%;
+  height: auto;
+  padding-bottom: 1vh;
+  padding-top: 1vh;
+  color: #ECECEC;
+  box-shadow: 3px 3px 5px #555555;
+  cursor: pointer;
+  margin: 10px;
+}
+
 .btn_answer_clicked{
-  background-color: #ee7752;
+  background-color: #ECECEC;
+  border-color: rgb(215, 215, 215);
+  color: #222222;
 }
 
 input {

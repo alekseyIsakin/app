@@ -12,18 +12,10 @@
     <tr>
       <td class="header_text" width="auto">Конструктор тестов</td>
       <td width="auto"></td>
-      <td id="preview-button" width="5%"
-        style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
-      </td>
-      <td id="open_settings" width="5%"
-        style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
-      </td>
-      <td width="5%"
-        style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
-      </td>
-      <td width="5%"
-        style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
-      </td>
+      <td id="preview-button" width="5%" style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td id="open_settings" width="5%" style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td id="exit_button" width="5%" style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
     </tr>
   </table>
   <table id="main_container" style="background-color: red;">
@@ -114,17 +106,20 @@
         </div>
 
 
-      </td>
-    </tr>
-    <tr style="height: 17%;">
-      <td align="center">
-        <img id="save-button" src="svg/Download.svg" style="width: 200px; height: 80px;">
-      </td>
-      <td align="center">
-        <img id="load-button" src="svg/Upload.svg" style="width: 200px; height: 80px;">
-      </td>
-    </tr>
-  </table>
+        </td>
+      </tr>
+      <tr style="height: 17%;">
+        <td align="center">
+          <label for="load-button">
+            <img src="svg/Upload.svg" style="width: 200px; height: 80px;">
+          </label>
+          <input type="file" id="load-button" accept=".json,application/json" hidden>
+        </td>
+        <td align="center" >
+          <img id="save-button" src="svg/Download.svg" style="width: 200px; height: 80px;">
+        </td>
+      </tr>
+    </table>
 
   <script type="text/javascript" src="scripts/constants.js"></script>
   <script type="text/javascript" src="scripts/test_builder/save_parse_json.js"></script>

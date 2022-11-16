@@ -93,6 +93,7 @@ const get_test_by_localhost = (text) => {
 
       document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
         .forEach((el) => {
+          el.classList.add("btn_answer")
           el.addEventListener('click', (ev) => btn_click(ev.target)
           )
         })
