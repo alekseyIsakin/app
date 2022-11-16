@@ -286,7 +286,6 @@ function dragover_handler(ev) {
 function drop_put_to_question(ev) {
   ev.preventDefault();
 
-  console.log(drag_drop_handled)
   if (ev.target.parentNode == tasksListElement) return
   if (drag_drop_handled == true) return
 
@@ -343,6 +342,7 @@ function drop_put_handler(ev) {
   if (activeElement == null) return
 
   if (activeElement.classList.contains(PH_CLASS.TEST_INFO) && dropReceiver.querySelector(`.${PH_CLASS.TEST_INFO}`)) return
+  if (!activeElement.classList.contains(PH_CLASS.QUESTION)) return
 
   let newElemnt = activeElement
 
