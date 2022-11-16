@@ -165,7 +165,16 @@ const convert_json2editor = (obj) => {
     alert('Incorrect file')
     return
   }
+
   const arr = obj[JSON_ATTR.QUESTION_LIST]
+  const tags = obj[JSON_ATTR.ANSWER_TAGS]
+  get_test_name_input().value = obj[JSON_ATTR.TEST_NAME]
+  get_author_input().value = obj[JSON_ATTR.TEST_AUTHOR]
+  tags.forEach((pair) => {
+    const tag_pair = create_edit_tag_row({ tag_name: pair[TEST_INFO.TAG_NAME], tag_value: pair[TEST_INFO.TAG_VALUE] })
+    put_tag_editor(tag_pair[TEST_INFO.TAG_NAME], tag_pair[TEST_INFO.TAG_VALUE])
+  })
+
   let DOM = document.createDocumentFragment()
 
   arr.forEach(el => {
@@ -215,8 +224,8 @@ const convert_editor2json = () => {
     version: TEST_VERSION.LATEST,
     description: "",
   }
-  test[JSON_ATTR.TEST_NAME] = project_settings.querySelector(`#${TB_SUPPORT_ENTITY.TEST_NAME}`).value
-  test[JSON_ATTR.TEST_AUTHOR] = project_settings.querySelector(`#${TB_SUPPORT_ENTITY.TEST_AUTHOR}`).value
+  test[JSON_ATTR.TEST_NAME] = get_test_name_input().value
+  test[JSON_ATTR.TEST_AUTHOR] = get_author_input().value
   test[JSON_ATTR.ANSWER_TAGS] = get_answer_tags()
   test[JSON_ATTR.QUESTION_LIST] = []
 

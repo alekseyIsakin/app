@@ -14,23 +14,11 @@ tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
 tasksListElement.appendChild(create_empty_test_info_placeholder())
-document.querySelector(`#${TB_SUPPORT_ENTITY.CREATE_TAG}`).addEventListener('click', () => create_edit_tag_row())
 
-/*tasksListElement.appendChild(create_empty_test_info_placeholder())
-
-const ATTR_ACTION = {}
-ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_content_editor(element)
-ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
-ATTR_ACTION[TEST_INFO.ANSWERS_TAG] = (element) => create_attr_editor(
-  'tags: ',
-  TEST_INFO.ANSWERS_TAG,
-  element, {
-  enter: () => {
-    const attr_list = get_answer_tags()
-    create_answer_tag_rule_editor(attr_list, {id:TEST_INFO.TEST_RULES})
-  },
+document.querySelector(`#${TB_SUPPORT_ENTITY.CREATE_TAG}`).addEventListener('click', () => {
+  const inputs = create_edit_tag_row()
+  put_tag_editor(inputs[TEST_INFO.TAG_NAME], inputs[TEST_INFO.TAG_VALUE])
 })
-ATTR_ACTION[PH_ATTR.UPDATE_SIEVE] = (element) => create_sieve_btn('update', '', element, update_sieve)*/
 
 document.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
 

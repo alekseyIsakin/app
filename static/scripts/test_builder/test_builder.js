@@ -114,6 +114,12 @@ const get_test_info = () => {
   return test_info ? test_info : null
 }
 
+
+
+/* ************************ */
+/* ******** tags ********** */
+/* ************************ */
+
 const get_answer_tags = () => {
   const names = project_settings.querySelectorAll(`.${TEST_INFO.TAG_NAME}`)
   const values = project_settings.querySelectorAll(`.${TEST_INFO.TAG_VALUE}`)
@@ -132,16 +138,17 @@ const get_answer_tags = () => {
   return dict
 }
 
-const create_edit_tag_row = () => {
-  const row = project_settings.querySelector('table').querySelector('tbody').insertRow()
-  const name = row.insertCell()
-  const value = row.insertCell()
-
+const create_edit_tag_row = (options = { tag_name, tag_value }) => {
   const name_editor = document.createElement('input')
   const value_editor = document.createElement('input')
 
-  name_editor.value = 'answer'
-  value_editor.value = '0'
+  if (options.hasOwnProperty(TEST_INFO.TAG_NAME) == false)
+    options[TEST_INFO.TAG_NAME] = 'answer'
+  if (options.hasOwnProperty(TEST_INFO.TAG_VALUE) == false)
+    options[TEST_INFO.TAG_VALUE] = '0'
+
+  name_editor.value = options['tag_name']
+  value_editor.value = options['tag_value']
 
   name_editor.id = TEST_INFO.TAG_NAME + (_cur_id++)
   value_editor.id = TEST_INFO.TAG_NAME + (_cur_id++)
@@ -149,7 +156,7 @@ const create_edit_tag_row = () => {
   name_editor.classList.add(TEST_INFO.TAG_NAME)
   value_editor.classList.add(TEST_INFO.TAG_VALUE)
 
-  name_editor.setAttribute (PH_ATTR.NAME, name_editor.value)
+  name_editor.setAttribute(PH_ATTR.NAME, name_editor.value)
   value_editor.setAttribute(PH_ATTR.VALUE, value_editor.value)
 
   name_editor.addEventListener('keyup', (ev) => {
@@ -184,18 +191,37 @@ const create_edit_tag_row = () => {
   })
 
   value_editor.addEventListener('input', (ev) => {
-    const name = value_editor.getAttribute(PH_ATTR.NAME)
+    const res = {}
+    const name_dt = value_editor.getAttribute(PH_ATTR.NAME)
 
-    if (name != value_editor.value || value_editor.value == '') {
+    if (name_dt != value_editor.value || value_editor.value == '') {
       value_editor.classList.add('changed-atribut')
     } else {
       value_editor.classList.remove('changed-atribut')
     }
   })
 
-  name.appendChild(name_editor)
-  value.appendChild(value_editor)
+  const res = {}
+  res[TEST_INFO.TAG_NAME] = name_editor
+  res[TEST_INFO.TAG_VALUE] = value_editor
+
+  return res
 }
+
+const put_tag_editor = (name_input, value_input) => {
+  const row = project_settings.querySelector('table').querySelector('tbody').insertRow()
+  const name = row.insertCell()
+  const value = row.insertCell()
+
+  name.appendChild(name_input)
+  value.appendChild(value_input)
+}
+
+/* ************************ */
+/* ************************ */
+/* ************************ */
+
+
 
 const get_selected_node_id = (return_holder = false) => {
   if (return_holder)
@@ -270,6 +296,13 @@ const create_attr_editor = (label, attr, element, callbacks =
   p.setAttribute("style", "font-size: 25px;")
   input.id = TB_SUPPORT_ENTITY.USER_INPUT + attr
   userSettingsHolder.appendChild(p)
+}
+
+const get_test_name_input = () => {
+  return project_settings.querySelector(`#${TB_SUPPORT_ENTITY.TEST_NAME}`)
+}
+const get_author_input = () => {
+  return project_settings.querySelector(`#${TB_SUPPORT_ENTITY.TEST_AUTHOR}`)
 }
 const get_input_value_holder = (element) => {
   const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`)
@@ -486,7 +519,7 @@ const create_new_attr = (element, attr) => {
 const exit_btn = document.getElementById("exit_button")
 exit_btn.addEventListener('click', () => {
   const a = document.createElement("a");
-  a.setAttribute("href","http://127.0.0.1:3000");
+  a.setAttribute("href", "http://127.0.0.1:3000");
   a.click();
 })
 
