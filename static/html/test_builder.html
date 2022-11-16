@@ -8,43 +8,46 @@
 </head>
 
 <body>
-  <div id="main_container">
-    <div class="box header">
-      <span class="header_text">header</span>
-    </div>
+  <table class="box-top header">
+    <tr>
+      <td class="header_text" width="auto">Конструктор тестов</td>
+      <td width="auto"></td>
+      <td width="5%" style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+    </tr>
+  </table>
+  <table id="main_container" style="background-color: red;">
 
-    <div class="work_container">
-      <div class="base_elemnt_holder" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)">
+    <tr style="background-color: red;  height: 100vh;">
+      <td class="box-left base_elemnt_holder" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)">
         <div class="dragable_elements_holder">
-          <p class="column_name">elements</p>
+          <p class="column_name">Список элементов:</p>
+          <img src="svg/TrashBin.svg" style="position:fixed; bottom:2vh; left:-10px;height:6vh;width:4vw;">
         </div>
         <!-- <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div> -->
-      </div>
+      </td>
 
-      <div id="drop_receiver" class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)">
-        <p class="column_name" >tests</p>
-      </div>
+      <td class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)" width="100%" height="100%">
+      </td>
 
-      <div class="element_settings">
-        <p class="column_name">edit</p>
-        <p>element-id <span id="element-id">_</span></p>
+      <td class="box-right element_settings">
+          <p class="column_name">Свойства элемента:</p>
+          <p hidden>element-id <span id="element-id">_</span></p>
 
-        <button id="save-button">save</button>
-        <br />
-        <button id="load-button">load</button>
-        <input id="load-input" type="file" accept=".json,application/json">
-        <br />
-        <button id="preview-button">test_view</button>
-        <div class="user_settings_holder">
+          <!--<button id="save-button">save</button>
+          <br />
+          <button id="load-button">load</button>
+          <input id="load-input" type="file" accept=".json,application/json">
+          <br />
+          <button id="preview-button">test_view</button>-->
+          <div class="user_settings_holder">
 
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <span>footer</span>
-    </div>
-  </div>
+          </div>
+      </td>
+    </tr>  
+  </table>
 
   <script type="text/javascript" src="scripts/constants.js"></script>
   <script type="text/javascript" src="scripts/test_builder/save_parse_json.js"></script>

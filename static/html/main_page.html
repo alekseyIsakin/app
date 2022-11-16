@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg" href="svg/favicon.svg" />
+    <style type="text/css">
+        #maintable {
+         width: 100%; /* Ширина всей таблицы в процентах */
+         height: 100%;
+         background-size: cover;
+        }
+        #maintable TD {
+         vertical-align: top; /* Вертикальное выравнивание в ячейках */
+        }
+        TD#leftcolumn {
+         width: 15%; /* Ширина левой колонки в процентах */
+        }
+        TD#centralcolumn {
+         width: 45%; /* Ширина центральной колонки в процентах */
+        }
+        TD#rightcolumn {
+         width: 40%; /* Ширина левой колонки в процентах */
+         
+         vertical-align: bottom;
+        }
+        .test_details {
+            margin-top: 10vh;
+            margin-left: 3vh;
+            margin-right: 3vh;
+            margin-bottom: 3vh;
+            width: 90%;
+            height: 87%;
+            background-color: #ECECEC;
+            visibility: hidden;
+            border-radius: 64px;
+        }
+       </style>
+</head>
+
+<body>
+    <div id="main_container">
+
+        <div class="box-top header">
+            <span class="header_text">Главная страница</span>
+          </div>
+
+        <table cellspacing="0" cellpadding="5" id="maintable" background = "images\newBack.png">
+            <tr> 
+             <td bgcolor="2F3334" id="leftcolumn">
+                <p class="header_text" style="margin-left: 15px; margin-top: 8vh; margin-bottom: 5px;">
+                    Выбрать тест :
+                </p>
+                <div id="test_selector">
+                    <div class="test_selector_btn" style="margin-left: 7%;">
+                        <span class="button_text" id="anxiety_test">  > Тест Тревоги </span>
+                    </div>
+                    <div class="test_selector_btn" style="margin-left: 7%;">
+                        <span class="button_text">  > Еще тест </span>
+                    </div>
+                    <div class="test_selector_btn" style="margin-left: 7%;">
+                        <span class="button_text">  > И еще тест </span>
+                    </div>
+                 </div>
+                 <div class="test_selector_btn test_create" style="margin-left: 15px;">
+                    <span class="header_text">  Конструктор </span>
+                 </div>
+             </td>
+             <td id="centralcolumn" valign="margin-top">
+                <div class="test_details" id="test_deets">
+                    <img id="close_test_button" style="float: right; margin-right: 2vw; margin-top: 1vw;" width="30px" height="30px" src="svg\exitCross.svg"></img>
+                    <br>
+                    <p class="main_head_text" id="choosen_test_name" align="center">
+                       Тест тревоги
+                    </p>
+                    <p class="main_secondary_text" id="choosen_test_info" style="margin-top: 1vh;margin-left: 3vh;margin-right: 3vh;" align="center">
+                        Очень интересные и увлекательные подробности о тесте, которые очень нужно прочитать каждому кто сядет его проходить. Без этих подробностей проходить запрещено! Жить тоже запрещено, на законодательному уровне. Поэтому вот. Слава России!
+                    </p>
+                    <div class="control_btn_main bordered" align="center" valign="bottom" style="margin-top: 35vh;">
+                        <div class="button test_start" id="click_test_start" >
+                            <span class="button_text"> Пройти тест </span>
+                        </div>
+                    </div>
+                </div>
+             </td>
+             <td id="rightcolumn" valign="margin-bottom">
+                 <div id="main_pge_func" style="margin-right: 2%; margin-bottom: 2%;">
+                    <p class="main_head_text" style="margin-top: 8vh;" align="right" valign="bottom">
+                        Прохождение
+                        <br>
+                        персонофицированной
+                        <br>
+                        гипнотерапии
+                    </p>
+                    <p class="main_secondary_text" align="right">
+                        Чтобы начать тестирование, выберите необходимый тест и нажмите "Пройти тест"
+                    </p>
+                    <p class="main_secondary_text" align="right">
+                        Чтобы добавить тест, нажмите:
+                    </p>
+                    <div class="control_btn_main bordered" align="right">
+                        <div class="button test_create"  id="click_test_create">
+                            <span class="button_text"> Создать тест </span>
+                        </div>
+                    </div>
+                </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript" src="scripts/mainpage.js"></script>
+</body>
+
+</html>

@@ -11,8 +11,7 @@ const userSettingsHolder = document.querySelector(`.${TB_SUPPORT_ENTITY.USER_SET
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
-tasksListElement.appendChild(create_empty_test_info_placeholder())
-tasksListElement.appendChild(create_empty_bin_sieve_placeholder())
+/*tasksListElement.appendChild(create_empty_test_info_placeholder())
 
 const ATTR_ACTION = {}
 ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_content_editor(element)
@@ -48,7 +47,7 @@ elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListen
   }
 
 })
-elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
+elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)*/
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
 tasksListElement.addEventListener(`dragend`, stop_moving);

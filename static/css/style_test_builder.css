@@ -1,31 +1,24 @@
 #main_container {
-  display: flex;
-  flex-flow: column;
-}
-
-.work_container {
-  display: flex;
-  flex-flow: row;
-  width: 100%;
-  min-width: 100px;
+  display:contents;
+  border-collapse: collapse;
 }
 
 .base_elemnt_holder {
-  display: flex;
-  flex-flow: column;
-  width: 33%;
+  height: 100%;
 }
 
 .drop_receiver {
-  background-color: blueviolet;
-  max-width: 66vw;
+  padding-top: 12vh; 
+  vertical-align: top;
+  background-color: #D7E5E5;
 }
 
 .element_settings {
-  background-color: blanchedalmond;
-  width: 33%;
-  max-width: 400px;
-  min-width: 50px;
+  min-width: 250px;
+}
+
+.user_settings_holder {
+  text-align: center;
 }
 
 .base_elemnt_holder>div:first-child {
@@ -34,7 +27,11 @@
 
 .column_name {
   margin: 0px;
-  background-color: azure;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ECECEC;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: sans-serif;
 }
 
 
@@ -42,39 +39,117 @@
 /* ************* */
 /* Place holders */
 /* ************* */
-
-.lbl-ph,
-.btn-ph {
-  min-height: 18px;
-  min-width: 15px;
-}
-
-.sieve-ph,
-.testinfo-ph,
 .question-ph,
 .btn-ph,
 .lbl-ph {
-  border: 1px black solid;
-  margin: 3px;
-  padding: 1px;
-  user-select: none;
+  color: #ECECEC;
+  font-size: 20px;
+  font-weight:400;
+  font-family: sans-serif;
+  overflow-x: 100px;
+  overflow-wrap:break-word;
+  word-break: break-all;
 }
 
-.question-ph {
-  background: linear-gradient(to right, #22ce00 0% 10px, yellowgreen 15px 100%);
+.question-ph > * 
+{
+  margin: 5px 75px;
+  width: 85%;
+  border-width: 2px;
+  font-weight:700;
+  font-size: 30px;
+  border: solid;
+  border-color: black;
+  background: linear-gradient(to right, #747474 0px 50px, black 50px 52px, #D9D9D9 52px);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  color:#2F3334;
+}
+
+/*question  question  question  question  question*/
+.question-ph::before {
+  background: url(/svg/BlockIcon.svg);
+  content: " Блок";
+  background-repeat: no-repeat;
+  background-position: left center;
+  min-height: 40px;
+  padding-left: 45px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.drop_receiver .question-ph::before {
+  content: "";
+  background: url("");
+  display: block;
+  padding: 0px;
+  align-content: center;
+  height: 100%;
+}
+
+.drop_receiver .question-ph {
+  box-sizing: border-box;
+  background: url(/svg/Brick.svg), linear-gradient(to right, #747474 -20px 60px, black 60px 62px, white 62px);
+  background-repeat: no-repeat;
+  background-position: left center;
+  border-width: 4px;
+  border: solid;
+  border-color: black;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
   min-height: 25px;
-  max-width: 66vw;
-  padding: 3px;
-  padding-left: 15px;
+  padding-bottom: 25px;
+}
+/*button  button  button  button  button*/
+.btn-ph::before {
+  background: url(/svg/ButtonIcon.svg);
+  content: " Кнопка";
+  background-repeat: no-repeat;
+  background-position: left center;
+  min-height: 40px;
+  padding-left: 45px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
 }
 
-.btn-ph {
-  background: rgb(179, 132, 179);
+.question-ph .btn-ph::before {
+  content: "" ;
   display: inline-block;
+  background: url("");
 }
 
-.lbl-ph {
-  background: bisque;
+.question-ph .btn-ph {
+  background: url(/svg/Button.svg), linear-gradient(to right, #747474 -20px 40px, black 40px 42px, #D9D9D9 42px);
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+/*label  label  label  label  label*/
+.lbl-ph::before {
+  background: url(/svg/TextIcon.svg);
+  content: " Текст";
+  background-repeat: no-repeat;
+  background-position: left center;
+  min-height: 40px;
+  padding-left: 45px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.question-ph .lbl-ph::before {
+  content: "" ;
+  display: inline-block;
+  background: url("");
+}
+
+.question-ph .lbl-ph {
+  background: url(/svg/Text.svg), linear-gradient(to right, #747474 -20px 40px, black 40px 42px, #D9D9D9 42px);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 .testinfo-ph {
@@ -107,18 +182,13 @@
   width: 100%;
 }
 
-.work_container>div:first-child {
-  flex: 0 1 30%;
+.work_container_side {
   max-width: 400px;
   min-width: 100px;
-  background-color: yellowgreen;
+  width: 300px;
+  background-color: #2F3334;
 }
 
-.work_container>div {
-  flex: 1 1 auto;
-  margin-left: 3px;
-  margin-right: 3px;
-}
 
 .movable {
   cursor: pointer;
