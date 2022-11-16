@@ -114,7 +114,10 @@
           <img id="save-button" src="svg/Download.svg" style="width: 200px; height: 80px;">
         </td>
         <td align="center">
-          <img id="load-button" src="svg/Upload.svg" style="width: 200px; height: 80px;">
+          <label for="load-button">
+            <img src="svg/Upload.svg" style="width: 200px; height: 80px;">
+          </label>
+          <input type="file" id="load-button" accept=".json,application/json" hidden>
         </td>
       </tr>
     </table>

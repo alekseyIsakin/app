@@ -36,8 +36,8 @@ document.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('cli
   save_test_to_disk(JSON.stringify(json), 'test.json', 'text/plain')
 })
 
-document.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('click', () => {
-  const text = document.querySelector(`#${TB_SUPPORT_ENTITY.FILE_INPUT}`).files[0]
+document.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('change', () => {
+  const text = document.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).files[0]
 
   if (text) {
     var reader = new FileReader();
@@ -47,8 +47,8 @@ document.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('cli
       const DOM = convert_json2editor(obj)
       dropReceiver.appendChild(DOM)
     }
+    close_settings_btn.click()
   }
-
 })
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
