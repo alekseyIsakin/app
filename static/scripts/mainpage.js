@@ -15,10 +15,16 @@ for (let i = 0; i < create_btn.length; i++)
     })
 }
 
-start_btn.addEventListener('click', () => {
-    const a = document.createElement("a");
-    a.setAttribute("href","http://127.0.0.1:3000/test");
-    a.click();
+start_btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let request = new XMLHttpRequest();
+    request.open("POST", "/test", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function () {
+      test_data = JSON.parse(request.response);
+      get_test_by_localhost(test_data);
+    });
+    request.send('uuid');
 })
 
 load_btn.addEventListener('change', () => {

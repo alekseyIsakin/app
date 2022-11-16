@@ -46,6 +46,19 @@ document.querySelector(`.${TR_SUPPORT_ENTITY.HEADER_TEXT}`).addEventListener('cl
   }
 })
 
+const get_test_from_server = (uuid) => {
+  e.preventDefault();
+  let request = new XMLHttpRequest();
+  request.open("POST", "/test", true);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.addEventListener("load", function (req, res) {
+    console.log(request)
+    // test_data = JSON.parse(request.response);
+    // get_test_by_localhost(test_data);
+  });
+  request.send(uuid);
+}
+
 const get_test_by_localhost = (text) => {
   if (text) {
 

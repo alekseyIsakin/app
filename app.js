@@ -29,6 +29,12 @@ app.get("/test", function (req, res) {
   res.sendFile(path.join(__dirname, 'static/html/index.html'))
 });
 
+app.post("/test", function (req, res) {
+  res.redirect(307, '/test')
+  console.log('redirect')
+  // res.sendFile(path.join(__dirname, 'static/html/index.html'))
+});
+
 
 app.listen(port, function (error) {
   if (!error)
