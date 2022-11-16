@@ -8,15 +8,17 @@
 }
 
 .drop_receiver {
-  padding-top: 8vh; 
+  padding-top: 12vh; 
   vertical-align: top;
   background-color: #D7E5E5;
 }
 
 .element_settings {
-  width: 33%;
-  max-width: 400px;
-  min-width: 50px;
+  min-width: 250px;
+}
+
+.user_settings_holder {
+  text-align: center;
 }
 
 .base_elemnt_holder>div:first-child {
@@ -35,37 +37,117 @@
 /* ************* */
 /* Place holders */
 /* ************* */
+.question-ph,
+.btn-ph,
+.lbl-ph {
+  color: #ECECEC;
+  font-size: 20px;
+  font-weight:400;
+  font-family: sans-serif;
+  overflow-x: 100px;
+  overflow-wrap:break-word;
+  word-break: break-all;
+}
 
+.question-ph > * 
+{
+  margin: 5px 75px;
+  width: 85%;
+  border-width: 2px;
+  font-weight:700;
+  font-size: 30px;
+  border: solid;
+  border-color: black;
+  background: linear-gradient(to right, #747474 0px 50px, black 50px 52px, #D9D9D9 52px);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  color:#2F3334;
+}
+
+/*question  question  question  question  question*/
 .question-ph::before {
-  content: url(/svg/BlockIcon.svg) " Блок";
-  min-height: 25px;
-  max-width: 66vw;
-  color: #ECECEC;
-  font-size: 20px;
-  font-weight: bolder;
-  font-family: sans-serif;
+  background: url(/svg/BlockIcon.svg);
+  content: " Блок";
+  background-repeat: no-repeat;
+  background-position: left center;
+  min-height: 40px;
+  padding-left: 45px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
 }
 
+.drop_receiver .question-ph::before {
+  content: "";
+  background: url("");
+  display: block;
+  padding: 0px;
+  align-content: center;
+  height: 100%;
+}
+
+.drop_receiver .question-ph {
+  box-sizing: border-box;
+  background: url(/svg/Brick.svg), linear-gradient(to right, #747474 -20px 60px, black 60px 62px, white 62px);
+  background-repeat: no-repeat;
+  background-position: left center;
+  border-width: 4px;
+  border: solid;
+  border-color: black;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  min-height: 25px;
+  padding-bottom: 25px;
+}
+/*button  button  button  button  button*/
 .btn-ph::before {
-  content: url(/svg/ButtonIcon.svg) " Кнопка";
-  display: inline-block;
-  min-height: 25px;
-  max-width: 66vw;
-  color: #ECECEC;
-  font-size: 20px;
-  font-weight: bolder;
-  font-family: sans-serif;
+  background: url(/svg/ButtonIcon.svg);
+  content: " Кнопка";
+  background-repeat: no-repeat;
+  background-position: left center;
+  min-height: 40px;
+  padding-left: 45px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
 }
 
-.lbl-ph::before {
-  content: url(/svg/TextIcon.svg) " Текст";
+.question-ph .btn-ph::before {
+  content: "" ;
   display: inline-block;
-  min-height: 25px;
-  max-width: 66vw;
-  color: #ECECEC;
-  font-size: 20px;
-  font-weight: bolder;
-  font-family: sans-serif;
+  background: url("");
+}
+
+.question-ph .btn-ph {
+  background: url(/svg/Button.svg), linear-gradient(to right, #747474 -20px 40px, black 40px 42px, #D9D9D9 42px);
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+/*label  label  label  label  label*/
+.lbl-ph::before {
+  background: url(/svg/TextIcon.svg);
+  content: " Текст";
+  background-repeat: no-repeat;
+  background-position: left center;
+  min-height: 40px;
+  padding-left: 45px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.question-ph .lbl-ph::before {
+  content: "" ;
+  display: inline-block;
+  background: url("");
+}
+
+.question-ph .lbl-ph {
+  background: url(/svg/Text.svg), linear-gradient(to right, #747474 -20px 40px, black 40px 42px, #D9D9D9 42px);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 .testinfo-ph {

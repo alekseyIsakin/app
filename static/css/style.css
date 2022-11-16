@@ -25,7 +25,7 @@
   height: auto;
   padding-left: 1vw;
   padding-right: 1vw;
-  padding-bottom: 4vh;
+  padding-bottom: 3vh;
   padding-top: 1vh;
   width: 100%;
   background: linear-gradient(to bottom, #222222 80%, rgba(0,0,0,0) 100%);
@@ -37,25 +37,26 @@
   background: #2F3334;
   height: 100%;
   width: 300px;
-  min-width: 200px;
+  min-width: 250px;
   max-width: 300px;
-  padding-top: 8vh;
+  padding-top: 12vh;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-right: 3px;
   vertical-align: top;
-  box-shadow: 3px 0px 3px #2F3334;
 }
 
 .box-right {
   background: #2F3334;
   height: 100%;
   width: 300px;
-  min-width: 200px;
+  min-width: 250px;
   max-width: 300px;
-  padding-top: 8vh; 
+  padding-top: 12vh;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-left: 3px;
   vertical-align: top;
-  box-shadow: -3px 0px 1px #2F3334;
-
 }
 
 
@@ -255,4 +256,14 @@ option {
 
 .btn_answer_clicked{
   background-color: #ee7752;
+}
+
+input {
+  border-color: black;
+  border-width: 2px;
+  border:solid;
+  min-height: 3vh;
+  font-size: 20px;
+  font-weight: bolder;
+  max-width: 200px;
 }
