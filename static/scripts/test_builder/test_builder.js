@@ -302,6 +302,22 @@ function drop_put_to_question(ev) {
   newElemnt.classList.remove(PH_STAUS.SELECTED)
   try {
     ev.currentTarget.appendChild(newElemnt)
+    const labels = ev.currentTarget.querySelectorAll(`:scope > .${PH_CLASS.LBL}`)
+    const buttons = ev.currentTarget.querySelectorAll(`:scope > .${PH_CLASS.BTN}`)
+    const blocks = ev.currentTarget.querySelectorAll(`:scope > .${PH_CLASS.QUESTION}`)
+
+    for (const child of labels) {
+      ev.currentTarget.appendChild(child)
+    }
+
+    for (const child of buttons) {
+      ev.currentTarget.appendChild(child)
+    }
+
+    for (const child of blocks) {
+      ev.currentTarget.appendChild(child)
+    }
+
   }
   catch (err) {
     console.log(err)
