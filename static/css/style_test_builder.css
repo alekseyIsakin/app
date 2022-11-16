@@ -225,6 +225,21 @@
   background: darkblue;
 }
 
+.project_settings {
+  position: fixed;
+  bottom: 50%;
+  left:50%;
+  margin-bottom: -400px;
+  margin-left: -350px;
+  background-color: #e7f5f5;
+  border: solid;
+  border-width: 4px;
+  border-color: black;
+  width: 700px;
+  height: 800px;
+  border-radius: 15px;
+}
+
 .changed-atribut{
   border: 2px solid red;
 }
