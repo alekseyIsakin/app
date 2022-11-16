@@ -23,7 +23,7 @@ ATTR_ACTION[TEST_INFO.ANSWERS_TAG] = (element) => create_attr_editor(
   element, {
   enter: () => {
     const attr_list = get_answer_tags()
-    create_answer_tag_rule_editor(attr_list, {id:TEST_INFO.ANSWERS_TAG_LIST_ID})
+    create_answer_tag_rule_editor(attr_list, {id:TEST_INFO.TEST_RULES})
   },
 })
 ATTR_ACTION[PH_ATTR.UPDATE_SIEVE] = (element) => create_sieve_btn('update', '', element, update_sieve)

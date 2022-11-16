@@ -92,7 +92,8 @@
 /* ** sieve **** */
 /* ************* */
 
-.sieve-quest-column {}
+
+
 
 
 /* ************* */
@@ -123,7 +124,7 @@
   cursor: pointer;
 }
 
-#answers_tag_id{
+#rules{
   display: inline;
   width: 100%;
 }

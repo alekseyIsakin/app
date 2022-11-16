@@ -122,7 +122,7 @@ const get_answer_tags = () => {
 }
 
 const create_answer_tag_rule_editor = (tags, options = { id: '' }) => {
-  const check_dd = userSettingsHolder.querySelector(`#${TEST_INFO.ANSWERS_TAG_LIST_ID}`)
+  const check_dd = userSettingsHolder.querySelector(`#${TEST_INFO.TEST_RULES}`)
   if (check_dd)
     check_dd.remove()
   
@@ -131,7 +131,7 @@ const create_answer_tag_rule_editor = (tags, options = { id: '' }) => {
 
   if (tags.length < 0) return
 
-  
+
 }
 
 const get_selected_node_id = (return_holder = false) => {
