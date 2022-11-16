@@ -110,53 +110,91 @@ const update_sieve = (element, depth = -1) => {
 /* ********************** */
 
 const get_test_info = () => {
-  let test_info = dropReceiver.querySelector('.' + PH_CLASS.TEST_INFO)
+  let test_info = document.querySelector('.' + PH_CLASS.TEST_INFO)
   return test_info ? test_info : null
 }
 
 const get_answer_tags = () => {
-  const test_info = get_test_info()
+  const names = project_settings.querySelectorAll(`.${TEST_INFO.TAG_NAME}`)
+  const values = project_settings.querySelectorAll(`.${TEST_INFO.TAG_VALUE}`)
+  const dict = []
 
-  if (test_info == null) return []
-  return test_info.getAttribute(TEST_INFO.ANSWERS_TAG).split(SEPARATOR)
-}
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i].getAttribute(PH_ATTR.NAME)
+    const value = values[i].getAttribute(PH_ATTR.VALUE)
+    const pair = {}
+    pair[TEST_INFO.TAG_NAME] = name
+    pair[TEST_INFO.TAG_VALUE] = value
 
-const create_answer_tag_rule_editor = (tags, options = { id: '' }) => {
-  const check_dd = userSettingsHolder.querySelector(`#${TEST_INFO.TEST_RULES}`)
-  if (check_dd)
-    check_dd.remove()
-  
-  const dd = create_drop_down(tags, options)
-  userSettingsHolder.appendChild(dd)
+    dict.push(pair)
+  }
 
-  if (tags.length < 0) return
-
-
+  return dict
 }
 
 const create_edit_tag_row = () => {
   const row = project_settings.querySelector('table').querySelector('tbody').insertRow()
-
   const name = row.insertCell()
   const value = row.insertCell()
+
   const name_editor = document.createElement('input')
   const value_editor = document.createElement('input')
+
+  name_editor.value = 'answer'
+  value_editor.value = '0'
+
   name_editor.id = TEST_INFO.TAG_NAME + (_cur_id++)
   value_editor.id = TEST_INFO.TAG_NAME + (_cur_id++)
 
+  name_editor.classList.add(TEST_INFO.TAG_NAME)
+  value_editor.classList.add(TEST_INFO.TAG_VALUE)
+
+  name_editor.setAttribute (PH_ATTR.NAME, name_editor.value)
+  value_editor.setAttribute(PH_ATTR.VALUE, value_editor.value)
+
   name_editor.addEventListener('keyup', (ev) => {
     if (ev.key != 'Enter') return
-    element.setAttribute(attr, input.value)
-    input.classList.remove('changed-atribut')
-  })
-  name_editor.addEventListener('input', (ev) => {
+    name_editor.setAttribute(PH_ATTR.NAME, name_editor.value)
 
+    if (name_editor.getAttribute(PH_ATTR.NAME) == '')
+      // tr > td > input
+      name_editor.parentNode.parentNode.remove()
+
+    name_editor.classList.remove('changed-atribut')
   })
-  
+
+  name_editor.addEventListener('input', (ev) => {
+    const name = name_editor.getAttribute(PH_ATTR.NAME)
+
+    if (name != name_editor.value || name_editor.value == '') {
+      name_editor.classList.add('changed-atribut')
+    } else {
+      name_editor.classList.remove('changed-atribut')
+    }
+  })
+
+  value_editor.addEventListener('keyup', (ev) => {
+    if (ev.key != 'Enter') return
+    if (value_editor.value == '')
+      value_editor.value = '0'
+    value_editor.setAttribute(PH_ATTR.VALUE, value_editor.value)
+
+
+    value_editor.classList.remove('changed-atribut')
+  })
+
+  value_editor.addEventListener('input', (ev) => {
+    const name = value_editor.getAttribute(PH_ATTR.NAME)
+
+    if (name != value_editor.value || value_editor.value == '') {
+      value_editor.classList.add('changed-atribut')
+    } else {
+      value_editor.classList.remove('changed-atribut')
+    }
+  })
+
   name.appendChild(name_editor)
   value.appendChild(value_editor)
-
-  _cur_id += 1
 }
 
 const get_selected_node_id = (return_holder = false) => {

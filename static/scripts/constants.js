@@ -1,6 +1,6 @@
 
 const TEST_VERSION = {
-  LATEST: '3.0'
+  LATEST: '3.1'
 }
 
 
@@ -32,7 +32,8 @@ const JSON_ATTR = {
   ANSWER_TAGS: 'answertags',
   DOM: 'dom',
 
-  TEST_NAME: 'Name',
+  TEST_NAME: 'test_name',
+  TEST_AUTHOR: 'test_author',
   TEST_RULES: 'rules',
 }
 
@@ -68,19 +69,21 @@ const PH_ID = {
 }
 
 const SEPARATOR = ','
+const SEPARATOR2 = '|'
 
-const TEST_INFO={
-  NAME:"test_name",
-  AUTHOR:"author",
-  ANSWERS_TAG:"answers_tag",
-  TEST_RULES:JSON_ATTR.TEST_RULES,
-  TAG_NAME:'tag_name',
-  TAG_VALUE:'tag_value',
+const TEST_INFO = {
+  NAME: JSON_ATTR.TEST_NAME,
+  AUTHOR: JSON_ATTR.TEST_AUTHOR,
+  ANSWERS_TAG: "answers_tag",
+  TEST_RULES: JSON_ATTR.TEST_RULES,
+  TAG_NAME: 'tag_name',
+  TAG_VALUE: 'tag_value',
 }
 
 const PH_ATTR = {
   ATTR_LIST: 'attr',
   EDITABLE: 'editable',
+  NAME: 'name',
   TYPE: JSON_ATTR.TYPE,
   VALUE: JSON_ATTR.VALUE,
   ACTION: JSON_ATTR.ACTION,
@@ -107,9 +110,10 @@ const TB_SUPPORT_ENTITY = {
 
   USER_INPUT: 'input-',
 
-  CREATE_TAG:'create-var',
-  DELETE_TAG:'delete-var',
-  ROW_AFTER_TAGS:'last-row'
+  TEST_NAME: JSON_ATTR.TEST_NAME,
+  TEST_AUTHOR:JSON_ATTR.TEST_AUTHOR,
+
+  CREATE_TAG: 'create-var',
 }
 
 const TEST_BUILDER = {

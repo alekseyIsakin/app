@@ -4,7 +4,7 @@ let _test_data = {}
 const questions_to_check = []
 
 const get_test_info = () => _test_data[JSON_ATTR.QUESTION_LIST].find(el => el.type == PH_CLASS.TEST_INFO)
-const get_tag_list = () => get_test_info()[PH_BEHAVIOR.ANSWERS_TAG].split(SEPARATOR)
+const get_tag_list = () => localStorage[LOCALSTORAGE.ANSWERS_TAG].split(SEPARATOR)
 
 // ********************************************************** //
 // ***************** html elements ************************** //
@@ -65,23 +65,19 @@ const get_test_by_localhost = (text) => {
 
       _test_data = json
 
-      if (get_test_info()) {
-        test_name_h.textContent = get_test_info()[PH_ATTR.TEST_NAME]
+      test_name_h.textContent = json[PH_ATTR.TEST_NAME]
 
-        const attrs = get_test_info()[LOCALSTORAGE.ANSWERS_TAG]
-        if (attrs != '') {
-          let answer_tags = ''
+      const attrs = json[JSON_ATTR.ANSWER_TAGS]
+      if (attrs != '') {
+        let answer_tags = ''
 
-          attrs
-            .replaceAll(' ', '')
-            .split(SEPARATOR)
-            .forEach((tag) => {
-              localStorage[tag] = 0
-              answer_tags = answer_tags.concat(tag, SEPARATOR)
-            })
+        attrs
+          .forEach((tag) => {
+            localStorage[tag[TEST_INFO.TAG_NAME]] = Number(tag[TEST_INFO.TAG_VALUE])
+            answer_tags = answer_tags.concat(tag[TEST_INFO.TAG_NAME], SEPARATOR)
+          })
 
-          localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0, -1)
-        }
+        localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0, -1)
       }
 
       questions_to_check.length = 0
@@ -110,7 +106,7 @@ const get_test_by_localhost = (text) => {
 const answer_possible_click = {}
 answer_possible_click[RULES.ONLY_ONE] = (btn, parent_value) => {
   localStorage[parent_value] = btn.getAttribute(`${TR_ATTR.ACTION}`)
-  
+
   btn.parentNode.childNodes
     .forEach((el) => {
       el.classList.remove('btn_answer_clicked')
@@ -125,7 +121,7 @@ const btn_click = (btn) => {
 
   rules.forEach(() => { })
   answer_possible_click[RULES.ONLY_ONE](btn, v)
-  
+
 }
 
 

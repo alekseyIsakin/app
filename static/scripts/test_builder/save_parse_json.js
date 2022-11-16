@@ -212,11 +212,12 @@ const convert_editor2json = () => {
   const a = document.querySelectorAll(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER} > .${PH_BEHAVIOR.MOVABLE}`)
   const test = {
     uuid: "",
-    name: "",
     version: TEST_VERSION.LATEST,
     description: "",
   }
-  test[JSON_ATTR.ANSWER_TAGS] = []
+  test[JSON_ATTR.TEST_NAME] = project_settings.querySelector(`#${TB_SUPPORT_ENTITY.TEST_NAME}`).value
+  test[JSON_ATTR.TEST_AUTHOR] = project_settings.querySelector(`#${TB_SUPPORT_ENTITY.TEST_AUTHOR}`).value
+  test[JSON_ATTR.ANSWER_TAGS] = get_answer_tags()
   test[JSON_ATTR.QUESTION_LIST] = []
 
   a.forEach((node) => {
@@ -306,6 +307,7 @@ const convert_json2test = (json) => {
     DOM.appendChild(json2test_proceed_with_children(el, String(el_id)))
     el_id += 1
   });
+
   return DOM
 }
 
