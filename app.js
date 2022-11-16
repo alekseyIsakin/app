@@ -18,12 +18,12 @@ app.get('/test_builder', function (req, res) {
 
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'static/html/index.html'))
+  res.sendFile(path.join(__dirname, 'static/html/main_page.html'))
 });
 
 
-app.get("/main", function (req, res) {
-  res.sendFile(path.join(__dirname, 'static/html/main_page.html'))
+app.get("/test", function (req, res) {
+  res.sendFile(path.join(__dirname, 'static/html/index.html'))
 });
 
 
