@@ -3,7 +3,7 @@
 const create_btn = document.getElementsByClassName("test_create")
 const start_btn = document.getElementById("click_test_start")
 const side_btns = document.getElementsByClassName("test_selector_btn")
-const close_btn = document.getElementById("click_test_close")
+const close_btn = document.getElementById("close_test_button")
 
 for (let i = 0; i < create_btn.length; i++)
 {
