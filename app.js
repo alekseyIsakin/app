@@ -18,22 +18,12 @@ app.get('/test_builder', function (req, res) {
 
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'static/html/index.html'))
+  res.sendFile(path.join(__dirname, 'static/html/main_page.html'))
 });
 
 
-app.post("/test", jsonParser, function (request, response) {
-  console.log(request.body);
-  if(!request.body) return response.sendStatus(400);
-
-  let filePath = path.join(__dirname, `static/tests/${request.body.testUUID}.json`)
-
-  fs.readFile(filePath, {encoding: 'utf-8'}, (err, data) =>{
-    if (!err)
-      response.json(JSON.parse(data));
-    else
-      console.log(err)
-  })
+app.get("/test", function (req, res) {
+  res.sendFile(path.join(__dirname, 'static/html/index.html'))
 });
 
 

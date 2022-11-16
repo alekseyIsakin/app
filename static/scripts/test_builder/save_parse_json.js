@@ -13,6 +13,7 @@ const create_question_holder_from_main_page = () => {
 const create_empty_question_holder = () => {
   const div = document.createElement('div')
   div.classList.add(TR_CLASS.QUESTION)
+  div.align = "center"
   return div
 }
 const create_empty_string = () => {
@@ -59,7 +60,6 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
     PH_ATTR.ATTR_LIST,
     [PH_ATTR.ACTION, PH_ATTR.EDITABLE]
   )
-  div.textContent = text_content
 
   div.draggable = true
   return div
@@ -78,7 +78,6 @@ const create_empty_label_placeholder = (text_content = PH_CLASS.LBL) => {
     PH_ATTR.ATTR_LIST,
     [PH_ATTR.EDITABLE]
   )
-  div.textContent = text_content
 
   div.draggable = true
   return div
