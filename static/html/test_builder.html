@@ -13,7 +13,7 @@
       <td class="header_text" width="auto">Конструктор тестов</td>
       <td width="auto"></td>
       <td id="preview-button" width="5%" style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
-      <td width="5%" style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td id="open_settings" width="5%" style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
       <td width="5%" style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
       <td width="5%" style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
     </tr>
@@ -49,43 +49,47 @@
     </tr>  
   </table>
 
-    <table class="project_settings">
+    <table class="project_settings" id="settings_wnd">
+      <tr style="height: 3%;">
+        <td align="right">
+          <img id="close_settings" width="40px" height="40px" src="svg\exitCross.svg" style="position: absolute;right:15px;"></img>
+        </td>
+      </tr>
       <tr style="height: 15%;">
         <td colspan="2" align="center">
-          <!--<img id="close_test_button" style="float: right; margin-right: 2vw; margin-top: -1vh;" width="30px" height="30px" src="svg\exitCross.svg"></img>-->
-          <p class="header_text" style="font-size: 45px;font-weight:300;margin-top: 3vh;margin-bottom: 0px;">НАСТРОЙКИ ПРОЕКТА</p>
+          <p class="header_text" style="font-size: 45px;font-weight:300;margin-top: 3vh;margin-bottom: 0em;">НАСТРОЙКИ ПРОЕКТА</p>
         </td>
       </tr>
       <tr style="height: 5%;">
         <td colspan="2" align="center">
-          <p class="question_text" style="margin-top: 0px;">Имя проекта</p>
+          <p class="question_text" style="margin-top: 0px;margin-bottom: 5px;">Имя проекта</p>
         </td>
       </tr>
       <tr style="height: 5%;">
         <td colspan="2" align="center">
-          <input style="border-radius: 15px;text-align: center;">
+          <input style="border-radius: 15px;text-align: center;margin-bottom: 2em;">
         </td>
       </tr>
       <tr style="height: 5%;">
         <td colspan="2" align="center">
-          <p class="question_text" style="margin-top: 0px;">Автор</p>
+          <p class="question_text" style="margin-top: 0px;margin-bottom: 5px;">Автор</p>
         </td>
       </tr>
       <tr style="height: 5%;">
         <td colspan="2" align="center">
-          <input style="border-radius: 15px;text-align: center;">
+          <input style="border-radius: 15px;text-align: center;margin-bottom: 2em;">
         </td>
       </tr>
       <tr style="height: 5%;">
         <td colspan="2" align="center">
-          <p class="question_text" style="margin-top: 0px;">Переменные значения</p>
+          <p class="question_text" style="margin-top: 0px;margin-bottom: 0px;">Переменные значения</p>
         </td>
       </tr>
       <tr style="height: 40%;">
         <td colspan="2" align="center">
           
           
-          <table style="max-height: 150px;border-collapse:collapse;" width="450px" height="150px" border="3px">
+          <table style="max-height: 200px;border-collapse:collapse;" width="450px" height="200px" border="3px">
             <tr height="5%">
               <td bgcolor="black" colspan="2">
                 <p class="column_name" align="center" style="font-size: 15px;">Добавить</p>
@@ -105,12 +109,12 @@
 
         </td>
       </tr>
-      <tr style="height: 20%;">
-        <td align="center">
-          <img src="svg/Download.svg" style="width: 65%; height: 65%;">
+      <tr style="height: 17%;">
+        <td align="center" >
+          <img id="save-button" src="svg/Download.svg" style="width: 200px; height: 80px;">
         </td>
         <td align="center">
-          <img src="svg/Upload.svg" style="width: 65%; height: 65%;">
+          <img id="load-button" src="svg/Upload.svg" style="width: 200px; height: 80px;">
         </td>
       </tr>
     </table>

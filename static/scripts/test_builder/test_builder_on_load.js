@@ -6,7 +6,8 @@ const tasksListElement = document.querySelector(`.${TB_SUPPORT_ENTITY.BASE_ELEMN
 const dropReceiver = document.querySelector(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER}`);
 const elementSettings = document.querySelector(`.${TB_SUPPORT_ENTITY.ELEMENT_SETTINGS}`);
 const userSettingsHolder = document.querySelector(`.${TB_SUPPORT_ENTITY.USER_SETTINGS}`);
-
+const close_settings_btn = document.getElementById("close_settings")
+const open_settings_btn = document.getElementById("open_settings")
 
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
@@ -25,16 +26,18 @@ ATTR_ACTION[TEST_INFO.ANSWERS_TAG] = (element) => create_attr_editor(
     create_answer_tag_rule_editor(attr_list, {id:TEST_INFO.TEST_RULES})
   },
 })
-ATTR_ACTION[PH_ATTR.UPDATE_SIEVE] = (element) => create_sieve_btn('update', '', element, update_sieve)
+ATTR_ACTION[PH_ATTR.UPDATE_SIEVE] = (element) => create_sieve_btn('update', '', element, update_sieve)*/
 
-elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
+document.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
+
+document.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
 
   save_test_to_disk(JSON.stringify(json), 'test.json', 'text/plain')
 })
 
-elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('click', () => {
-  const text = elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.FILE_INPUT}`).files[0]
+document.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListener('click', () => {
+  const text = document.querySelector(`#${TB_SUPPORT_ENTITY.FILE_INPUT}`).files[0]
 
   if (text) {
     var reader = new FileReader();
@@ -46,11 +49,20 @@ elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListen
     }
   }
 
-})*/
-document.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
+})
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
 tasksListElement.addEventListener(`dragend`, stop_moving);
+close_settings_btn.addEventListener('click', () => {
+  const a = document.getElementById("settings_wnd");    
+  a.setAttribute("style", "Visibility: hidden;");
+  a.click();
+})
+open_settings_btn.addEventListener('click', () => {
+  const a = document.getElementById("settings_wnd");    
+  a.setAttribute("style", "Visibility: visible;");
+  a.click();
+})
 
 const try_parse = (text_data) => {
   return JSON.parse(text_data)
