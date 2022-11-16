@@ -134,6 +134,16 @@ const create_answer_tag_rule_editor = (tags, options = { id: '' }) => {
 
 }
 
+const create_edit_tag_row = () => {
+  const row = project_settings.querySelector('table').querySelector('tbody').insertRow()
+
+  const name = row.insertCell()
+  const value = row.insertCell()
+  const name_editor = document.createElement('input')
+  name.appendChild(name_editor)
+  value.textContent = 'v'
+}
+
 const get_selected_node_id = (return_holder = false) => {
   if (return_holder)
     return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`)

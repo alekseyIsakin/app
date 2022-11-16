@@ -12,10 +12,18 @@
     <tr>
       <td class="header_text" width="auto">Конструктор тестов</td>
       <td width="auto"></td>
-      <td id="preview-button" width="5%" style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
-      <td width="5%" style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
-      <td width="5%" style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
-      <td width="5%" style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td id="preview-button" width="5%"
+        style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
+      </td>
+      <td width="5%"
+        style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
+      </td>
+      <td width="5%"
+        style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
+      </td>
+      <td width="5%"
+        style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
+      </td>
     </tr>
   </table>
   <table id="main_container" style="background-color: red;">
@@ -29,95 +37,95 @@
         <!-- <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div> -->
       </td>
 
-      <td class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)" width="100%" height="100%">
+      <td class="drop_receiver" ondrop="drop_put_handler(event)" ondragover="dragover_handler(event)" width="100%"
+        height="100%">
       </td>
 
       <td class="box-right element_settings">
-          <p class="column_name">Свойства элемента:</p>
-          <p hidden>element-id <span id="element-id">_</span></p>
+        <p class="column_name">Свойства элемента:</p>
+        <p hidden>element-id <span id="element-id">_</span></p>
 
-          <!--<button id="save-button">save</button>
+        <!--<button id="save-button">save</button>
           <br />
           <button id="load-button">load</button>
           <input id="load-input" type="file" accept=".json,application/json">
           <br />
           <button id="preview-button">test_view</button>-->
-          <div class="user_settings_holder">
+        <div class="user_settings_holder">
 
-          </div>
+        </div>
       </td>
-    </tr>  
+    </tr>
   </table>
 
-    <table class="project_settings">
-      <tr style="height: 15%;">
-        <td colspan="2" align="center">
-          <!--<img id="close_test_button" style="float: right; margin-right: 2vw; margin-top: -1vh;" width="30px" height="30px" src="svg\exitCross.svg"></img>-->
-          <p class="header_text" style="font-size: 45px;font-weight:300;margin-top: 3vh;margin-bottom: 0px;">НАСТРОЙКИ ПРОЕКТА</p>
-        </td>
-      </tr>
-      <tr style="height: 5%;">
-        <td colspan="2" align="center">
-          <p class="question_text" style="margin-top: 0px;">Имя проекта</p>
-        </td>
-      </tr>
-      <tr style="height: 5%;">
-        <td colspan="2" align="center">
-          <input style="border-radius: 15px;text-align: center;">
-        </td>
-      </tr>
-      <tr style="height: 5%;">
-        <td colspan="2" align="center">
-          <p class="question_text" style="margin-top: 0px;">Автор</p>
-        </td>
-      </tr>
-      <tr style="height: 5%;">
-        <td colspan="2" align="center">
-          <input style="border-radius: 15px;text-align: center;">
-        </td>
-      </tr>
-      <tr style="height: 5%;">
-        <td colspan="2" align="center">
-          <p class="question_text" style="margin-top: 0px;">Переменные значения</p>
-        </td>
-      </tr>
-      <tr style="height: 40%;">
-        <td colspan="2" align="center">
-          
-          
-          <table style="max-height: 150px;border-collapse:collapse;" width="450px" height="150px" border="3px">
-            <tr height="5%">
-              <td bgcolor="black" colspan="2">
-                <p class="column_name" align="center" style="font-size: 15px;">Добавить</p>
-                <p class="column_name" align="center" style="font-size: 15px;">Удалить</p>
-              </td>
-            </tr>
-            <tr height="5%">
+  <table class="project_settings">
+    <tr style="height: 15%;">
+      <td colspan="2" align="center">
+        <!--<img id="close_test_button" style="float: right; margin-right: 2vw; margin-top: -1vh;" width="30px" height="30px" src="svg\exitCross.svg"></img>-->
+        <p class="header_text" style="font-size: 45px;font-weight:300;margin-top: 3vh;margin-bottom: 0px;">НАСТРОЙКИ
+          ПРОЕКТА</p>
+      </td>
+    </tr>
+    <tr style="height: 5%;">
+      <td colspan="2" align="center">
+        <p class="question_text" style="margin-top: 0px;">Имя проекта</p>
+      </td>
+    </tr>
+    <tr style="height: 5%;">
+      <td colspan="2" align="center">
+        <input style="border-radius: 15px;text-align: center;">
+      </td>
+    </tr>
+    <tr style="height: 5%;">
+      <td colspan="2" align="center">
+        <p class="question_text" style="margin-top: 0px;">Автор</p>
+      </td>
+    </tr>
+    <tr style="height: 5%;">
+      <td colspan="2" align="center">
+        <input style="border-radius: 15px;text-align: center;">
+      </td>
+    </tr>
+    <tr style="height: 5%;">
+      <td colspan="2" align="center">
+        <p class="question_text" style="margin-top: 0px;">Переменные значения</p>
+      </td>
+    </tr>
+    <tr style="height: 40%;">
+      <td colspan="2" align="center">
+
+        <div class="scroll-table" style="min-height: 100%; max-height: 1vh; max-width: 450px;">
+          <div style="background-color: black; top: 0; position: sticky;">
+            <p id="create-var" class="column_name" align="center" >Добавить</p>
+            <p id="delete-var" class="column_name" align="center" >Удалить</p>
+          </div>
+
+          <table style="max-height: 150px;border-collapse:collapse;height: auto; width:100%" height="150px" 
+            border="3px">
+            <tr id="var-table-descr" height="5%">
               <td align="center">Имя</td>
               <td align="center">Значение</td>
             </tr>
-            <tr height="auto">
-              <td></td>
-              <td></td>
-            </tr>
           </table>
+        </div>
 
 
-        </td>
-      </tr>
-      <tr style="height: 20%;">
-        <td align="center">
-          <img src="svg/Download.svg" style="width: 65%; height: 65%;">
-        </td>
-        <td align="center">
-          <img src="svg/Upload.svg" style="width: 65%; height: 65%;">
-        </td>
-      </tr>
-    </table>
+      </td>
+    </tr>
+    <tr style="height: 20%;">
+      <td align="center">
+        <img src="svg/Download.svg" style="width: 65%; height: 65%;">
+      </td>
+      <td align="center">
+        <img src="svg/Upload.svg" style="width: 65%; height: 65%;">
+      </td>
+    </tr>
+  </table>
 
   <script type="text/javascript" src="scripts/constants.js"></script>
   <script type="text/javascript" src="scripts/test_builder/save_parse_json.js"></script>
   <script type="text/javascript" src="scripts/test_builder/test_builder.js"></script>
   <script type="text/javascript" src="scripts/test_builder/test_builder_on_load.js"></script>
 </body>
+
 </html>

@@ -34,6 +34,12 @@
   font-family: sans-serif;
 }
 
+#delete-var,
+#create-var{
+  font-size: 15px;
+  user-select: none;
+}
+
 
 
 /* ************* */
@@ -238,6 +244,12 @@
   width: 700px;
   height: 800px;
   border-radius: 15px;
+}
+
+.scroll-table{
+  
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .changed-atribut{

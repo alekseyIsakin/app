@@ -6,12 +6,14 @@ const tasksListElement = document.querySelector(`.${TB_SUPPORT_ENTITY.BASE_ELEMN
 const dropReceiver = document.querySelector(`.${TB_SUPPORT_ENTITY.DROP_RECEIVER}`);
 const elementSettings = document.querySelector(`.${TB_SUPPORT_ENTITY.ELEMENT_SETTINGS}`);
 const userSettingsHolder = document.querySelector(`.${TB_SUPPORT_ENTITY.USER_SETTINGS}`);
-
+const project_settings = document.querySelector(`.${TB_SUPPORT_ENTITY.PROJECT_SETTINGS}`);
 
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
 tasksListElement.appendChild(create_empty_test_info_placeholder())
+document.querySelector(`#${TB_SUPPORT_ENTITY.CREATE_TAG}`).addEventListener('click', () => create_edit_tag_row())
+
 /*tasksListElement.appendChild(create_empty_test_info_placeholder())
 
 const ATTR_ACTION = {}

@@ -91,6 +91,7 @@ const TB_SUPPORT_ENTITY = {
   DROP_RECEIVER: 'drop_receiver',
   BASE_ELEMNT_HOLDER: 'dragable_elements_holder',
   ELEMENT_SETTINGS: 'element_settings',
+  PROJECT_SETTINGS: 'project_settings',
 
   ELEMENT_ID_LBL: 'element-id',
 
@@ -103,6 +104,10 @@ const TB_SUPPORT_ENTITY = {
   USER_SETTINGS: 'user_settings_holder',
 
   USER_INPUT: 'input-',
+
+  CREATE_TAG:'create-var',
+  DELETE_TAG:'delete-var',
+  ROW_AFTER_TAGS:'last-row'
 }
 
 const TEST_BUILDER = {
