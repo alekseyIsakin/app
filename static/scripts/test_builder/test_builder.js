@@ -420,7 +420,12 @@ const create_new_attr = (element, attr) => {
   create_attr_editor(`${attr}: `, attr, element)
 }
 
-
+const exit_btn = document.getElementById("exit_button")
+exit_btn.addEventListener('click', () => {
+  const a = document.createElement("a");
+  a.setAttribute("href","http://127.0.0.1:3000");
+  a.click();
+})
 
 
 
