@@ -140,8 +140,23 @@ const create_edit_tag_row = () => {
   const name = row.insertCell()
   const value = row.insertCell()
   const name_editor = document.createElement('input')
+  const value_editor = document.createElement('input')
+  name_editor.id = TEST_INFO.TAG_NAME + (_cur_id++)
+  value_editor.id = TEST_INFO.TAG_NAME + (_cur_id++)
+
+  name_editor.addEventListener('keyup', (ev) => {
+    if (ev.key != 'Enter') return
+    element.setAttribute(attr, input.value)
+    input.classList.remove('changed-atribut')
+  })
+  name_editor.addEventListener('input', (ev) => {
+
+  })
+  
   name.appendChild(name_editor)
-  value.textContent = 'v'
+  value.appendChild(value_editor)
+
+  _cur_id += 1
 }
 
 const get_selected_node_id = (return_holder = false) => {

@@ -74,6 +74,8 @@ const TEST_INFO={
   AUTHOR:"author",
   ANSWERS_TAG:"answers_tag",
   TEST_RULES:JSON_ATTR.TEST_RULES,
+  TAG_NAME:'tag_name',
+  TAG_VALUE:'tag_value',
 }
 
 const PH_ATTR = {
