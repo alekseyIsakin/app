@@ -205,7 +205,7 @@ const change_content = (ev) => {
   const element = dropReceiver.querySelector(`#${node_element_id}`)
 
   if (!node_element_id || typeof (element) == 'undefined') return
-  const text_content = get_content_editor()
+  const text_content = get_input_content_holder()
 
   element.textContent = text_content.value
 }
