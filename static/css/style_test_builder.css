@@ -167,7 +167,8 @@
 /* ** sieve **** */
 /* ************* */
 
-.sieve-quest-column {}
+
+
 
 
 /* ************* */
@@ -193,6 +194,11 @@
   cursor: pointer;
 }
 
+#rules{
+  display: inline;
+  width: 100%;
+}
+
 /* statuses */
 
 .selected {
@@ -216,4 +222,8 @@
   width: 700px;
   height: 800px;
   border-radius: 15px;
+}
+
+.changed-atribut{
+  border: 2px solid red;
 }

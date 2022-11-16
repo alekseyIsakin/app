@@ -32,7 +32,8 @@ const JSON_ATTR = {
   ANSWER_TAGS: 'answertags',
   DOM: 'dom',
 
-  TEST_NAME: 'Name'
+  TEST_NAME: 'Name',
+  TEST_RULES: 'rules',
 }
 
 const PH_STAUS = {
@@ -72,6 +73,7 @@ const TEST_INFO={
   NAME:"test_name",
   AUTHOR:"author",
   ANSWERS_TAG:"answers_tag",
+  TEST_RULES:JSON_ATTR.TEST_RULES,
 }
 
 const PH_ATTR = {
@@ -80,7 +82,7 @@ const PH_ATTR = {
   TYPE: JSON_ATTR.TYPE,
   VALUE: JSON_ATTR.VALUE,
   ACTION: JSON_ATTR.ACTION,
-  NEED_UPDATE: PH_BEHAVIOR.NEED_UPDATE,
+  UPDATE_SIEVE: PH_BEHAVIOR.NEED_UPDATE,
 
   TEST_NAME: JSON_ATTR.TEST_NAME,
 }

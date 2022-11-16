@@ -96,6 +96,9 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
     PH_CLASS.TEST_INFO
   )
   div.setAttribute(
+    TEST_INFO.TEST_RULES, []
+  )
+  div.setAttribute(
     PH_ATTR.ATTR_LIST,
     [TEST_INFO.NAME, TEST_INFO.AUTHOR, TEST_INFO.ANSWERS_TAG]
   )
@@ -104,7 +107,8 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
 
   return div
 }
-const create_empty_sieve_placeholder = (text_content = PH_CLASS.SIEVE) => {
+const old_create_empty_sieve_placeholder = (text_content = PH_CLASS.SIEVE) => { return document.createDocumentFragment() }
+const create_empty_bin_sieve_placeholder = (text_content = PH_CLASS.SIEVE) => {
   const div = document.createElement('div')
 
   div.id = PH_ID.SIEVE
@@ -120,7 +124,7 @@ const create_empty_sieve_placeholder = (text_content = PH_CLASS.SIEVE) => {
     [PH_BEHAVIOR.NEED_UPDATE]
   )
   div.textContent = text_content
-  div.draggable = true
+  // div.draggable = true
 
   return div
 }
@@ -269,31 +273,31 @@ let saved_editor_state = {}
 const preview_test = () => {
   const DOM = document.createDocumentFragment()
 
-  if (preview.enable == 0) {
-    const json = convert_editor2json()
-    saved_editor_state = json
-    const d = convert_json2test(json)
+  const json = convert_editor2json()
+  saved_editor_state = json
+  const d = convert_json2test(json)
 
-    if (d) {
-      const div = create_question_holder_from_main_page()
-      div.appendChild(d)
+  if (d) {
+    const div = create_question_holder_from_main_page()
+    div.appendChild(d)
 
-      DOM.appendChild(div)
-      preview.enable = 1
-      unhighlite_selections()
-      show_selected_element_info(dropReceiver)
-    }
-  } else {
-    DOM.appendChild(convert_json2editor(saved_editor_state))
-    preview.enable = 0
+    DOM.appendChild(div)
+    // preview.enable = 1
+    // unhighlite_selections()
+    // show_selected_element_info(dropReceiver)
+
+    const newWin = window.open('/preview');
+    newWin.onload = () => {
+      newWin.document.body.appendChild(DOM)
+      console.log('preview')
   }
 
-  clear_drop_receiver()
-  dropReceiver.appendChild(DOM)
+  // clear_drop_receiver()
+  // dropReceiver.appendChild(DOM)
+  }
 }
 
 const convert_json2test = (json) => {
-  _cur_id = 0
 
   if (Object.hasOwn(json, JSON_ATTR.QUESTION_LIST) == false) {
     alert('Incorrect file')
@@ -355,7 +359,7 @@ JSON_TO_RAW_HTML[PH_CLASS.QUESTION] = create_empty_question_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.BTN] = create_empty_button_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.LBL] = create_empty_label_placeholder;
 JSON_TO_RAW_HTML[PH_CLASS.TEST_INFO] = create_empty_test_info_placeholder;
-JSON_TO_RAW_HTML[PH_CLASS.SIEVE] = create_empty_sieve_placeholder
+JSON_TO_RAW_HTML[PH_CLASS.SIEVE] = create_empty_bin_sieve_placeholder
 
 const JSON_TO_TEST = {}
 JSON_TO_TEST[PH_CLASS.QUESTION] = create_empty_question_holder;

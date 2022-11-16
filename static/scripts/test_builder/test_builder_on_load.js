@@ -16,7 +16,16 @@ tasksListElement.appendChild(create_empty_label_placeholder())
 const ATTR_ACTION = {}
 ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_content_editor(element)
 ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('action: ', PH_ATTR.ACTION, element)
-ATTR_ACTION[PH_ATTR.NEED_UPDATE] = (element) => create_sieve_btn('update', '', element, update_sieve)
+ATTR_ACTION[TEST_INFO.ANSWERS_TAG] = (element) => create_attr_editor(
+  'tags: ',
+  TEST_INFO.ANSWERS_TAG,
+  element, {
+  enter: () => {
+    const attr_list = get_answer_tags()
+    create_answer_tag_rule_editor(attr_list, {id:TEST_INFO.TEST_RULES})
+  },
+})
+ATTR_ACTION[PH_ATTR.UPDATE_SIEVE] = (element) => create_sieve_btn('update', '', element, update_sieve)
 
 elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.SAVE_INPUT}`).addEventListener('click', () => {
   const json = convert_editor2json()
@@ -37,8 +46,8 @@ elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.LOAD_INPUT}`).addEventListen
     }
   }
 
-})
-elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)*/
+})*/
+document.querySelector(`#${TB_SUPPORT_ENTITY.PREVIEW_TEST}`).addEventListener('click', preview_test)
 
 tasksListElement.addEventListener(`dragstart`, start_moving)
 tasksListElement.addEventListener(`dragend`, stop_moving);

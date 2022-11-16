@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="file:///D:/repos/web/app/static/css/style_test_builder.css">
+
+    <style>
+        .bin-sieve {
+            height: 100vh;
+        }
+
+        .question-holder {
+            height: 100%;
+            max-height: 20vh;
+            overflow-y: scroll;
+            overflow-x: scroll;
+            border: 1px dotted blue;
+        }
+
+        .template-holder {
+            height: auto;
+            background-color: aquamarine;
+        }
+
+        .control-holder {
+            height: auto;
+            background-color: bisque;
+        }
+
+        .tag,
+        .answer,
+        .question {
+            height: 25px;
+            min-height: 25px;
+            max-height: 25px;
+            padding-top: 2px;
+            padding-bottom: 1px;
+            border: 1px solid black;
+        }
+
+        .tag,
+        .answer {
+            text-align: center;
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
+        }
+
+        .answer {
+            background-color: azure;
+        }
+
+        .tag {
+            background-color: blanchedalmond;
+        }
+
+        .question {
+            width: 20px;
+            min-width: 20px;
+            max-width: 20px;
+            background-color: bisque;
+        }
+
+        .answers {
+            height: 100%;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-flow: row;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-flow: column;
+        }
+
+        .sticky-top {
+            top: 0;
+            position: sticky;
+        }
+
+        .sticky-left {
+            left: 0;
+            position: sticky;
+        }
+    </style>
+</head>
+<div class="bin-sieve">
+
+    <div class="template-holder">
+        <div id="question-ph-0" class="movable question-ph">
+            <div id="lbl-ph-1" class="movable lbl-ph">lbl-ph</div>
+            <div id="btn-ph-2" class="movable btn-ph">btn-ph1</div>
+            <div id="btn-ph-2" class="movable btn-ph">btn-ph2</div>
+            <div id="btn-ph-2" class="movable btn-ph">btn-ph3</div>
+        </div>
+    </div>
+    <div class="control-holder" style="">
+        <div id="make-template" class="movable btn-ph">btn-ph3</div>
+    </div>
+
+
+    <div class="question-holder flex-column" style="position:sticky">
+        <div class="top sticky-top">
+            <div class="questions flex-row">
+                <div class="question" style="background-color: black;"></div>
+                <div class="tag">1</div>
+                <div class="tag">2</div>
+                <div class="tag">3</div>
+                <div class="tag">4</div>
+                <div class="tag">5</div>
+                <div class="tag">6</div>
+                <div class="tag">7</div>
+                <div class="tag">8</div>
+                <div class="tag">9</div>
+                <div class="tag">0</div>
+                <div class="tag">1</div>
+                <div class="tag">2</div>
+                <div class="tag">3</div>
+                <div class="tag">4</div>
+                <div class="tag">5</div>
+                <div class="tag">6</div>
+            </div>
+        </div>
+
+        <div class=" flex-row ">
+            <div class="questions sticky-left">
+                <div class="question">1</div>
+                <div class="question">2</div>
+                <div class="question">3</div>
+                <div class="question">4</div>
+                <div class="question">5</div>
+                <div class="question">6</div>
+                <div class="question">7</div>
+                <div class="question">8</div>
+                <div class="question">9</div>
+                <div class="question">0</div>
+                <div class="question">1</div>
+                <div class="question">2</div>
+                <div class="question">3</div>
+                <div class="question">4</div>
+            </div>
+            <div>
+                <div class="answers flex-row">
+                    <div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                        <div class="answer"><input type="checkbox"> <input> </div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                    <div class="answers-row">
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                        <div class="answer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

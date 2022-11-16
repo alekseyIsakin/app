@@ -17,6 +17,9 @@ app.get('/test_builder', function (req, res) {
 });
 
 
+app.get('/preview', function (req, res)  {
+  res.sendFile(path.join(__dirname, 'static/html/only_css.html'))
+})
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'static/html/main_page.html'))
 });
@@ -28,8 +31,8 @@ app.get("/test", function (req, res) {
 
 
 app.listen(port, function (error) {
-  if(!error)
-  console.log("Server is Listening at Port 3000!");
-else
-  console.log("Error Occurred");
+  if (!error)
+    console.log("Server is Listening at Port 3000!");
+  else
+    console.log("Error Occurred");
 });
