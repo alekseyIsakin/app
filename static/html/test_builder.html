@@ -8,15 +8,23 @@
 </head>
 
 <body>
-  <div class="box-top header">
-    <span class="header_text">Конструктор тестов</span>
-  </div>
+  <table class="box-top header">
+    <tr>
+      <td class="header_text" width="auto">Конструктор тестов</td>
+      <td width="auto"></td>
+      <td width="5%" style="background: url(svg/PreviewTest.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/Settings.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/Tutoral.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+      <td width="5%" style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+    </tr>
+  </table>
   <table id="main_container" style="background-color: red;">
 
     <tr style="background-color: red;  height: 100vh;">
       <td class="box-left base_elemnt_holder" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)">
         <div class="dragable_elements_holder">
           <p class="column_name">Список элементов:</p>
+          <img src="svg/TrashBin.svg" style="position:fixed; bottom:2vh; left:-10px;height:6vh;width:4vw;">
         </div>
         <!-- <div class="delete_drop" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)"> </div> -->
       </td>
@@ -25,15 +33,18 @@
       </td>
 
       <td class="box-right element_settings">
-        <p class="column_name">Свойства:</p>
-        <p>element-id <span id="element-id">_</span></p>
+          <p class="column_name">Свойства элемента:</p>
+          <p hidden>element-id <span id="element-id">_</span></p>
 
-        <button id="save-button">save</button>
-        <br />
-        <button id="load-button">load</button>
-        <input id="load-input" type="file" accept=".json,application/json">
-        <br />
-        <button id="preview-button">test_view</button>
+          <!--<button id="save-button">save</button>
+          <br />
+          <button id="load-button">load</button>
+          <input id="load-input" type="file" accept=".json,application/json">
+          <br />
+          <button id="preview-button">test_view</button>-->
+          <div class="user_settings_holder">
+
+          </div>
       </td>
     </tr>  
   </table>

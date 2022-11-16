@@ -60,6 +60,7 @@ const create_empty_button_placeholder = (text_content = PH_CLASS.BTN) => {
     PH_ATTR.ATTR_LIST,
     [PH_ATTR.ACTION, PH_ATTR.EDITABLE]
   )
+  //div.textContent = text_content
 
   div.draggable = true
   return div
@@ -78,6 +79,7 @@ const create_empty_label_placeholder = (text_content = PH_CLASS.LBL) => {
     PH_ATTR.ATTR_LIST,
     [PH_ATTR.EDITABLE]
   )
+  //div.textContent = text_content
 
   div.draggable = true
   return div

@@ -165,10 +165,19 @@ const create_attr_editor = (label, attr, element) => {
 
   p.textContent = label
   p.appendChild(input)
+  p.classList.add("header_text")
+  p.setAttribute("style", "font-size: 25px;")
   input.id = TB_SUPPORT_ENTITY.USER_INPUT + attr
   userSettingsHolder.appendChild(p)
 }
-const get_content_editor = (element) => {
+const get_input_value_holder = (element) => {
+  const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.VALUE_INPUT}`)
+  if (check_input != null)
+    return check_input
+
+  return create_attr_editor('Действие: ', PH_ATTR.ACTION, element)
+}
+const get_input_content_holder = (element) => {
   const check_input = userSettingsHolder.querySelector(`#${TB_SUPPORT_ENTITY.CONTENT_INPUT}`)
   if (check_input != null)
     return check_input
@@ -180,7 +189,9 @@ const get_content_editor = (element) => {
   input.id = TB_SUPPORT_ENTITY.CONTENT_INPUT
   input.value = element.textContent
 
-  p.textContent = 'content: '
+  p.textContent = 'Содержимое: '
+  p.classList.add("header_text")
+  p.setAttribute("style", "font-size: 25px;")
   p.appendChild(input)
   userSettingsHolder.appendChild(p)
 
@@ -361,6 +372,10 @@ const remove_all_settings = () => {
     settings.forEach((el) => el.remove())
   }
 }
+
+const ATTR_ACTION = {}
+ATTR_ACTION[PH_ATTR.EDITABLE] = (element) => get_input_content_holder(element)
+ATTR_ACTION[PH_ATTR.ACTION] = (element) => create_attr_editor('Действие: ', PH_ATTR.ACTION, element)
 
 /** @param element html object that should contain attribut PH_ATTR.ATTR_LIST */
 const create_new_attr = (element, attr) => {
