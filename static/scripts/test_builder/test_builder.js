@@ -98,7 +98,7 @@ const update_sieve = (element, depth = -1) => {
       create_empty_option('--Select--'),
       drop_down.firstChild
     )
-    
+
     p.appendChild(drop_down)
     // test_info.getAttribute(TEST_INFO.ANSWERS_TAG)
     element.appendChild(p)
@@ -121,6 +121,19 @@ const get_answer_tags = () => {
   return test_info.getAttribute(TEST_INFO.ANSWERS_TAG).split(SEPARATOR)
 }
 
+const create_answer_tag_rule_editor = (tags, options = { id: '' }) => {
+  const check_dd = userSettingsHolder.querySelector(`#${TEST_INFO.ANSWERS_TAG_LIST_ID}`)
+  if (check_dd)
+    check_dd.remove()
+  
+  const dd = create_drop_down(tags, options)
+  userSettingsHolder.appendChild(dd)
+
+  if (tags.length < 0) return
+
+  
+}
+
 const get_selected_node_id = (return_holder = false) => {
   if (return_holder)
     return elementSettings.querySelector(`#${TB_SUPPORT_ENTITY.ELEMENT_ID_LBL}`)
@@ -136,13 +149,14 @@ const create_empty_option = (label = '') => {
 }
 
 /** @param variants is array of string */
-const create_drop_down = (variants) => {
+const create_drop_down = (variants, options = { id: '', }) => {
   const dropdown = document.createElement('select')
+  dropdown.id = options.hasOwnProperty('id') ? options.id : ''
 
   variants.forEach(el => {
     const p = document.createElement('option')
     p.value = el
-    p.text = get_text_content(el)
+    p.text = el
     dropdown.appendChild(p)
   })
   return dropdown
@@ -154,13 +168,37 @@ const get_text_content = (node_id) => {
   return text_node == null ? null : text_node.textContent
 }
 
-const create_attr_editor = (label, attr, element) => {
+/** 
+ * @param callbacks contains 2 calbacks 
+ * @description input func(input, attr, element) occurs when input is changed 
+ * @description enter func(input, attr, element) occurs when enter is released
+ * @description element is owner of attribute attr, input is html element*/
+const create_attr_editor = (label, attr, element, callbacks =
+  {
+    input: (input, attr, element) => { }, enter: (input, attr, element) => { }
+  }) => {
+
   const input = document.createElement('input')
   const p = document.createElement('p')
 
+  callbacks['input'] = callbacks.hasOwnProperty('input') ? callbacks.input : () => { }
+  callbacks['enter'] = callbacks.hasOwnProperty('enter') ? callbacks.enter : () => { }
+
   input.value = element.getAttribute(attr)
   input.addEventListener('input', (ev) => {
+    if (element.getAttribute(attr) != input.value) {
+      input.classList.add('changed-atribut')
+    } else {
+      input.classList.remove('changed-atribut')
+    }
+    callbacks.input(input, attr, element)
+  })
+
+  input.addEventListener('keyup', (ev) => {
+    if (ev.key != 'Enter') return
     element.setAttribute(attr, input.value)
+    input.classList.remove('changed-atribut')
+    callbacks.enter(input, attr, element)
   })
 
   p.textContent = label

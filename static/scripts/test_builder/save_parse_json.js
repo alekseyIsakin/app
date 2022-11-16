@@ -96,7 +96,7 @@ const create_empty_test_info_placeholder = (text_content = PH_CLASS.TEST_INFO) =
   )
   div.setAttribute(
     PH_ATTR.ATTR_LIST,
-    [TEST_INFO.NAME, TEST_INFO.AUTHOR, TEST_INFO.ANSWERS_TAG]
+    [TEST_INFO.NAME, TEST_INFO.AUTHOR, TEST_INFO.ANSWERS_TAG, TEST_INFO.ANSWERS_RULES]
   )
   div.textContent = text_content
   div.draggable = true
@@ -120,7 +120,7 @@ const create_empty_bin_sieve_placeholder = (text_content = PH_CLASS.SIEVE) => {
     [PH_BEHAVIOR.NEED_UPDATE]
   )
   div.textContent = text_content
-  div.draggable = true
+  // div.draggable = true
 
   return div
 }

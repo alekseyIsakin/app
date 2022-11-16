@@ -119,10 +119,13 @@
   margin-right: 3px;
 }
 
-
-
 .movable {
   cursor: pointer;
+}
+
+#answers_tag_id{
+  display: inline;
+  width: 100%;
 }
 
 /* statuses */
@@ -133,4 +136,8 @@
 
 .non_selected_for_editing {
   background: darkblue;
+}
+
+.changed-atribut{
+  border: 2px solid red;
 }
