@@ -2,6 +2,7 @@
 
 const create_btn = document.getElementsByClassName("test_create")
 const start_btn = document.getElementById("click_test_start")
+const load_btn = document.getElementById("load-button")
 const side_btns = document.getElementsByClassName("test_selector_btn")
 const close_btn = document.getElementById("close_test_button")
 
@@ -18,6 +19,15 @@ start_btn.addEventListener('click', () => {
     const a = document.createElement("a");
     a.setAttribute("href","http://127.0.0.1:3000/test");
     a.click();
+})
+
+load_btn.addEventListener('change', () => {
+    const a = document.createElement("a");
+    a.setAttribute("href","http://127.0.0.1:3000/test");
+    a.click();
+    /*
+    TBD
+    */
 })
 
 for(let i=0;i<side_btns.length;i++)

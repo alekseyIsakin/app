@@ -51,19 +51,13 @@
 
         <table cellspacing="0" cellpadding="5" id="maintable" background = "images\newBack.png">
             <tr> 
-             <td bgcolor="2F3334" id="leftcolumn">
+             <td bgcolor="#2F3334" id="leftcolumn">
                 <p class="header_text" style="margin-left: 10px; margin-top: 8vh; margin-bottom: 5px;">
                     Выбрать тест :
                 </p>
                 <div id="test_selector">
                     <div class="test_selector_btn" style="margin-left: 7%;">
                         <span class="button_text" id="anxiety_test">  > Тест Тревоги </span>
-                    </div>
-                    <div class="test_selector_btn" style="margin-left: 7%;">
-                        <span class="button_text">  > Еще тест </span>
-                    </div>
-                    <div class="test_selector_btn" style="margin-left: 7%;">
-                        <span class="button_text">  > И еще тест </span>
                     </div>
                  </div>
                  <div class="test_create" style="margin-left: 10px;">
@@ -96,11 +90,20 @@
                         <br>
                         гипнотерапии
                     </p>
+                    <!--<p class="main_secondary_text" align="right">
+                        Чтобы начать тестирование, выберите необходимый тест в левой части экрана
+                    </p>-->
                     <p class="main_secondary_text" align="right">
-                        Чтобы начать тестирование, выберите необходимый тест и нажмите "Пройти тест"
+                        Чтобы загрузить тест с диска, нажмите:
                     </p>
+                    <div class="control_btn_main bordered" align="right">
+                        <div class="button" style="cursor:pointer;text-align: center;">
+                            <label class="button_text" for="load-button" style="cursor:pointer; height: 100%;width: 100%;"> Загрузить тест </label>
+                            <input type="file" id="load-button" accept=".json,application/json" hidden> 
+                        </div>
+                    </div>
                     <p class="main_secondary_text" align="right">
-                        Чтобы добавить тест, нажмите:
+                        Чтобы создать новый тест, нажмите:
                     </p>
                     <div class="control_btn_main bordered" align="right">
                         <div class="button test_create"  id="click_test_create">
