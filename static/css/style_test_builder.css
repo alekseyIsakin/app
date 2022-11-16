@@ -39,6 +39,7 @@
 /* ************* */
 /* Place holders */
 /* ************* */
+
 .question-ph,
 .btn-ph,
 .lbl-ph {
@@ -67,7 +68,10 @@
   color:#2F3334;
 }
 
+
+
 /*question  question  question  question  question*/
+
 .question-ph::before {
   background: url(/svg/BlockIcon.svg);
   content: " Блок";
@@ -103,7 +107,11 @@
   min-height: 25px;
   padding-bottom: 25px;
 }
+
+
+
 /*button  button  button  button  button*/
+
 .btn-ph::before {
   background: url(/svg/ButtonIcon.svg);
   content: " Кнопка";
@@ -127,7 +135,11 @@
   background-repeat: no-repeat;
   background-position: left center;
 }
+
+
+
 /*label  label  label  label  label*/
+
 .lbl-ph::before {
   background: url(/svg/TextIcon.svg);
   content: " Текст";
@@ -153,7 +165,7 @@
 }
 
 .testinfo-ph {
-  background: yellow;
+  visibility: collapse;
 }
 
 .sieve-ph {
@@ -162,6 +174,8 @@
   overflow-x: auto;
   overflow-y: auto;
 }
+
+
 
 /* ************* */
 /* ** sieve **** */
@@ -198,6 +212,8 @@
   display: inline;
   width: 100%;
 }
+
+
 
 /* statuses */
 

@@ -11,6 +11,7 @@ const userSettingsHolder = document.querySelector(`.${TB_SUPPORT_ENTITY.USER_SET
 tasksListElement.appendChild(create_empty_question_placeholder())
 tasksListElement.appendChild(create_empty_button_placeholder())
 tasksListElement.appendChild(create_empty_label_placeholder())
+tasksListElement.appendChild(create_empty_test_info_placeholder())
 /*tasksListElement.appendChild(create_empty_test_info_placeholder())
 
 const ATTR_ACTION = {}

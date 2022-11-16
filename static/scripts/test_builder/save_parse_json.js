@@ -282,18 +282,12 @@ const preview_test = () => {
     div.appendChild(d)
 
     DOM.appendChild(div)
-    // preview.enable = 1
-    // unhighlite_selections()
-    // show_selected_element_info(dropReceiver)
 
     const newWin = window.open('/preview');
     newWin.onload = () => {
       newWin.document.body.appendChild(DOM)
       console.log('preview')
-  }
-
-  // clear_drop_receiver()
-  // dropReceiver.appendChild(DOM)
+    }
   }
 }
 
