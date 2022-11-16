@@ -6,6 +6,8 @@
 /* **** sieve **** */
 /* *************** */
 
+var drag_drop_handled = false
+
 const autoname_questions = (node, depth = -1) => {
   let index = 0
   let questions_ids = []
@@ -374,13 +376,14 @@ const stop_moving = (event) => {
 function dragover_handler(ev) {
   ev.preventDefault();
   ev.dataTransfer.dropEffect = "move";
+  drag_drop_handled = false
 }
 
 function drop_put_to_question(ev) {
   ev.preventDefault();
 
-  if (ev.target != ev.currentTarget) return
   if (ev.target.parentNode == tasksListElement) return
+  if (drag_drop_handled == true) return
 
   let movable_id = ev.dataTransfer.getData('text')
 
@@ -393,16 +396,37 @@ function drop_put_to_question(ev) {
   if (activeElement.parentNode == tasksListElement) {
     newElemnt = activeElement.cloneNode(true)
     setup_new_ph_element(newElemnt)
+    drag_drop_handled = true
   }
 
   newElemnt.classList.remove(PH_STAUS.SELECTED)
   try {
     ev.currentTarget.appendChild(newElemnt)
+    sort_children(ev.currentTarget)
   }
   catch (err) {
     console.log(err)
   }
 }
+
+function sort_children(target){
+  const labels = target.querySelectorAll(`:scope > .${PH_CLASS.LBL}`)
+  const buttons = target.querySelectorAll(`:scope > .${PH_CLASS.BTN}`)
+  const blocks = target.querySelectorAll(`:scope > .${PH_CLASS.QUESTION}`)
+
+  for (const child of labels) {
+    target.appendChild(child)
+  }
+
+  for (const child of buttons) {
+    target.appendChild(child)
+  }
+
+  for (const child of blocks) {
+    target.appendChild(child)
+  }
+}
+
 function drop_put_handler(ev) {
   ev.preventDefault();
 
@@ -414,6 +438,7 @@ function drop_put_handler(ev) {
   if (activeElement == null) return
 
   if (activeElement.classList.contains(PH_CLASS.TEST_INFO) && dropReceiver.querySelector(`.${PH_CLASS.TEST_INFO}`)) return
+  if (!activeElement.classList.contains(PH_CLASS.QUESTION)) return
 
   let newElemnt = activeElement
 
