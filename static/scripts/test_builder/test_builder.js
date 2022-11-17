@@ -141,6 +141,10 @@ const get_answer_tags = () => {
 }
 
 const create_edit_tag_row = (options = { tag_name:'answer', tag_value:'0' }) => {
+  document.getElementById("dummyrow").setAttribute("hidden", "")
+  console.log('ffsa')
+
+
   const name_editor = document.createElement('input')
   const value_editor = document.createElement('input')
 
@@ -294,7 +298,7 @@ const create_attr_editor = (label, attr, element, callbacks =
 
   p.textContent = label
   p.appendChild(input)
-  p.classList.add("header_text")
+  p.classList.add("column_name")
   p.setAttribute("style", "font-size: 25px;")
   input.id = TB_SUPPORT_ENTITY.USER_INPUT + attr
   userSettingsHolder.appendChild(p)
@@ -326,7 +330,7 @@ const get_input_content_holder = (element) => {
   input.value = element.textContent
 
   p.textContent = 'Содержимое: '
-  p.classList.add("header_text")
+  p.classList.add("column_name")
   p.setAttribute("style", "font-size: 25px;")
   p.appendChild(input)
   userSettingsHolder.appendChild(p)
