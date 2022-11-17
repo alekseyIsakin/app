@@ -14,31 +14,35 @@
             <tr>
                 <td class="header_text" width="auto">Тест: <span id="test_name">Название теста загружается</span></td>
                 <td width="auto"></td>
-                <td width="5%" id="exit_button" style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;"></td>
+                <td width="5%" id="exit_button"
+                    style="background: url(svg/exitBtn.svg);background-repeat: no-repeat;background-size:contain;background-position: center right;">
+                </td>
             </tr>
-         </table>
+        </table>
+        <div style="margin-top: 5em; display: flex;
+        flex-flow: column; display: flex; flex-flow: column;">
 
-        <div id="test_progress" class="bordered default_text">
-            < 
-            <span id="current_question"> - </span> /
-            <span id="count_questions" > - </span> 
-            >
-        </div>
-
-
-        <div id="question_holder" class="bordered" align="center" style="margin-top: 3em;">
-
-        </div>
-        <div id="empty_space"></div>
-        <div class="control_quest_btn bordered">
-            <div>
-                <div class="button" id="click_prev">
-                    <span class="button_text"> Назад </span>
-                </div>
+            <div id="test_progress" class="bordered default_text" align="center">
+                < <span id="current_question"> - </span> /
+                    <span id="count_questions"> - </span>
+                    >
             </div>
-            <div>
-                <div class="button" id="click_next">
-                    <span class="button_text"> Продолжить </span>
+
+
+            <div id="question_holder" class="bordered" align="center">
+
+            </div>
+            <div id="empty_space"></div>
+            <div class="control_quest_btn bordered">
+                <div>
+                    <div class="button" id="click_prev">
+                        <span class="button_text"> Назад </span>
+                    </div>
+                </div>
+                <div>
+                    <div class="button" id="click_next">
+                        <span class="button_text"> Продолжить </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,7 +50,7 @@
     <div class="line" id="progress_line">
 
     </div>
-    
+
     <script type="text/javascript" src="scripts/constants.js"></script>
     <script type="text/javascript" src="scripts/test_builder/save_parse_json.js"></script>
     <script type="text/javascript" src="scripts/calc.js"></script>

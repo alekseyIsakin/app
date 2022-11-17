@@ -31,7 +31,7 @@ const calc_answer = (str) => {
         return
     }
 
-    get_tag_list().forEach((tag) => expr = expr.replace(tag, localStorage[tag]))
+    get_tag_list().forEach((tag) => expr = expr.replaceAll(tag, localStorage[tag]))
 
 
     localStorage[cur_tag] = evaluateString(expr)
@@ -89,7 +89,5 @@ function attach_events() {
 
 const exit_btn = document.getElementById("exit_button")
 exit_btn.addEventListener('click', () => {
-  const a = document.createElement("a");
-  a.setAttribute("href","http://127.0.0.1:3000");
-  a.click();
+    document.location.assign('/')
 })

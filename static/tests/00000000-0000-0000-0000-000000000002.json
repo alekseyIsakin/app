@@ -2,15 +2,15 @@
     "uuid": "",
     "version": "3.1",
     "description": "",
-    "test_name": "123",
-    "test_author": "me",
+    "test_name": "Шкала депрессии Бека",
+    "test_author": "",
     "answertags": [
       {
-        "tag_name": "a",
+        "tag_name": "CA",
         "tag_value": "0"
       },
       {
-        "tag_name": "b",
+        "tag_name": "SP",
         "tag_value": "0"
       }
     ],
@@ -21,23 +21,773 @@
           {
             "type": "lbl-ph",
             "attr_list": [],
-            "text_content": "q1"
+            "text_content": "В этом опроснике содержатся группы утверждений. Внимательно прочитайте каждую группу утверждений. Затем определите в каждой группе одно утверждение, которое лучше всего соответствует тому, как Вы себя чувствовали НА ЭТОЙ НЕДЕЛЕ И СЕГОДНЯ. Поставьте галочку около выбранного утверждения. Если несколько утверждений из одной группы кажутся Вам одинаково хорошо подходящими, то поставьте галочки около каждого из них. Прежде, чем сделать свой выбор, убедитесь, что Вы прочли Все утверждения в каждой группе"
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не чувствую себя расстроенным, печальным."
           },
           {
             "type": "btn-ph",
             "attr_list": [
               "action"
             ],
-            "action": "a=a+1",
-            "text_content": "a=a+1"
+            "action": "ca=ca+1",
+            "text_content": "Я расстроен."
           },
           {
             "type": "btn-ph",
             "attr_list": [
               "action"
             ],
-            "action": "b=b+1",
-            "text_content": "b=b+1"
+            "action": "ca=ca+2",
+            "text_content": "Я все время расстроен и не могу от этого отключиться."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я настолько расстроен и несчастлив, что не могу это выдержать."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не тревожусь о своем будущем."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я чувствую, что озадачен будушим."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я чувствую, что меня ничего не ждет в будущем."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Мое будущее безнадежно, и ничто не может измениться к лучшему."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не чувствую себя неудачником."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я чувствую, что терпел больше неудач, чем другие люди."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Когда я оглядываюсь на свою жизнь, я вижу в ней много неудач."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я чувствую, что как личность я - полный неудачник."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я получаю столько же удовлетворения от жизни, как раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я не получаю столько же удовлетворения от жизни, как раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я больше не получаю удовлетворения ни от чего."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я полностью не удовлетворен жизнью. и мне все надоело."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не чувствую себя в чем-нибудь виноватым."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Достаточно часто я чувствую себя виноватым."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Большую часть времени я чувствую себя виноватым."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я постоянно испытываю чувство вины."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не чувствую, что могу быть наказанным за что-либо."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я чувствую, что могу быть наказан."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я ожидаю, что могу быть наказан."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я чувствую себя уже наказанным."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не разочаровался в себе."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я разочаровался в себе."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я себе противен."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я себя ненавижу."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я знаю, что я не хуже других."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я критикую себя за ошибки и слабости."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я все время обвиняю себя за свои поступки."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я виню себя во всем плохом, что происходит."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я никогда не думал покончить с собой."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Ко мне приходят мысли покончить с собой, но я не буду их осуществлять."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я хотел бы покончить с собой."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я бы убил себя, если бы представился случай."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я плачу не больше, чем обычно."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Сейчас я плачу чаще, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Теперь я все время плачу."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Раньше я мог плакать, а сейчас не могу, даже если мне хочется."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Сейчас я раздражителен не более, чем обычно."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я более легко раздражаюсь, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Теперь я постоянно чувствую, что раздражен."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я стал равнодушен к вещам, которые меня раньше раздражали."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я не утратил интереса к другим людям."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я меньше интересуюсь другими людьми, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Я почти потерял интерес к другим людям."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я полностью утратил интерес к другим людям."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+0",
+            "text_content": "Я откладываю принятие решения иногда, как и раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+1",
+            "text_content": "Я чаще, чем раньше, откладываю принятие решения."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+2",
+            "text_content": "Мне труднее принимать решения, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "ca=ca+3",
+            "text_content": "Я больше не могу принимать решения."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "Я не чувствую, что выгляжу хуже, чем обычно."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Меня тревожит, что я выгляжу старым и непривлекательным."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Я знаю, что в моей внешности произошли существенные изменения, делающие меня непривлекательным."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "Я знаю, что выгляжу безобразно."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "Я могу работать так же хорошо, как и раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Мне необходимо сделать дополнительное усилие, чтобы начать делать что-нибудь."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Я с трудом заставляю себя делать что-либо."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "Я совсем не могу выполнять никакую работу."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "Я сплю так же хорошо, как и раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Сейчас я сплю хуже, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Я просыпаюсь на 1-2 часа раньше, и мне трудно заснуть опять."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "Я просыпаюсь на несколько часов раньше обычного и больше не могу заснуть."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "Я устаю не больше, чем обычно."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Теперь я устаю быстрее, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Я устаю почти от всего, что я делаю."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "Я не могу ничего делать из-за усталости."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "Мой аппетит не хуже, чем обычно."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Мой аппетит стал хуже, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Мой аппетит теперь значительно хуже."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "У меня вообще нет аппетита."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "lbl-ph",
+            "attr_list": [],
+            "text_content": "Я намеренно стараюсь похудеть и ем меньше"
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "",
+            "text_content": "Да"
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "",
+            "text_content": "Нет"
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "Я беспокоюсь о своем здоровье не больше, чем обычно."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Меня тревожат проблемы моего физического здоровья, такие, как боли, расстройство желудка, запоры и т.д."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Я очень обеспокоен своим физическим состоянием, и мне трудно думать о чем-либо другом."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "Я настолько обеспокоен своим физическим состоянием, что больше ни о чем не могу думать."
+          }
+        ]
+      },
+      {
+        "type": "question-ph",
+        "question_list": [
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+0",
+            "text_content": "В последнее время я не замечал изменения своего интереса к сексу."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+1",
+            "text_content": "Меня меньше занимают проблемы секса, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+2",
+            "text_content": "Сейчас я значительно меньше интересуюсь сексуальными проблемами, чем раньше."
+          },
+          {
+            "type": "btn-ph",
+            "attr_list": [
+              "action"
+            ],
+            "action": "sp=sp+3",
+            "text_content": "Я полностью утратил сексуальный интерес."
           }
         ]
       }
