@@ -18,28 +18,39 @@ const get_tag_from_expr = (expr) => {
         .replace(/\s+/g, '')
 }
 const clear_expression = (expr) => {
-    return expr
-        .split('=')[1]
+    const arr = expr
+        .split('=')
+
+    if (arr.length != 2)
+        return null
+
+    return arr[1]
         .replace(/\s+/g, '')
 }
-const calc_answer = (str) => {
+const calc_answer = (question, str) => {
     let cur_tag = get_tag_from_expr(str)
     let expr = clear_expression(str)
 
+    if (expr == null) {
+        alert(`${question} dont answered`)
+        return false
+    }
+
     if (localStorage.hasOwnProperty(cur_tag) == false) {
         alert('error, unknown answer tag: ' + cur_tag)
-        return
+        return false
     }
 
     get_tag_list().forEach((tag) => expr = expr.replaceAll(tag, localStorage[tag]))
 
 
     localStorage[cur_tag] = evaluateString(expr)
+    return true
 }
 const validate_answers = () => {
     questions_to_check.forEach(el => {
-        localStorage[el].split(SEPARATOR).forEach((expression) => {
-            calc_answer(expression)
+        localStorage[el].split(SEPARATOR).forEach((expression) => { 
+            calc_answer(el, expression)
         })
     })
 }

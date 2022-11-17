@@ -269,7 +269,7 @@ const create_attr_editor = (label, attr, element, callbacks =
     input: (input, attr, element) => { }, enter: (input, attr, element) => { }
   }) => {
 
-  const input = document.createElement('input')
+  const input = document.createElement('textarea')
   const p = document.createElement('p')
 
   callbacks['input'] = callbacks.hasOwnProperty('input') ? callbacks.input : () => { }
@@ -318,7 +318,7 @@ const get_input_content_holder = (element) => {
   if (check_input != null)
     return check_input
 
-  const input = document.createElement('input')
+  const input = document.createElement('textarea')
   const p = document.createElement('p')
 
   input.addEventListener('input', change_content)

@@ -23,6 +23,7 @@ const create_empty_string = () => {
 }
 const create_empty_button = () => {
   const btn = document.createElement('button')
+  btn.classList.add(TR_CLASS.BTN_ANSWER)
   btn.classList.add(TR_CLASS.ANSWER)
   return btn
 }
@@ -281,23 +282,13 @@ const preview = { enable: 0 }
 let saved_editor_state = {}
 
 const preview_test = () => {
-  const DOM = document.createDocumentFragment()
-
+  const newWin = window.open('/test?custom');
   const json = convert_editor2json()
-  saved_editor_state = json
-  const d = convert_json2test(json)
+  newWin.sessionStorage.setItem('custom', JSON.stringify(json))
 
-  if (d) {
-    const div = create_question_holder_from_main_page()
-    div.appendChild(d)
-
-    DOM.appendChild(div)
-
-    const newWin = window.open('/preview');
-    newWin.onload = () => {
-      newWin.document.body.appendChild(DOM)
-      console.log('preview')
-    }
+  newWin.onload = () => {
+    newWin.document.body.appendChild(DOM)
+    console.log('preview')
   }
 }
 

@@ -153,6 +153,7 @@ const TR_CLASS = {
   QUESTION: 'one_question',
   LBL: 'question_text',
   ANSWER: 'answer',
+  BTN_ANSWER: 'btn_answer',
   RULES: 'rule'
 }
 

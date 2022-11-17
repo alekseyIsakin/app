@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', (ev) => {
   if (uuid)
     get_test_from_server(uuid)
   else if (custom != null) {
-
+    console.log(sessionStorage.getItem('custom'))
     get_test_by_json(
       JSON.parse(sessionStorage.getItem('custom'))
     )
@@ -115,7 +115,6 @@ const get_test_by_json = (json) => {
 
   document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
     .forEach((el) => {
-      el.classList.add("btn_answer")
       el.addEventListener('click', (ev) => btn_click(ev.target)
       )
     })
