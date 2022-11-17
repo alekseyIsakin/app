@@ -23,6 +23,21 @@ const test_name_h = document.getElementById(TR_SUPPORT_ENTITY.TEST_NAME_HEADER)
 const get_all_tests = () => document.querySelectorAll(`#${TR_SUPPORT_ENTITY.QUESTION_HOLDER} > *`)
 const get_cnt_questions = () => _test_data[JSON_ATTR.QUESTION_LIST].filter(el => el[JSON_ATTR.TYPE] != PH_CLASS.TEST_INFO).length
 
+document.addEventListener('DOMContentLoaded', (ev) => {
+
+  const para = new URLSearchParams(window.location.search);
+  const uuid = para.get("uuid");
+  const custom = para.get("custom");
+  if (uuid)
+    get_test_from_server(uuid)
+  else if (custom != null) {
+
+    get_test_by_json(
+      JSON.parse(sessionStorage.getItem('custom'))
+    )
+  }
+})
+
 next_btn.addEventListener('click', () => {
   select_question(
     Number(localStorage[LOCALSTORAGE.CUR_QUEST]) + 1
@@ -42,77 +57,82 @@ document.querySelector(`.${TR_SUPPORT_ENTITY.HEADER_TEXT}`).addEventListener('cl
 
   ask_file.onchange = (evt) => {
     const f = ask_file.files[0]
-    get_test_by_localhost(f)
+    get_test_by_json(f)
   }
 })
 
 const get_test_from_server = (uuid) => {
-  e.preventDefault();
   let request = new XMLHttpRequest();
   request.open("POST", "/test", true);
   request.setRequestHeader("Content-Type", "application/json");
   request.addEventListener("load", function (req, res) {
     console.log(request)
-    // test_data = JSON.parse(request.response);
-    // get_test_by_localhost(test_data);
+    get_test_by_json(JSON.parse(request.response))
   });
-  request.send(uuid);
+
+  console.log('send ' + uuid)
+  request.send(JSON.stringify({ 'uuid': uuid }));
 }
 
-const get_test_by_localhost = (text) => {
+const get_test_by_json = (json) => {
+  get_all_tests().forEach((el) => el.remove())
+  const DOM = convert_json2test(json)
+
+  DOM.childNodes.forEach((el) => { el.hidden = true })
+  DOM.firstChild.hidden = false
+  question_holder.appendChild(DOM)
+
+  localStorage.clear()
+  localStorage[LOCALSTORAGE.CUR_QUEST] = 0
+
+  _test_data = json
+
+  test_name_h.textContent = json[PH_ATTR.TEST_NAME]
+
+  const attrs = json[JSON_ATTR.ANSWER_TAGS]
+  if (attrs != '') {
+    let answer_tags = ''
+
+    attrs
+      .forEach((tag) => {
+        localStorage[tag[TEST_INFO.TAG_NAME]] = Number(tag[TEST_INFO.TAG_VALUE])
+        answer_tags = answer_tags.concat(tag[TEST_INFO.TAG_NAME], SEPARATOR)
+      })
+
+    localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0, -1)
+  }
+
+  questions_to_check.length = 0
+  document.querySelectorAll(`.${TR_CLASS.QUESTION}`)
+    .forEach((el) => {
+      const attr = el.getAttribute(`${TR_ATTR.VALUE}`)
+
+      if (attr) {
+        localStorage[attr] = '0'
+        questions_to_check.push(attr)
+      }
+    })
+
+  document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
+    .forEach((el) => {
+      el.classList.add("btn_answer")
+      el.addEventListener('click', (ev) => btn_click(ev.target)
+      )
+    })
+
+  set_cnt_lbl_question(get_cnt_questions())
+  select_question(0)
+
+
+}
+const get_test_by_file = (text) => {
   if (text) {
 
     var reader = new FileReader();
     reader.readAsText(text, "UTF-8");
     reader.onload = function (evt) {
-      get_all_tests().forEach((el) => el.remove())
       const json = JSON.parse(evt.target.result)
-      const DOM = convert_json2test(json)
-
-      DOM.childNodes.forEach((el) => { el.hidden = true })
-      DOM.firstChild.hidden = false
-      question_holder.appendChild(DOM)
-
-      localStorage.clear()
-      localStorage[LOCALSTORAGE.CUR_QUEST] = 0
-
-      _test_data = json
-
-      test_name_h.textContent = json[PH_ATTR.TEST_NAME]
-
-      const attrs = json[JSON_ATTR.ANSWER_TAGS]
-      if (attrs != '') {
-        let answer_tags = ''
-
-        attrs
-          .forEach((tag) => {
-            localStorage[tag[TEST_INFO.TAG_NAME]] = Number(tag[TEST_INFO.TAG_VALUE])
-            answer_tags = answer_tags.concat(tag[TEST_INFO.TAG_NAME], SEPARATOR)
-          })
-
-        localStorage[LOCALSTORAGE.ANSWERS_TAG] = answer_tags.slice(0, -1)
-      }
-
-      questions_to_check.length = 0
-      document.querySelectorAll(`.${TR_CLASS.QUESTION}`)
-        .forEach((el) => {
-          const attr = el.getAttribute(`${TR_ATTR.VALUE}`)
-
-          if (attr) {
-            localStorage[attr] = '0'
-            questions_to_check.push(attr)
-          }
-        })
-
-      document.querySelectorAll(`.${TR_CLASS.ANSWER}`)
-        .forEach((el) => {
-          el.classList.add("btn_answer")
-          el.addEventListener('click', (ev) => btn_click(ev.target)
-          )
-        })
-
-      set_cnt_lbl_question(get_cnt_questions())
-      select_question(0)
+      get_test_by_json(json)
     }
   }
 }
