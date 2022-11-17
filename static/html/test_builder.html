@@ -22,7 +22,7 @@
 
     <tr style="background-color: red;  height: 100vh;">
       <td class="box-left base_elemnt_holder" ondrop="drop_del_handler(event)" ondragover="dragover_handler(event)">
-        <div class="dragable_elements_holder">
+        <div class="dragable_elements_holder" style="position: fixed;">
           <p class="column_name">Список элементов:</p>
           <img src="svg/TrashBin.svg" style="position:fixed; bottom:2vh; left:-10px;height:6vh;width:4vw;">
         </div>
@@ -34,7 +34,6 @@
       </td>
 
       <td class="box-right element_settings">
-        <p class="column_name">Свойства элемента:</p>
         <p hidden>element-id <span id="element-id">_</span></p>
 
         <!--<button id="save-button">save</button>
@@ -43,8 +42,11 @@
           <input id="load-input" type="file" accept=".json,application/json">
           <br />
           <button id="preview-button">test_view</button>-->
-        <div class="user_settings_holder">
+        <div style="position: fixed;">
+          <p class="column_name">Свойства элемента:</p>
+          <div class="user_settings_holder" >
 
+          </div>
         </div>
       </td>
     </tr>
