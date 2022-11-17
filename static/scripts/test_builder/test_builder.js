@@ -140,7 +140,7 @@ const get_answer_tags = () => {
   return dict
 }
 
-const create_edit_tag_row = (options = { tag_name, tag_value }) => {
+const create_edit_tag_row = (options = { tag_name:'answer', tag_value:'0' }) => {
   const name_editor = document.createElement('input')
   const value_editor = document.createElement('input')
 
