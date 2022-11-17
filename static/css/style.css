@@ -289,11 +289,26 @@ option {
 }
 
 input {
+  border-width: 0px;
+  min-height: 3vh;
+  font-size: 15px;
+  font-weight: bolder;
+  max-width: 200px;
+  text-align: center;
+}
+
+input:focus {
+  outline:none!important;
+}
+
+textarea {
   border-color: black;
   border-width: 2px;
   border:solid;
   min-height: 3vh;
+  max-height: 30vh;
   font-size: 20px;
   font-weight: bolder;
   max-width: 200px;
+  resize:vertical;
 }
